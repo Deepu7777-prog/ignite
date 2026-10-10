@@ -1,12 +1,21 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { db } from './db/database.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const DIST_DIR = path.join(__dirname, '..', 'dist');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+
+// Serve static assets from Vite dist directory
+app.use(express.static(DIST_DIR));
 
 // Logging middleware
 app.use((req, res, next) => {
@@ -1201,6 +1210,11 @@ app.post('/api/payments/complete-direct-gateway', (req, res) => {
 app.get('/api/payments/order/:orderId', (req, res) => {
   const payment = db.filter('payments', p => p.orderId === req.params.orderId)[0];
   res.json({ success: true, payment });
+});
+
+// SPA Fallback for React Router (serves dist/index.html for all non-API client routes)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(DIST_DIR, 'index.html'));
 });
 
 app.listen(PORT, () => {
