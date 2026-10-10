@@ -1,0 +1,2421 @@
+{
+  "users": [
+    {
+      "id": "usr_1791650733838",
+      "email": "satish.ok65@gmail.com",
+      "password": "Satish02",
+      "name": "sathish",
+      "phone": "7207187193",
+      "role": "CUSTOMER",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      "createdAt": "2026-10-10T16:45:33.838Z"
+    },
+    {
+      "id": "usr_1791650680169",
+      "email": "satishkumar.ok65@gmail.com",
+      "password": "Satish02",
+      "name": "sathish",
+      "phone": "7207187193",
+      "role": "CUSTOMER",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      "createdAt": "2026-10-10T16:44:40.169Z"
+    },
+    {
+      "id": "usr_1791559960154",
+      "email": "deepthiedlernity@gmail.com",
+      "password": "deepu0211",
+      "name": "deepu",
+      "phone": "8464826785",
+      "role": "COOK",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      "createdAt": "2026-10-09T15:32:40.155Z"
+    },
+    {
+      "id": "usr_1791556373046",
+      "email": "deepudeepuuu730@gmail.com",
+      "password": "deepu0211",
+      "name": "deepu",
+      "phone": "8464826785",
+      "role": "CUSTOMER",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      "createdAt": "2026-10-09T14:32:53.046Z"
+    },
+    {
+      "id": "usr_1791556040773",
+      "email": "deepthiaura0@gmail.com",
+      "password": "123456789",
+      "name": "deepthi",
+      "phone": "8464826785",
+      "role": "CUSTOMER",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      "createdAt": "2026-10-09T14:27:20.773Z"
+    },
+    {
+      "id": "usr_cook_new_app",
+      "email": "sunil.kitchen@gmail.com",
+      "name": "Sunil Varma",
+      "phone": "+91 91234 56789",
+      "role": "COOK",
+      "avatar": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": "usr_customer_demo",
+      "email": "customer@homecookfinder.test",
+      "name": "Rahul Sharma",
+      "phone": "+91 98765 43210",
+      "role": "CUSTOMER",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      "createdAt": "2026-10-08T06:47:54.731Z"
+    },
+    {
+      "id": "usr_cook_priya",
+      "email": "cook@homecookfinder.test",
+      "name": "Priya Reddy",
+      "phone": "+91 98765 11111",
+      "role": "COOK",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80",
+      "createdAt": "2026-10-08T06:47:54.733Z"
+    },
+    {
+      "id": "usr_admin_demo",
+      "email": "admin@homecookfinder.test",
+      "name": "Super Admin",
+      "phone": "+91 98765 99999",
+      "role": "ADMIN",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+      "createdAt": "2026-10-08T06:47:54.733Z"
+    },
+    {
+      "id": "usr_cook_reema",
+      "email": "reema@homecookfinder.test",
+      "name": "Reema Agarwal",
+      "phone": "+91 98765 22222",
+      "role": "COOK",
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80"
+    },
+    {
+      "id": "usr_cook_sunitha",
+      "email": "sunitha@homecookfinder.test",
+      "name": "Sunitha Amma",
+      "phone": "+91 98765 33333",
+      "role": "COOK",
+      "avatar": "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=200&q=80"
+    },
+    {
+      "id": "usr_cook_kavitha",
+      "email": "kavitha@homecookfinder.test",
+      "name": "Kavitha Rao",
+      "phone": "+91 98765 44444",
+      "role": "COOK",
+      "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80"
+    },
+    {
+      "id": "usr_cook_anitha",
+      "email": "anitha@homecookfinder.test",
+      "name": "Anitha Varma",
+      "phone": "+91 98765 55555",
+      "role": "COOK",
+      "avatar": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=200&q=80"
+    },
+    {
+      "id": "usr_cook_laxmi",
+      "email": "laxmi@homecookfinder.test",
+      "name": "Laxmi Devi",
+      "phone": "+91 98765 66666",
+      "role": "COOK",
+      "avatar": "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=200&q=80"
+    },
+    {
+      "id": "usr_cook_swapna",
+      "email": "swapna@homecookfinder.test",
+      "name": "Swapna Naidu",
+      "phone": "+91 98765 77777",
+      "role": "COOK",
+      "avatar": "https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&w=200&q=80"
+    },
+    {
+      "id": "usr_cook_archana",
+      "email": "archana@homecookfinder.test",
+      "name": "Archana Sen",
+      "phone": "+91 98765 88888",
+      "role": "COOK",
+      "avatar": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=200&q=80"
+    },
+    {
+      "id": "usr_cook_radhika",
+      "email": "radhika@homecookfinder.test",
+      "name": "Radhika K",
+      "phone": "+91 98765 12345",
+      "role": "COOK",
+      "avatar": "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80"
+    },
+    {
+      "id": "usr_cook_geetha",
+      "email": "geetha@homecookfinder.test",
+      "name": "Geetha Rani",
+      "phone": "+91 98765 67890",
+      "role": "COOK",
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80"
+    }
+  ],
+  "cookProfiles": [
+    {
+      "id": "cook_usr_1791559960154",
+      "userId": "usr_1791559960154",
+      "kitchenName": "deepu's Home Kitchen",
+      "ownerName": "deepu",
+      "photo": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=80",
+      "bio": "Freshly prepared homemade meals made with hygienic ingredients.",
+      "location": "Madhapur, Hyderabad",
+      "lat": 17.4483,
+      "lng": 78.3915,
+      "distanceKm": 1.2,
+      "rating": 5,
+      "reviewCount": 0,
+      "startingPrice": 120,
+      "cuisines": [
+        "Home Style",
+        "North Indian",
+        "South Indian"
+      ],
+      "experienceYears": 2,
+      "isVerified": true,
+      "verificationDate": "2026-10-09T15:32:40.157Z",
+      "nextCheckDays": 90,
+      "fssaiNumber": "FSSAI-312126490724",
+      "aadhaarStatus": "VERIFIED",
+      "availableToday": true,
+      "prepTimeMinutes": 30,
+      "openingHours": "10:00 AM - 10:00 PM",
+      "acceptedPaymentMethods": [
+        "PHONEPE_UPI",
+        "RAZORPAY_GATEWAY",
+        "CARD",
+        "NETBANKING",
+        "COD"
+      ],
+      "payoutSettings": {
+        "upiId": "deepu@upi",
+        "bankName": "HDFC Bank",
+        "payoutMethod": "DIRECT_UPI"
+      }
+    },
+    {
+      "id": "cook_new_app",
+      "userId": "usr_cook_new_app",
+      "kitchenName": "Sunil's Homemade Biryani & Grills",
+      "ownerName": "Sunil Varma",
+      "photo": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=80",
+      "bio": "Fresh home kitchen by Sunil Varma. Verified on video call by Home Cook Finder admin.",
+      "location": "Plot 45, Near Image Hospital, Madhapur, Hyderabad",
+      "lat": 17.445,
+      "lng": 78.38,
+      "distanceKm": 1.1,
+      "rating": 5,
+      "reviewCount": 0,
+      "startingPrice": 100,
+      "cuisines": [
+        "Hyderabadi",
+        "Biryani",
+        "Grills"
+      ],
+      "experienceYears": 6,
+      "isVerified": true,
+      "verificationDate": "2026-10-08",
+      "nextCheckDays": 30,
+      "fssaiNumber": "23621004991201",
+      "aadhaarStatus": "VERIFIED",
+      "availableToday": true,
+      "prepTimeMinutes": 25,
+      "openingHours": "10:00 AM - 10:00 PM"
+    },
+    {
+      "id": "cook_priya",
+      "userId": "usr_cook_priya",
+      "kitchenName": "Priya's Home Kitchen",
+      "ownerName": "Priya Reddy",
+      "photo": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=80",
+      "bio": "Cooking authentic Andhra meals with pure homemade podis, ghee, and fresh organic ingredients. Verified by Home Cook Finder team on video call.",
+      "location": "Madhapur, Hyderabad",
+      "lat": 17.4483,
+      "lng": 78.3915,
+      "distanceKm": 0.4,
+      "rating": 4.9,
+      "reviewCount": 340,
+      "startingPrice": 120,
+      "cuisines": [
+        "Andhra",
+        "South Indian",
+        "Biryani"
+      ],
+      "experienceYears": 12,
+      "isVerified": true,
+      "verificationDate": "2026-06-12",
+      "nextCheckDays": 18,
+      "fssaiNumber": "23621003000142",
+      "aadhaarStatus": "VERIFIED",
+      "availableToday": true,
+      "prepTimeMinutes": 25,
+      "openingHours": "11:00 AM - 10:00 PM"
+    },
+    {
+      "id": "cook_reema",
+      "userId": "usr_cook_reema",
+      "kitchenName": "Reema's Home Delights",
+      "ownerName": "Reema Agarwal",
+      "photo": "https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?auto=format&fit=crop&w=600&q=80",
+      "bio": "Wholesome North Indian Thalis, freshly hand-rolled Chapatis, and Punjabi specials made with love in my home kitchen.",
+      "location": "Jubilee Hills, Hyderabad",
+      "lat": 17.4319,
+      "lng": 78.4071,
+      "distanceKm": 0.8,
+      "rating": 4.8,
+      "reviewCount": 210,
+      "startingPrice": 90,
+      "cuisines": [
+        "North Indian",
+        "Punjabi",
+        "Thalis"
+      ],
+      "experienceYears": 9,
+      "isVerified": true,
+      "verificationDate": "2026-05-20",
+      "nextCheckDays": 12,
+      "fssaiNumber": "23621003000889",
+      "aadhaarStatus": "VERIFIED",
+      "availableToday": true,
+      "prepTimeMinutes": 20,
+      "openingHours": "12:00 PM - 9:30 PM"
+    },
+    {
+      "id": "cook_sunitha",
+      "userId": "usr_cook_sunitha",
+      "kitchenName": "Amma's Kitchen",
+      "ownerName": "Sunitha Amma",
+      "photo": "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80",
+      "bio": "Traditional Rayalaseema Ragi Mudde, Dum Biryanis, and slow-cooked home gravies passed down through 3 generations.",
+      "location": "Kondapur, Hyderabad",
+      "lat": 17.4622,
+      "lng": 78.3673,
+      "distanceKm": 1.2,
+      "rating": 4.9,
+      "reviewCount": 520,
+      "startingPrice": 170,
+      "cuisines": [
+        "Rayalaseema",
+        "Biryani",
+        "Telangana"
+      ],
+      "experienceYears": 20,
+      "isVerified": true,
+      "verificationDate": "2026-06-01",
+      "nextCheckDays": 22,
+      "fssaiNumber": "23621003000551",
+      "aadhaarStatus": "VERIFIED",
+      "availableToday": true,
+      "prepTimeMinutes": 35,
+      "openingHours": "11:30 AM - 10:30 PM"
+    },
+    {
+      "id": "cook_kavitha",
+      "userId": "usr_cook_kavitha",
+      "kitchenName": "Kavitha's Gourmet Express",
+      "ownerName": "Kavitha Rao",
+      "photo": "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=600&q=80",
+      "bio": "Hot crisp Ghee Pudi Dosa, Tiffins, Mirchi Bajji, and weekend chicken pulav prepared fresh upon your order.",
+      "location": "Gachibowli, Hyderabad",
+      "lat": 17.4401,
+      "lng": 78.3489,
+      "distanceKm": 1.5,
+      "rating": 4.7,
+      "reviewCount": 180,
+      "startingPrice": 70,
+      "cuisines": [
+        "Tiffins",
+        "Snacks",
+        "South Indian"
+      ],
+      "experienceYears": 7,
+      "isVerified": true,
+      "verificationDate": "2026-06-18",
+      "nextCheckDays": 25,
+      "fssaiNumber": "23621003000774",
+      "aadhaarStatus": "VERIFIED",
+      "availableToday": true,
+      "prepTimeMinutes": 15,
+      "openingHours": "7:00 AM - 11:00 PM"
+    },
+    {
+      "id": "cook_anitha",
+      "userId": "usr_cook_anitha",
+      "kitchenName": "Anitha's Traditional Kitchen",
+      "ownerName": "Anitha Varma",
+      "photo": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80",
+      "bio": "Homemade Pulihora, Sambar Rice, Festival Specials, Bobbatlu and traditional sweets made with pure A2 cow ghee.",
+      "location": "Hitec City, Hyderabad",
+      "lat": 17.4435,
+      "lng": 78.3772,
+      "distanceKm": 2,
+      "rating": 4.9,
+      "reviewCount": 410,
+      "startingPrice": 100,
+      "cuisines": [
+        "Andhra",
+        "Sweets",
+        "Festival Specials"
+      ],
+      "experienceYears": 15,
+      "isVerified": true,
+      "verificationDate": "2026-06-05",
+      "nextCheckDays": 14,
+      "fssaiNumber": "23621003000332",
+      "aadhaarStatus": "VERIFIED",
+      "availableToday": true,
+      "prepTimeMinutes": 20,
+      "openingHours": "10:30 AM - 9:00 PM"
+    },
+    {
+      "id": "cook_laxmi",
+      "userId": "usr_cook_laxmi",
+      "kitchenName": "Laxmi's Pure Veg Kitchen",
+      "ownerName": "Laxmi Devi",
+      "photo": "https://images.unsplash.com/photo-1495521821757-a1efb6729352?auto=format&fit=crop&w=600&q=80",
+      "bio": "100% Pure Vegetarian Sattvic homemade meals, No Onion No Garlic options available upon request.",
+      "location": "Banjara Hills, Hyderabad",
+      "lat": 17.4156,
+      "lng": 78.4347,
+      "distanceKm": 2.3,
+      "rating": 4.8,
+      "reviewCount": 290,
+      "startingPrice": 60,
+      "cuisines": [
+        "Pure Veg",
+        "Sattvic",
+        "South Indian"
+      ],
+      "experienceYears": 18,
+      "isVerified": true,
+      "verificationDate": "2026-06-10",
+      "nextCheckDays": 16,
+      "fssaiNumber": "23621003000661",
+      "aadhaarStatus": "VERIFIED",
+      "availableToday": true,
+      "prepTimeMinutes": 15,
+      "openingHours": "8:00 AM - 9:30 PM"
+    },
+    {
+      "id": "cook_swapna",
+      "userId": "usr_cook_swapna",
+      "kitchenName": "Swapna's Spice Magic",
+      "ownerName": "Swapna Naidu",
+      "photo": "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=80",
+      "bio": "Fiery Telangana Natu Kodi (Country Chicken), Spicy Mutton Kheema, and authentic village-style firewood roasted spices.",
+      "location": "Kukatpally, Hyderabad",
+      "lat": 17.4849,
+      "lng": 78.4011,
+      "distanceKm": 3.1,
+      "rating": 4.6,
+      "reviewCount": 150,
+      "startingPrice": 230,
+      "cuisines": [
+        "Telangana",
+        "Non-Veg",
+        "Spicy"
+      ],
+      "experienceYears": 8,
+      "isVerified": true,
+      "verificationDate": "2026-05-28",
+      "nextCheckDays": 8,
+      "fssaiNumber": "23621003000998",
+      "aadhaarStatus": "VERIFIED",
+      "availableToday": true,
+      "prepTimeMinutes": 35,
+      "openingHours": "12:00 PM - 11:00 PM"
+    },
+    {
+      "id": "cook_archana",
+      "userId": "usr_cook_archana",
+      "kitchenName": "Archana's Kitchenette",
+      "ownerName": "Archana Sen",
+      "photo": "https://images.unsplash.com/photo-1543353071-10c8ba85a904?auto=format&fit=crop&w=600&q=80",
+      "bio": "Healthy home-cooked meals, Millet Upmas, Low-oil curries and protein bowls for working professionals.",
+      "location": "Madhapur, Hyderabad",
+      "lat": 17.449,
+      "lng": 78.389,
+      "distanceKm": 0.6,
+      "rating": 4.9,
+      "reviewCount": 380,
+      "startingPrice": 90,
+      "cuisines": [
+        "Healthy",
+        "Millets",
+        "Dietary"
+      ],
+      "experienceYears": 6,
+      "isVerified": true,
+      "verificationDate": "2026-06-15",
+      "nextCheckDays": 20,
+      "fssaiNumber": "23621003000412",
+      "aadhaarStatus": "VERIFIED",
+      "availableToday": true,
+      "prepTimeMinutes": 20,
+      "openingHours": "8:00 AM - 10:00 PM"
+    },
+    {
+      "id": "cook_radhika",
+      "userId": "usr_cook_radhika",
+      "kitchenName": "Radhika's Coastal Flavors",
+      "ownerName": "Radhika K",
+      "photo": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
+      "bio": "Coastal Andhra style fresh Fish Pulusu, Prawn Iguru, and crispy Tawa Fish Fry delivered straight from my home pan.",
+      "location": "Kondapur, Hyderabad",
+      "lat": 17.461,
+      "lng": 78.365,
+      "distanceKm": 1.8,
+      "rating": 4.8,
+      "reviewCount": 195,
+      "startingPrice": 240,
+      "cuisines": [
+        "Seafood",
+        "Coastal Andhra",
+        "Non-Veg"
+      ],
+      "experienceYears": 14,
+      "isVerified": true,
+      "verificationDate": "2026-06-08",
+      "nextCheckDays": 15,
+      "fssaiNumber": "23621003000219",
+      "aadhaarStatus": "VERIFIED",
+      "availableToday": true,
+      "prepTimeMinutes": 30,
+      "openingHours": "12:00 PM - 10:00 PM"
+    },
+    {
+      "id": "cook_geetha",
+      "userId": "usr_cook_geetha",
+      "kitchenName": "Geetha's Sweet Home",
+      "ownerName": "Geetha Rani",
+      "photo": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
+      "bio": "Authentic festival sweets, Mysurpa, Sunnundalu, Ariselu and hot savory snacks made fresh in small batches.",
+      "location": "Jubilee Hills, Hyderabad",
+      "lat": 17.433,
+      "lng": 78.405,
+      "distanceKm": 2.5,
+      "rating": 4.9,
+      "reviewCount": 330,
+      "startingPrice": 80,
+      "cuisines": [
+        "Sweets",
+        "Snacks",
+        "Traditional"
+      ],
+      "experienceYears": 16,
+      "isVerified": true,
+      "verificationDate": "2026-06-03",
+      "nextCheckDays": 11,
+      "fssaiNumber": "23621003000109",
+      "aadhaarStatus": "VERIFIED",
+      "availableToday": true,
+      "prepTimeMinutes": 10,
+      "openingHours": "9:00 AM - 8:30 PM"
+    }
+  ],
+  "menuItems": [
+    {
+      "id": "itm_1",
+      "cookId": "cook_priya",
+      "name": "Andhra Special Meal Thali",
+      "description": "Steamed Rice, Pappu (Dal), Sambar, Rasam, Homemade Curd, Fryms, Podi & Desi Ghee.",
+      "price": 140,
+      "category": "Lunch",
+      "prepTimeMinutes": 25,
+      "dietaryType": "VEG",
+      "availableToday": true,
+      "paused": true,
+      "image": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=500&q=80",
+      "updatedAt": "2026-10-09T15:34:20.087Z"
+    },
+    {
+      "id": "itm_2",
+      "cookId": "cook_priya",
+      "name": "Gongura Mutton Curry",
+      "description": "Tender mutton pieces slow-cooked with spicy Andhra Gongura (Sorrel) leaves.",
+      "price": 280,
+      "category": "Specials",
+      "prepTimeMinutes": 40,
+      "dietaryType": "NON_VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&w=500&q=80",
+      "updatedAt": "2026-10-08T16:08:12.836Z"
+    },
+    {
+      "id": "itm_3",
+      "cookId": "cook_priya",
+      "name": "Pappu Charu & Potato Fry Thali",
+      "description": "Comforting home-style Pappu Charu served with crispy roasted spiced potato fry and rice.",
+      "price": 120,
+      "category": "Lunch",
+      "prepTimeMinutes": 25,
+      "dietaryType": "VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_4",
+      "cookId": "cook_priya",
+      "name": "Kakaraya Fry (Crispy Bittergourd)",
+      "description": "Thinly sliced bittergourd fried crisp with roasted garlic and red chili podi.",
+      "price": 85,
+      "category": "Dinner",
+      "prepTimeMinutes": 20,
+      "dietaryType": "VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_5",
+      "cookId": "cook_reema",
+      "name": "Dal Chawal Thali with Desi Ghee",
+      "description": "Yellow Arhar Dal Tadka, Jeera Rice, 2 Butter Phulkas, Aloo Jeera and Salad.",
+      "price": 90,
+      "category": "Lunch",
+      "prepTimeMinutes": 20,
+      "dietaryType": "VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_6",
+      "cookId": "cook_reema",
+      "name": "Paneer Butter Masala & 3 Phulkas",
+      "description": "Rich creamy Paneer Butter Masala gravy served hot with 3 soft homemade phulkas.",
+      "price": 130,
+      "category": "Dinner",
+      "prepTimeMinutes": 25,
+      "dietaryType": "VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_7",
+      "cookId": "cook_reema",
+      "name": "Paneer Tikka Homemade Bowl",
+      "description": "Char-grilled homemade cottage cheese cubes tossed with bell peppers and green mint chutney.",
+      "price": 180,
+      "category": "Snacks",
+      "prepTimeMinutes": 25,
+      "dietaryType": "VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_8",
+      "cookId": "cook_reema",
+      "name": "Egg Masala Curry & 3 Parathas",
+      "description": "Two boiled eggs cooked in spicy onion tomato gravy served with 3 lachha parathas.",
+      "price": 140,
+      "category": "Dinner",
+      "prepTimeMinutes": 25,
+      "dietaryType": "NON_VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_9",
+      "cookId": "cook_sunitha",
+      "name": "Hyderabadi Chicken Dum Biryani",
+      "description": "Authentic home-cooked Dum Biryani with aromatic basmati rice, tender chicken, and Mirchi ka Salan.",
+      "price": 220,
+      "category": "Specials",
+      "prepTimeMinutes": 35,
+      "dietaryType": "NON_VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_10",
+      "cookId": "cook_sunitha",
+      "name": "Rayalaseema Ragi Mudde & Natu Kodi",
+      "description": "Nutritious finger millet balls served with spicy village style country chicken curry.",
+      "price": 240,
+      "category": "Lunch",
+      "prepTimeMinutes": 40,
+      "dietaryType": "NON_VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_11",
+      "cookId": "cook_sunitha",
+      "name": "Ulavacharu Veg Thali",
+      "description": "Rich horsegram soup curry served with steamed rice, ghee, papad and curd.",
+      "price": 170,
+      "category": "Lunch",
+      "prepTimeMinutes": 30,
+      "dietaryType": "VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_12",
+      "cookId": "cook_kavitha",
+      "name": "Soft Ghee Pudi Dosa & Chutneys",
+      "description": "Crispy golden dosa brushed with pure ghee & spicy roasted lentil podi, served with peanut & ginger chutney.",
+      "price": 80,
+      "category": "Breakfast",
+      "prepTimeMinutes": 15,
+      "dietaryType": "VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_13",
+      "cookId": "cook_kavitha",
+      "name": "Mirchi Bajji & Punugulu Combo",
+      "description": "Fresh green chili fritters and crispy rice flour bite-size punugulu served hot.",
+      "price": 70,
+      "category": "Snacks",
+      "prepTimeMinutes": 15,
+      "dietaryType": "VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_14",
+      "cookId": "cook_kavitha",
+      "name": "Home Chicken Fry Pulav",
+      "description": "Seeraga Samba rice pulav served with crispy spicy pan-roasted chicken fry and raitha.",
+      "price": 210,
+      "category": "Dinner",
+      "prepTimeMinutes": 30,
+      "dietaryType": "NON_VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_15",
+      "cookId": "cook_anitha",
+      "name": "Pulihora (Tamarind Rice) with Fryms",
+      "description": "Traditional temple-style tangy tamarind rice spiced with mustard, curry leaves, and roasted peanuts.",
+      "price": 100,
+      "category": "Breakfast",
+      "prepTimeMinutes": 20,
+      "dietaryType": "VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1596797882870-8c33deeac224?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_16",
+      "cookId": "cook_anitha",
+      "name": "Special Ugadi Pachadi & Sweet Bobbatlu",
+      "description": "Traditional 6-taste Ugadi dish paired with 2 hot sweet Bobbatlu (Puran Poli).",
+      "price": 160,
+      "category": "Desserts",
+      "prepTimeMinutes": 20,
+      "dietaryType": "VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_17",
+      "cookId": "cook_anitha",
+      "name": "Butter Milk & Curd Rice Pot",
+      "description": "Creamy homemade curd rice tempered with mustard, pomegranates, and served with spiced buttermilk.",
+      "price": 70,
+      "category": "Lunch",
+      "prepTimeMinutes": 10,
+      "dietaryType": "VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_18",
+      "cookId": "cook_laxmi",
+      "name": "Steamed Fluffy Idli Set with Sambar",
+      "description": "4 melt-in-mouth steamed rice cakes served with hot drumstick sambar & fresh coconut chutney.",
+      "price": 60,
+      "category": "Breakfast",
+      "prepTimeMinutes": 15,
+      "dietaryType": "VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_19",
+      "cookId": "cook_laxmi",
+      "name": "Chettinad Mushroom Curry & Rice",
+      "description": "Button mushrooms simmered in freshly ground black pepper Chettinad masala gravy.",
+      "price": 170,
+      "category": "Dinner",
+      "prepTimeMinutes": 25,
+      "dietaryType": "VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_20",
+      "cookId": "cook_laxmi",
+      "name": "Classic Tomato Bath & Raitha",
+      "description": "Karnataka style spiced tomato pulav rice served with onion cucumber raitha.",
+      "price": 85,
+      "category": "Lunch",
+      "prepTimeMinutes": 20,
+      "dietaryType": "VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1596797882870-8c33deeac224?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_21",
+      "cookId": "cook_swapna",
+      "name": "Telangana Natu Kodi Kura",
+      "description": "Spicy country chicken cooked with stone-ground shallots, garlic, and homemade garam masala.",
+      "price": 260,
+      "category": "Specials",
+      "prepTimeMinutes": 45,
+      "dietaryType": "NON_VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_22",
+      "cookId": "cook_swapna",
+      "name": "Special Mutton Kheema Curry",
+      "description": "Minced mutton slow cooked with green peas and fragrant Telangana spices.",
+      "price": 310,
+      "category": "Dinner",
+      "prepTimeMinutes": 40,
+      "dietaryType": "NON_VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_23",
+      "cookId": "cook_archana",
+      "name": "Foxtail Millet Upma & Coconut Chutney",
+      "description": "Diabetic-friendly foxtail millet upma cooked with vegetables and mild spices.",
+      "price": 110,
+      "category": "Breakfast",
+      "prepTimeMinutes": 20,
+      "dietaryType": "VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1543353071-10c8ba85a904?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_24",
+      "cookId": "cook_archana",
+      "name": "Oats Rava Dosa with Peanut Chutney",
+      "description": "Instant crisp oats and semolina dosa spiced with cumin, green chilies, and ginger.",
+      "price": 95,
+      "category": "Breakfast",
+      "prepTimeMinutes": 20,
+      "dietaryType": "VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_25",
+      "cookId": "cook_radhika",
+      "name": "Nellore Fish Pulusu",
+      "description": "Freshwater fish steak simmered in tangy tamarind gravy with green chilies & raw mango.",
+      "price": 290,
+      "category": "Specials",
+      "prepTimeMinutes": 35,
+      "dietaryType": "NON_VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_26",
+      "cookId": "cook_radhika",
+      "name": "Royyala Iguru (Prawn Curry)",
+      "description": "Juicy prawns cooked in thick onion-tomato spicy semi-gravy.",
+      "price": 320,
+      "category": "Lunch",
+      "prepTimeMinutes": 35,
+      "dietaryType": "NON_VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_27",
+      "cookId": "cook_geetha",
+      "name": "Traditional Home-made Mysurpa",
+      "description": "Melt-in-mouth ghee Mysore Pak made using organic gram flour and pure desi ghee [250g].",
+      "price": 150,
+      "category": "Desserts",
+      "prepTimeMinutes": 10,
+      "dietaryType": "VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_28",
+      "cookId": "cook_geetha",
+      "name": "Fresh Gulab Jamun [4 pcs]",
+      "description": "Soft khoya jamuns soaked in cardamom flavored sugar syrup.",
+      "price": 80,
+      "category": "Desserts",
+      "prepTimeMinutes": 10,
+      "dietaryType": "VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1599785209707-a456fc1337cc?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "itm_29",
+      "cookId": "cook_geetha",
+      "name": "Dry Fruit Sunnundalu [6 pcs]",
+      "description": "Nutritious roasted urad dal laddoos made with jaggery, almonds, and desi ghee.",
+      "price": 180,
+      "category": "Desserts",
+      "prepTimeMinutes": 10,
+      "dietaryType": "VEG",
+      "availableToday": true,
+      "paused": false,
+      "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80"
+    }
+  ],
+  "orders": [
+    {
+      "id": "ord_1791651531297",
+      "orderNumber": "HCF-9510",
+      "customerId": "usr_customer_demo",
+      "cookId": "cook_priya",
+      "cookName": "Priya's Home Kitchen",
+      "items": [
+        {
+          "menuItemId": "itm_3",
+          "name": "Pappu Charu & Potato Fry Thali",
+          "price": 120,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 120,
+      "deliveryFee": 35,
+      "tax": 6,
+      "total": 161,
+      "deliveryAddress": {
+        "id": "addr_checkout",
+        "label": "Home",
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City, Hyderabad - 500081",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery (30-40 mins)",
+      "paymentMethod": "PHONEPE_UPI",
+      "paymentStatus": "PAID",
+      "status": "ACCEPTED",
+      "prepTimeMinutes": 25,
+      "etaMinutes": 30,
+      "createdAt": "2026-10-10T16:58:51.297Z",
+      "updatedAt": "2026-10-10T16:59:18.442Z"
+    },
+    {
+      "id": "ord_1791651131761",
+      "orderNumber": "HCF-3691",
+      "customerId": "usr_1791650733838",
+      "cookId": "cook_sunitha",
+      "cookName": "Amma's Kitchen",
+      "items": [
+        {
+          "menuItemId": "itm_9",
+          "name": "Hyderabadi Chicken Dum Biryani",
+          "price": 220,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 220,
+      "deliveryFee": 35,
+      "tax": 11,
+      "total": 266,
+      "deliveryAddress": {
+        "id": "addr_checkout",
+        "label": "Home",
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City, Hyderabad - 500081",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery (30-40 mins)",
+      "paymentMethod": "PHONEPE_UPI",
+      "paymentStatus": "PAID",
+      "status": "PLACED",
+      "prepTimeMinutes": 25,
+      "etaMinutes": 30,
+      "createdAt": "2026-10-10T16:52:11.761Z",
+      "updatedAt": "2026-10-10T16:52:13.587Z"
+    },
+    {
+      "id": "ord_1791650831287",
+      "orderNumber": "HCF-2670",
+      "customerId": "usr_1791650733838",
+      "cookId": "cook_sunitha",
+      "cookName": "Amma's Kitchen",
+      "items": [
+        {
+          "menuItemId": "itm_9",
+          "name": "Hyderabadi Chicken Dum Biryani",
+          "price": 220,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 220,
+      "deliveryFee": 35,
+      "tax": 11,
+      "total": 266,
+      "deliveryAddress": {
+        "id": "addr_checkout",
+        "label": "Home",
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City, Hyderabad - 500081",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery (30-40 mins)",
+      "paymentMethod": "PHONEPE_UPI",
+      "paymentStatus": "UNPAID",
+      "status": "PENDING_PAYMENT",
+      "prepTimeMinutes": 25,
+      "etaMinutes": 30,
+      "createdAt": "2026-10-10T16:47:11.287Z",
+      "updatedAt": "2026-10-10T16:47:11.287Z"
+    },
+    {
+      "id": "ord_1791634365571",
+      "orderNumber": "HCF-4766",
+      "customerId": "usr_1791559960154",
+      "cookId": "cook_sunitha",
+      "cookName": "Amma's Kitchen",
+      "items": [
+        {
+          "menuItemId": "itm_9",
+          "name": "Hyderabadi Chicken Dum Biryani",
+          "price": 220,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 220,
+      "deliveryFee": 35,
+      "tax": 11,
+      "total": 266,
+      "deliveryAddress": {
+        "id": "addr_checkout",
+        "label": "Home",
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City, Hyderabad - 500081",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery (30-40 mins)",
+      "paymentMethod": "PHONEPE_UPI",
+      "paymentStatus": "UNPAID",
+      "status": "PENDING_PAYMENT",
+      "prepTimeMinutes": 25,
+      "etaMinutes": 30,
+      "createdAt": "2026-10-10T12:12:45.571Z",
+      "updatedAt": "2026-10-10T12:12:45.572Z"
+    },
+    {
+      "id": "ord_1791559710085",
+      "orderNumber": "HCF-2905",
+      "customerId": "usr_1791556373046",
+      "cookId": "cook_priya",
+      "cookName": "Priya's Home Kitchen",
+      "items": [
+        {
+          "menuItemId": "itm_2",
+          "name": "Gongura Mutton Curry",
+          "price": 280,
+          "quantity": 2,
+          "image": "https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 560,
+      "deliveryFee": 35,
+      "tax": 28,
+      "total": 623,
+      "deliveryAddress": {
+        "id": "addr_checkout",
+        "label": "Home",
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City, Hyderabad - 500081",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery (30-40 mins)",
+      "paymentMethod": "PHONEPE_UPI",
+      "paymentStatus": "PAID",
+      "status": "DELIVERED",
+      "prepTimeMinutes": 25,
+      "etaMinutes": 30,
+      "createdAt": "2026-10-09T15:28:30.085Z",
+      "updatedAt": "2026-10-10T12:18:33.774Z"
+    },
+    {
+      "id": "ord_1791556394727",
+      "orderNumber": "HCF-7716",
+      "customerId": "usr_1791556373046",
+      "cookId": "cook_priya",
+      "cookName": "Priya's Home Kitchen",
+      "items": [
+        {
+          "menuItemId": "itm_3",
+          "name": "Pappu Charu & Potato Fry Thali",
+          "price": 120,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 120,
+      "deliveryFee": 35,
+      "tax": 6,
+      "total": 161,
+      "deliveryAddress": {
+        "id": "addr_checkout",
+        "label": "Home",
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City, Hyderabad - 500081",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery (30-40 mins)",
+      "paymentMethod": "PHONEPE_UPI",
+      "paymentStatus": "PAID",
+      "status": "CANCELLED",
+      "prepTimeMinutes": 25,
+      "etaMinutes": 30,
+      "createdAt": "2026-10-09T14:33:14.727Z",
+      "updatedAt": "2026-10-09T15:35:25.222Z"
+    },
+    {
+      "id": "ord_1791554665384",
+      "orderNumber": "HCF-8359",
+      "customerId": "usr_customer_demo",
+      "cookId": "cook_sunitha",
+      "cookName": "Amma's Kitchen",
+      "items": [
+        {
+          "menuItemId": "itm_9",
+          "name": "Hyderabadi Chicken Dum Biryani",
+          "price": 220,
+          "quantity": 3,
+          "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 660,
+      "deliveryFee": 35,
+      "tax": 33,
+      "total": 728,
+      "deliveryAddress": {
+        "id": "addr_checkout",
+        "label": "Home",
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City, Hyderabad - 500081",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery (30-40 mins)",
+      "paymentMethod": "PHONEPE_UPI",
+      "paymentStatus": "PAID",
+      "status": "PLACED",
+      "prepTimeMinutes": 25,
+      "etaMinutes": 30,
+      "createdAt": "2026-10-09T14:04:25.384Z",
+      "updatedAt": "2026-10-09T14:04:27.106Z"
+    },
+    {
+      "id": "ord_1791552517237",
+      "orderNumber": "HCF-2078",
+      "customerId": "usr_customer_demo",
+      "cookId": "cook_priya",
+      "cookName": "Priya's Home Kitchen",
+      "items": [
+        {
+          "menuItemId": "itm_1",
+          "name": "Andhra Special Meal Thali",
+          "price": 140,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 140,
+      "deliveryFee": 35,
+      "tax": 7,
+      "total": 182,
+      "deliveryAddress": {
+        "id": "addr_checkout",
+        "label": "Home",
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City, Hyderabad - 500081",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery (30-40 mins)",
+      "paymentMethod": "PHONEPE_UPI",
+      "paymentStatus": "PAID",
+      "status": "CANCELLED",
+      "prepTimeMinutes": 25,
+      "etaMinutes": 30,
+      "createdAt": "2026-10-09T13:28:37.237Z",
+      "updatedAt": "2026-10-10T12:18:38.501Z"
+    },
+    {
+      "id": "ord_1791475381923",
+      "orderNumber": "HCF-8661",
+      "customerId": "usr_customer_demo",
+      "cookId": "cook_geetha",
+      "cookName": "Geetha's Sweet Home",
+      "items": [
+        {
+          "menuItemId": "itm_27",
+          "name": "Traditional Home-made Mysurpa",
+          "price": 150,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 150,
+      "deliveryFee": 35,
+      "tax": 8,
+      "total": 193,
+      "deliveryAddress": {
+        "id": "addr_checkout",
+        "label": "Home",
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City, Hyderabad - 500081",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery (30-40 mins)",
+      "paymentMethod": "PHONEPE_UPI",
+      "paymentStatus": "PAID",
+      "status": "PLACED",
+      "prepTimeMinutes": 25,
+      "etaMinutes": 30,
+      "createdAt": "2026-10-08T16:03:01.923Z",
+      "updatedAt": "2026-10-08T16:03:59.252Z"
+    },
+    {
+      "id": "ord_1791474607579",
+      "orderNumber": "HCF-2742",
+      "customerId": "usr_customer_demo",
+      "cookId": "cook_kavitha",
+      "cookName": "Kavitha's Gourmet Express",
+      "items": [
+        {
+          "menuItemId": "itm_14",
+          "name": "Home Chicken Fry Pulav",
+          "price": 210,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 210,
+      "deliveryFee": 35,
+      "tax": 11,
+      "total": 256,
+      "deliveryAddress": {
+        "id": "addr_checkout",
+        "label": "Home",
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City, Hyderabad - 500081",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery (30-40 mins)",
+      "paymentMethod": "PHONEPE_UPI",
+      "paymentStatus": "PAID",
+      "status": "PLACED",
+      "prepTimeMinutes": 25,
+      "etaMinutes": 30,
+      "createdAt": "2026-10-08T15:50:07.579Z",
+      "updatedAt": "2026-10-08T15:50:20.523Z"
+    },
+    {
+      "id": "ord_1791474364429",
+      "orderNumber": "HCF-5789",
+      "customerId": "usr_customer_demo",
+      "cookId": "cook_priya",
+      "cookName": "Priya's Home Kitchen",
+      "items": [
+        {
+          "menuItemId": "itm_2",
+          "name": "Gongura Mutton Curry",
+          "price": 280,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 280,
+      "deliveryFee": 35,
+      "tax": 14,
+      "total": 329,
+      "deliveryAddress": {
+        "id": "addr_checkout",
+        "label": "Home",
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City, Hyderabad - 500081",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery (30-40 mins)",
+      "paymentMethod": "COD",
+      "paymentStatus": "COD_PENDING",
+      "status": "PREPARING",
+      "prepTimeMinutes": 25,
+      "etaMinutes": 30,
+      "createdAt": "2026-10-08T15:46:04.429Z",
+      "updatedAt": "2026-10-08T16:04:45.208Z"
+    },
+    {
+      "id": "ord_1791473031521",
+      "orderNumber": "HCF-4354",
+      "customerId": "usr_admin_demo",
+      "cookId": "cook_priya",
+      "cookName": "Priya's Home Kitchen",
+      "items": [
+        {
+          "menuItemId": "itm_2",
+          "name": "Gongura Mutton Curry",
+          "price": 280,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 280,
+      "deliveryFee": 35,
+      "tax": 14,
+      "total": 329,
+      "deliveryAddress": {
+        "id": "addr_checkout",
+        "label": "Home",
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City, Hyderabad - 500081",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery (30-40 mins)",
+      "paymentMethod": "PHONEPE_UPI",
+      "paymentStatus": "PAID",
+      "status": "PLACED",
+      "prepTimeMinutes": 25,
+      "etaMinutes": 30,
+      "createdAt": "2026-10-08T15:23:51.521Z",
+      "updatedAt": "2026-10-08T15:23:57.164Z"
+    },
+    {
+      "id": "ord_1791449723736",
+      "orderNumber": "HCF-5670",
+      "customerId": "usr_cook_new_app",
+      "cookId": "cook_priya",
+      "cookName": "Priya's Home Kitchen",
+      "items": [
+        {
+          "menuItemId": "itm_2",
+          "name": "Gongura Mutton Curry",
+          "price": 280,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 280,
+      "deliveryFee": 35,
+      "tax": 14,
+      "total": 329,
+      "deliveryAddress": {
+        "id": "addr_checkout",
+        "label": "Home",
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City, Hyderabad - 500081",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery (30-40 mins)",
+      "paymentMethod": "RAZORPAY_UPI",
+      "paymentStatus": "PAID",
+      "status": "PLACED",
+      "prepTimeMinutes": 25,
+      "etaMinutes": 30,
+      "createdAt": "2026-10-08T08:55:23.736Z",
+      "updatedAt": "2026-10-08T08:55:23.736Z"
+    },
+    {
+      "id": "ord_1791449715270",
+      "orderNumber": "HCF-3411",
+      "customerId": "usr_cook_new_app",
+      "cookId": "cook_priya",
+      "cookName": "Priya's Home Kitchen",
+      "items": [
+        {
+          "menuItemId": "itm_2",
+          "name": "Gongura Mutton Curry",
+          "price": 280,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 280,
+      "deliveryFee": 35,
+      "tax": 14,
+      "total": 329,
+      "deliveryAddress": {
+        "id": "addr_checkout",
+        "label": "Home",
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City, Hyderabad - 500081",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery (30-40 mins)",
+      "paymentMethod": "RAZORPAY_UPI",
+      "paymentStatus": "PAID",
+      "status": "PLACED",
+      "prepTimeMinutes": 25,
+      "etaMinutes": 30,
+      "createdAt": "2026-10-08T08:55:15.271Z",
+      "updatedAt": "2026-10-08T08:55:15.271Z"
+    },
+    {
+      "id": "ord_1791445589524",
+      "orderNumber": "HCF-1417",
+      "customerId": "usr_customer_demo",
+      "cookId": "cook_priya",
+      "cookName": "Priya's Home Kitchen",
+      "items": [
+        {
+          "menuItemId": "itm_1",
+          "name": "Andhra Special Meal Thali",
+          "price": 140,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 140,
+      "deliveryFee": 35,
+      "tax": 7,
+      "total": 182,
+      "deliveryAddress": {
+        "id": "addr_checkout",
+        "label": "Home",
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City, Hyderabad - 500081",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery (30-40 mins)",
+      "paymentMethod": "MOCK_PAYMENT (Razorpay Architecture Ready)",
+      "paymentStatus": "PAID",
+      "status": "DELIVERED",
+      "prepTimeMinutes": 25,
+      "etaMinutes": 30,
+      "createdAt": "2026-10-08T07:46:29.524Z",
+      "updatedAt": "2026-10-08T08:54:54.126Z"
+    },
+    {
+      "id": "ord_1791444307973",
+      "orderNumber": "HCF-4681",
+      "customerId": "usr_customer_demo",
+      "cookId": "cook_reema",
+      "cookName": "Reema's Home Delights",
+      "items": [
+        {
+          "menuItemId": "itm_6",
+          "name": "Paneer Butter Masala & 3 Phulkas",
+          "price": 130,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 130,
+      "deliveryFee": 35,
+      "tax": 7,
+      "total": 172,
+      "deliveryAddress": {
+        "id": "addr_checkout",
+        "label": "Home",
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City, Hyderabad - 500081",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery (30-40 mins)",
+      "paymentMethod": "MOCK_PAYMENT (Razorpay Architecture Ready)",
+      "paymentStatus": "PAID",
+      "status": "PLACED",
+      "prepTimeMinutes": 25,
+      "etaMinutes": 30,
+      "createdAt": "2026-10-08T07:25:07.973Z",
+      "updatedAt": "2026-10-08T07:25:07.973Z"
+    },
+    {
+      "id": "ord_1791444077740",
+      "orderNumber": "HCF-5356",
+      "customerId": "usr_customer_demo",
+      "cookId": "cook_anitha",
+      "cookName": "Anitha's Traditional Kitchen",
+      "items": [
+        {
+          "menuItemId": "itm_15",
+          "name": "Pulihora (Tamarind Rice) with Fryms",
+          "price": 100,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1596797882870-8c33deeac224?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 100,
+      "deliveryFee": 35,
+      "tax": 5,
+      "total": 140,
+      "deliveryAddress": {
+        "id": "addr_checkout",
+        "label": "Home",
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City, Hyderabad - 500081",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery (30-40 mins)",
+      "paymentMethod": "MOCK_PAYMENT (Razorpay Architecture Ready)",
+      "paymentStatus": "PAID",
+      "status": "PLACED",
+      "prepTimeMinutes": 25,
+      "etaMinutes": 30,
+      "createdAt": "2026-10-08T07:21:17.740Z",
+      "updatedAt": "2026-10-08T07:21:17.740Z"
+    },
+    {
+      "id": "ord_1791443289817",
+      "orderNumber": "HCF-9318",
+      "customerId": "usr_customer_demo",
+      "cookId": "cook_sunitha",
+      "cookName": "Amma's Kitchen",
+      "items": [
+        {
+          "menuItemId": "itm_9",
+          "name": "Hyderabadi Chicken Dum Biryani",
+          "price": 220,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 220,
+      "deliveryFee": 35,
+      "tax": 11,
+      "total": 266,
+      "deliveryAddress": {
+        "id": "addr_checkout",
+        "label": "Home",
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City, Hyderabad - 500081",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery (30-40 mins)",
+      "paymentMethod": "MOCK_PAYMENT (Razorpay Architecture Ready)",
+      "paymentStatus": "PAID",
+      "status": "PLACED",
+      "prepTimeMinutes": 25,
+      "etaMinutes": 30,
+      "createdAt": "2026-10-08T07:08:09.817Z",
+      "updatedAt": "2026-10-08T07:08:09.817Z"
+    },
+    {
+      "id": "ord_1791443240223",
+      "orderNumber": "HCF-9199",
+      "customerId": "usr_customer_demo",
+      "cookId": "cook_laxmi",
+      "cookName": "Laxmi's Pure Veg Kitchen",
+      "items": [
+        {
+          "menuItemId": "itm_19",
+          "name": "Chettinad Mushroom Curry & Rice",
+          "price": 170,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 170,
+      "deliveryFee": 35,
+      "tax": 9,
+      "total": 214,
+      "deliveryAddress": {
+        "id": "addr_checkout",
+        "label": "Home",
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City, Hyderabad - 500081",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery (30-40 mins)",
+      "paymentMethod": "MOCK_PAYMENT (Razorpay Architecture Ready)",
+      "paymentStatus": "PAID",
+      "status": "PLACED",
+      "prepTimeMinutes": 25,
+      "etaMinutes": 30,
+      "createdAt": "2026-10-08T07:07:20.223Z",
+      "updatedAt": "2026-10-08T07:07:20.223Z"
+    },
+    {
+      "id": "ord_1791442830441",
+      "orderNumber": "HCF-3856",
+      "customerId": "usr_customer_demo",
+      "cookId": "cook_laxmi",
+      "cookName": "Laxmi's Pure Veg Kitchen",
+      "items": [
+        {
+          "menuItemId": "itm_18",
+          "name": "Steamed Fluffy Idli Set with Sambar",
+          "price": 60,
+          "quantity": 3,
+          "image": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 180,
+      "deliveryFee": 35,
+      "tax": 9,
+      "total": 224,
+      "deliveryAddress": {
+        "id": "addr_checkout",
+        "label": "Home",
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City, Hyderabad - 500081",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery (30-40 mins)",
+      "paymentMethod": "MOCK_PAYMENT (Razorpay Architecture Ready)",
+      "paymentStatus": "PAID",
+      "status": "PLACED",
+      "prepTimeMinutes": 25,
+      "etaMinutes": 30,
+      "createdAt": "2026-10-08T07:00:30.441Z",
+      "updatedAt": "2026-10-08T07:00:30.442Z"
+    },
+    {
+      "id": "ord_1001",
+      "orderNumber": "HCF-1001",
+      "customerId": "usr_customer_demo",
+      "cookId": "cook_priya",
+      "cookName": "Priya's Home Kitchen",
+      "items": [
+        {
+          "menuItemId": "itm_1",
+          "name": "Andhra Special Meal Thali",
+          "price": 140,
+          "quantity": 2,
+          "image": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=500&q=80"
+        },
+        {
+          "menuItemId": "itm_2",
+          "name": "Gongura Mutton Curry",
+          "price": 280,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 560,
+      "deliveryFee": 35,
+      "tax": 28,
+      "total": 623,
+      "deliveryAddress": {
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery",
+      "paymentMethod": "MOCK_PAYMENT",
+      "paymentStatus": "PAID",
+      "status": "DELIVERED",
+      "prepTimeMinutes": 25,
+      "etaMinutes": 20,
+      "createdAt": "2026-10-08T06:32:54.733Z",
+      "updatedAt": "2026-10-08T06:59:05.634Z"
+    },
+    {
+      "id": "ord_1002",
+      "orderNumber": "HCF-1002",
+      "customerId": "usr_customer_demo",
+      "cookId": "cook_sunitha",
+      "cookName": "Amma's Kitchen",
+      "items": [
+        {
+          "menuItemId": "itm_9",
+          "name": "Hyderabadi Chicken Dum Biryani",
+          "price": 220,
+          "quantity": 2,
+          "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 440,
+      "deliveryFee": 40,
+      "tax": 22,
+      "total": 502,
+      "deliveryAddress": {
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery",
+      "paymentMethod": "MOCK_PAYMENT",
+      "paymentStatus": "PAID",
+      "status": "DELIVERED",
+      "prepTimeMinutes": 35,
+      "etaMinutes": 0,
+      "createdAt": "2026-10-08T04:47:54.733Z",
+      "updatedAt": "2026-10-08T05:27:54.733Z"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "rev_1",
+      "orderId": "ord_1002",
+      "customerId": "usr_customer_demo",
+      "customerName": "Rahul Sharma",
+      "cookId": "cook_priya",
+      "rating": 5,
+      "comment": "Truly home cooked! The Gongura Mutton had that exact grandma kitchen flavor, spicy and tangy. Loved it!",
+      "dishRating": "Gongura Mutton Curry (5/5)",
+      "createdAt": "2026-10-07T06:47:54.733Z"
+    },
+    {
+      "id": "rev_2",
+      "orderId": "ord_1002",
+      "customerId": "usr_customer_demo",
+      "customerName": "Siddharth V.",
+      "cookId": "cook_sunitha",
+      "rating": 5,
+      "comment": "Best home biryani in Kondapur! Freshly cooked basmati with tender meat. Arrived piping hot.",
+      "dishRating": "Chicken Dum Biryani (5/5)",
+      "createdAt": "2026-10-06T06:47:54.733Z"
+    }
+  ],
+  "favorites": [
+    {
+      "id": "fav_1791559742983",
+      "customerId": "usr_1791556373046",
+      "cookId": "cook_new_app",
+      "createdAt": "2026-10-09T15:29:02.983Z"
+    },
+    {
+      "id": "fav_1",
+      "customerId": "usr_customer_demo",
+      "cookId": "cook_priya",
+      "createdAt": "2026-10-08T06:47:54.733Z"
+    },
+    {
+      "id": "fav_2",
+      "customerId": "usr_customer_demo",
+      "cookId": "cook_sunitha",
+      "createdAt": "2026-10-08T06:47:54.733Z"
+    }
+  ],
+  "addresses": [
+    {
+      "id": "addr_1",
+      "customerId": "usr_customer_demo",
+      "label": "Home",
+      "addressLine": "Flat 402, Cyber Towers View, Hitec City",
+      "city": "Hyderabad",
+      "pincode": "500081",
+      "lat": 17.4435,
+      "lng": 78.3772,
+      "isDefault": true
+    },
+    {
+      "id": "addr_2",
+      "customerId": "usr_customer_demo",
+      "label": "Office",
+      "addressLine": "Building 12B, Mindspace IT Park, Madhapur",
+      "city": "Hyderabad",
+      "pincode": "500081",
+      "lat": 17.4483,
+      "lng": 78.3915,
+      "isDefault": false
+    }
+  ],
+  "subscriptions": [
+    {
+      "id": "sub_1791474424242",
+      "customerId": "usr_customer_demo",
+      "cookId": "cook_priya",
+      "kitchenName": "Priya's Home Kitchen",
+      "planType": "WEEKLY",
+      "dishName": "Andhra Special Meal Thali (Mon-Fri Lunch)",
+      "status": "ACTIVE",
+      "daysOfWeek": [
+        "MON",
+        "TUE",
+        "WED",
+        "THU",
+        "FRI"
+      ],
+      "mealsLeft": 14,
+      "pricePerMeal": 130,
+      "nextDeliveryDate": "Tomorrow, 1:15 PM"
+    },
+    {
+      "id": "sub_1",
+      "customerId": "usr_customer_demo",
+      "cookId": "cook_priya",
+      "kitchenName": "Priya's Home Kitchen",
+      "planType": "WEEKLY",
+      "dishName": "Andhra Special Meal Thali",
+      "status": "ACTIVE",
+      "daysOfWeek": [
+        "MON",
+        "TUE",
+        "WED",
+        "THU",
+        "FRI"
+      ],
+      "mealsLeft": 18,
+      "pricePerMeal": 130,
+      "nextDeliveryDate": "Tomorrow, 1:15 PM",
+      "updatedAt": "2026-10-08T15:47:00.990Z"
+    }
+  ],
+  "customRequests": [
+    {
+      "id": "req_1",
+      "customerId": "usr_customer_demo",
+      "customerName": "Rahul Sharma",
+      "dishName": "Andhra-style Gongura Mutton for 20 people",
+      "servings": 20,
+      "preferredDate": "2026-10-12",
+      "preferredTime": "07:00 PM",
+      "budgetMax": 5500,
+      "location": "Madhapur, Hyderabad",
+      "details": "Need authentic home cooked spicy Gongura Mutton with Ragi Mudde and Rice for a family function.",
+      "status": "QUOTED",
+      "quotes": [
+        {
+          "id": "q_1",
+          "cookId": "cook_priya",
+          "cookName": "Priya's Home Kitchen",
+          "price": 4800,
+          "deliveryTime": "6:30 PM",
+          "message": "I can prepare authentic fresh Gongura Mutton & Ragi Mudde in brass utensils. Free delivery included!"
+        }
+      ],
+      "createdAt": "2026-10-08T02:47:54.733Z"
+    }
+  ],
+  "messages": [
+    {
+      "id": "msg_1",
+      "orderId": "ord_1001",
+      "senderId": "usr_customer_demo",
+      "receiverId": "usr_cook_priya",
+      "senderName": "Rahul Sharma",
+      "text": "Hi Priya! Could you please make the Pappu a little extra spicy today?",
+      "timestamp": "2026-10-08T06:37:54.733Z",
+      "isRead": true
+    },
+    {
+      "id": "msg_2",
+      "orderId": "ord_1001",
+      "senderId": "usr_cook_priya",
+      "receiverId": "usr_customer_demo",
+      "senderName": "Priya Reddy",
+      "text": "Sure Rahul! Preparing with fresh green chilies and homemade ghee now. Will dispatch in 15 mins!",
+      "timestamp": "2026-10-08T06:42:54.733Z",
+      "isRead": false
+    }
+  ],
+  "verificationApplications": [
+    {
+      "id": "app_201",
+      "cookId": "cook_new_app",
+      "applicantName": "Sunil Varma",
+      "phone": "+91 91234 56789",
+      "email": "sunil.kitchen@gmail.com",
+      "kitchenName": "Sunil's Homemade Biryani & Grills",
+      "address": "Plot 45, Near Image Hospital, Madhapur, Hyderabad",
+      "experienceYears": 6,
+      "cuisines": [
+        "Hyderabadi",
+        "Biryani",
+        "Grills"
+      ],
+      "kitchenPhoto": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=80",
+      "aadhaarNumber": "XXXX-XXXX-8821",
+      "fssaiNumber": "23621004991201",
+      "status": "APPROVED",
+      "submittedAt": "2026-10-07T06:47:54.733Z",
+      "notes": "Processed by Admin on 8/10/2026",
+      "updatedAt": "2026-10-08T06:58:19.623Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "notif_1791651558445",
+      "userId": "usr_customer_demo",
+      "title": "Order Status: ACCEPTED",
+      "message": "Your order was accepted by the home cook!",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-10T16:59:18.445Z"
+    },
+    {
+      "id": "notif_1791651536746",
+      "userId": "cook_priya",
+      "title": "New Paid Order Received!",
+      "message": "Order #HCF-9510 placed worth ₹161 (PAID).",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-10T16:58:56.746Z"
+    },
+    {
+      "id": "notif_1791651133589",
+      "userId": "cook_sunitha",
+      "title": "New Paid Order Received!",
+      "message": "Order #HCF-3691 placed worth ₹266 (PAID).",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-10T16:52:13.589Z"
+    },
+    {
+      "id": "notif_1791634713777",
+      "userId": "usr_1791556373046",
+      "title": "Order Status: DELIVERED",
+      "message": "Order delivered! Enjoy your fresh home food!",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-10T12:18:33.777Z"
+    },
+    {
+      "id": "notif_1791560120387",
+      "userId": "usr_1791556373046",
+      "title": "Order Status: OUT FOR_DELIVERY",
+      "message": "Order is out for delivery with your neighbourhood courier!",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-09T15:35:20.387Z"
+    },
+    {
+      "id": "notif_1791560118558",
+      "userId": "usr_1791556373046",
+      "title": "Order Status: READY",
+      "message": "Your food is cooked fresh and packed!",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-09T15:35:18.558Z"
+    },
+    {
+      "id": "notif_1791560115488",
+      "userId": "usr_1791556373046",
+      "title": "Order Status: PREPARING",
+      "message": "The cook has started preparing your fresh home meal!",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-09T15:35:15.488Z"
+    },
+    {
+      "id": "notif_1791560073068",
+      "userId": "usr_1791556373046",
+      "title": "Order Status: ACCEPTED",
+      "message": "Your order was accepted by the home cook!",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-09T15:34:33.068Z"
+    },
+    {
+      "id": "notif_1791559711899",
+      "userId": "cook_priya",
+      "title": "New Paid Order Received!",
+      "message": "Order #HCF-2905 placed worth ₹623 (PAID).",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-09T15:28:31.899Z"
+    },
+    {
+      "id": "notif_1791556397568",
+      "userId": "cook_priya",
+      "title": "New Paid Order Received!",
+      "message": "Order #HCF-7716 placed worth ₹161 (PAID).",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-09T14:33:17.568Z"
+    },
+    {
+      "id": "notif_1791554667107",
+      "userId": "cook_sunitha",
+      "title": "New Paid Order Received!",
+      "message": "Order #HCF-8359 placed worth ₹728 (PAID).",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-09T14:04:27.107Z"
+    },
+    {
+      "id": "notif_1791552517255",
+      "userId": "cook_priya",
+      "title": "New Order Received!",
+      "message": "Order #HCF-2078 placed worth ₹182.",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-09T13:28:37.255Z"
+    },
+    {
+      "id": "notif_1791475485210",
+      "userId": "usr_customer_demo",
+      "title": "Order Status: PREPARING",
+      "message": "The cook has started preparing your fresh home meal!",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T16:04:45.210Z"
+    },
+    {
+      "id": "notif_1791475381928",
+      "userId": "cook_geetha",
+      "title": "New Order Received!",
+      "message": "Order #HCF-8661 placed worth ₹193.",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T16:03:01.928Z"
+    },
+    {
+      "id": "notif_1791474607581",
+      "userId": "cook_kavitha",
+      "title": "New Order Received!",
+      "message": "Order #HCF-2742 placed worth ₹256.",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T15:50:07.581Z"
+    },
+    {
+      "id": "notif_1791474451666",
+      "userId": "usr_customer_demo",
+      "title": "Order Status: ACCEPTED",
+      "message": "Your order was accepted by the home cook!",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T15:47:31.666Z"
+    },
+    {
+      "id": "notif_1791474364432",
+      "userId": "cook_priya",
+      "title": "New Order Received!",
+      "message": "Order #HCF-5789 placed worth ₹329.",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T15:46:04.432Z"
+    },
+    {
+      "id": "notif_1791473031523",
+      "userId": "cook_priya",
+      "title": "New Order Received!",
+      "message": "Order #HCF-4354 placed worth ₹329.",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T15:23:51.523Z"
+    },
+    {
+      "id": "notif_1791449723739",
+      "userId": "cook_priya",
+      "title": "New Order Received!",
+      "message": "Order #HCF-5670 placed worth ₹329.",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T08:55:23.739Z"
+    },
+    {
+      "id": "notif_1791449715275",
+      "userId": "cook_priya",
+      "title": "New Order Received!",
+      "message": "Order #HCF-3411 placed worth ₹329.",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T08:55:15.276Z"
+    },
+    {
+      "id": "notif_1791449694133",
+      "userId": "usr_customer_demo",
+      "title": "Order Status: DELIVERED",
+      "message": "Order delivered! Enjoy your fresh home food!",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T08:54:54.133Z"
+    },
+    {
+      "id": "notif_1791445659733",
+      "userId": "usr_customer_demo",
+      "title": "Order Status: OUT FOR_DELIVERY",
+      "message": "Order is out for delivery with your neighbourhood courier!",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T07:47:39.733Z"
+    },
+    {
+      "id": "notif_1791445659054",
+      "userId": "usr_customer_demo",
+      "title": "Order Status: READY",
+      "message": "Your food is cooked fresh and packed!",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T07:47:39.054Z"
+    },
+    {
+      "id": "notif_1791445658219",
+      "userId": "usr_customer_demo",
+      "title": "Order Status: PREPARING",
+      "message": "The cook has started preparing your fresh home meal!",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T07:47:38.219Z"
+    },
+    {
+      "id": "notif_1791445656823",
+      "userId": "usr_customer_demo",
+      "title": "Order Status: ACCEPTED",
+      "message": "Your order was accepted by the home cook!",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T07:47:36.823Z"
+    },
+    {
+      "id": "notif_1791445589527",
+      "userId": "cook_priya",
+      "title": "New Order Received!",
+      "message": "Order #HCF-1417 placed worth ₹182.",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T07:46:29.527Z"
+    },
+    {
+      "id": "notif_1791444307979",
+      "userId": "cook_reema",
+      "title": "New Order Received!",
+      "message": "Order #HCF-4681 placed worth ₹172.",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T07:25:07.979Z"
+    },
+    {
+      "id": "notif_1791444077742",
+      "userId": "cook_anitha",
+      "title": "New Order Received!",
+      "message": "Order #HCF-5356 placed worth ₹140.",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T07:21:17.742Z"
+    },
+    {
+      "id": "notif_1791443289820",
+      "userId": "cook_sunitha",
+      "title": "New Order Received!",
+      "message": "Order #HCF-9318 placed worth ₹266.",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T07:08:09.820Z"
+    },
+    {
+      "id": "notif_1791443240229",
+      "userId": "cook_laxmi",
+      "title": "New Order Received!",
+      "message": "Order #HCF-9199 placed worth ₹214.",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T07:07:20.229Z"
+    },
+    {
+      "id": "notif_1791442830445",
+      "userId": "cook_laxmi",
+      "title": "New Order Received!",
+      "message": "Order #HCF-3856 placed worth ₹224.",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T07:00:30.445Z"
+    },
+    {
+      "id": "notif_1791442745635",
+      "userId": "usr_customer_demo",
+      "title": "Order Status: DELIVERED",
+      "message": "Order delivered! Enjoy your fresh home food!",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T06:59:05.635Z"
+    },
+    {
+      "id": "notif_1791442744231",
+      "userId": "usr_customer_demo",
+      "title": "Order Status: OUT FOR_DELIVERY",
+      "message": "Order is out for delivery with your neighbourhood courier!",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T06:59:04.231Z"
+    },
+    {
+      "id": "notif_1791442742606",
+      "userId": "usr_customer_demo",
+      "title": "Order Status: READY",
+      "message": "Your food is cooked fresh and packed!",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T06:59:02.606Z"
+    },
+    {
+      "id": "notif_1",
+      "userId": "usr_customer_demo",
+      "title": "Order Preparing",
+      "message": "Priya's Home Kitchen has accepted order #HCF-1001 and started cooking fresh!",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-08T06:37:54.733Z"
+    },
+    {
+      "id": "notif_2",
+      "userId": "usr_cook_priya",
+      "title": "New Order Received!",
+      "message": "Rahul Sharma placed order #HCF-1001 worth ₹623.",
+      "type": "ORDER",
+      "isRead": true,
+      "createdAt": "2026-10-08T06:32:54.733Z"
+    }
+  ],
+  "payments": [
+    {
+      "id": "pay_ppe_1791651531352",
+      "orderId": "ord_1791651531297",
+      "customerId": "usr_customer_demo",
+      "gateway": "PHONEPE",
+      "gatewayOrderId": "ppe_tx_1791651531352_537",
+      "amount": 161,
+      "currency": "INR",
+      "status": "SUCCESS",
+      "paymentMethod": "PHONEPE_UPI",
+      "createdAt": "2026-10-10T16:58:51.352Z",
+      "gatewayPaymentId": "pay_ppe_1791651536734",
+      "gatewaySignature": "cca478887675c70a82116156c3370a9d7b198465b1a14cf2e30d61ac9604d894",
+      "updatedAt": "2026-10-10T16:58:56.741Z"
+    },
+    {
+      "id": "pay_ppe_1791651131784",
+      "orderId": "ord_1791651131761",
+      "customerId": "usr_1791650733838",
+      "gateway": "PHONEPE",
+      "gatewayOrderId": "ppe_tx_1791651131784_114",
+      "amount": 266,
+      "currency": "INR",
+      "status": "SUCCESS",
+      "paymentMethod": "PHONEPE_UPI",
+      "createdAt": "2026-10-10T16:52:11.784Z",
+      "gatewayPaymentId": "pay_ppe_1791651133574",
+      "gatewaySignature": "f2489a51662f81e94e570f56663d24c0073821a289c859d56cd174ce0f42fbb2",
+      "updatedAt": "2026-10-10T16:52:13.585Z"
+    },
+    {
+      "id": "pay_ppe_1791650831315",
+      "orderId": "ord_1791650831287",
+      "customerId": "usr_1791650733838",
+      "gateway": "PHONEPE",
+      "gatewayOrderId": "ppe_tx_1791650831315_217",
+      "amount": 266,
+      "currency": "INR",
+      "status": "PENDING",
+      "paymentMethod": "PHONEPE_UPI",
+      "createdAt": "2026-10-10T16:47:11.315Z"
+    },
+    {
+      "id": "pay_ppe_1791634365613",
+      "orderId": "ord_1791634365571",
+      "customerId": "usr_1791559960154",
+      "gateway": "PHONEPE",
+      "gatewayOrderId": "ppe_tx_1791634365613_558",
+      "amount": 266,
+      "currency": "INR",
+      "status": "PENDING",
+      "paymentMethod": "PHONEPE_UPI",
+      "createdAt": "2026-10-10T12:12:45.613Z"
+    },
+    {
+      "id": "pay_ppe_1791559710203",
+      "orderId": "ord_1791559710085",
+      "customerId": "usr_1791556373046",
+      "gateway": "PHONEPE",
+      "gatewayOrderId": "ppe_tx_1791559710203_218",
+      "amount": 623,
+      "currency": "INR",
+      "status": "SUCCESS",
+      "paymentMethod": "PHONEPE_UPI",
+      "createdAt": "2026-10-09T15:28:30.203Z",
+      "gatewayPaymentId": "pay_ppe_1791559711811",
+      "gatewaySignature": "demo_sig_1791559711811",
+      "updatedAt": "2026-10-09T15:28:31.892Z"
+    },
+    {
+      "id": "pay_ppe_1791556394743",
+      "orderId": "ord_1791556394727",
+      "customerId": "usr_1791556373046",
+      "gateway": "PHONEPE",
+      "gatewayOrderId": "ppe_tx_1791556394743_322",
+      "amount": 161,
+      "currency": "INR",
+      "status": "SUCCESS",
+      "paymentMethod": "PHONEPE_UPI",
+      "createdAt": "2026-10-09T14:33:14.743Z",
+      "gatewayPaymentId": "pay_ppe_1791556397551",
+      "gatewaySignature": "demo_sig_1791556397551",
+      "updatedAt": "2026-10-09T14:33:17.564Z"
+    },
+    {
+      "id": "pay_ppe_1791554665403",
+      "orderId": "ord_1791554665384",
+      "customerId": "usr_customer_demo",
+      "gateway": "PHONEPE",
+      "gatewayOrderId": "ppe_tx_1791554665403_668",
+      "amount": 728,
+      "currency": "INR",
+      "status": "SUCCESS",
+      "paymentMethod": "PHONEPE_UPI",
+      "createdAt": "2026-10-09T14:04:25.403Z",
+      "gatewayPaymentId": "pay_ppe_1791554667094",
+      "gatewaySignature": "demo_sig_1791554667094",
+      "updatedAt": "2026-10-09T14:04:27.104Z"
+    },
+    {
+      "id": "pay_ppe_1791552517314",
+      "orderId": "ord_1791552517237",
+      "customerId": "usr_customer_demo",
+      "gateway": "PHONEPE",
+      "gatewayOrderId": "ppe_tx_1791552517314_696",
+      "amount": 182,
+      "currency": "INR",
+      "status": "SUCCESS",
+      "paymentMethod": "PHONEPE_UPI",
+      "createdAt": "2026-10-09T13:28:37.314Z",
+      "gatewayPaymentId": "pay_ppe_1791552519333",
+      "gatewaySignature": "demo_sig_1791552519333",
+      "updatedAt": "2026-10-09T13:28:39.386Z"
+    },
+    {
+      "id": "pay_ppe_1791475381940",
+      "orderId": "ord_1791475381923",
+      "customerId": "usr_customer_demo",
+      "gateway": "PHONEPE",
+      "gatewayOrderId": "ppe_tx_1791475381940_964",
+      "amount": 193,
+      "currency": "INR",
+      "status": "SUCCESS",
+      "paymentMethod": "PHONEPE_UPI",
+      "createdAt": "2026-10-08T16:03:01.940Z",
+      "gatewayPaymentId": "pay_ppe_1791475439238",
+      "gatewaySignature": "demo_sig_1791475439238",
+      "updatedAt": "2026-10-08T16:03:59.247Z"
+    },
+    {
+      "id": "pay_ppe_1791474607599",
+      "orderId": "ord_1791474607579",
+      "customerId": "usr_customer_demo",
+      "gateway": "PHONEPE",
+      "gatewayOrderId": "ppe_tx_1791474607599_883",
+      "amount": 256,
+      "currency": "INR",
+      "status": "SUCCESS",
+      "paymentMethod": "PHONEPE_UPI",
+      "createdAt": "2026-10-08T15:50:07.599Z",
+      "gatewayPaymentId": "pay_ppe_1791474620505",
+      "gatewaySignature": "demo_sig_1791474620505",
+      "updatedAt": "2026-10-08T15:50:20.521Z"
+    },
+    {
+      "id": "pay_ppe_1791473031573",
+      "orderId": "ord_1791473031521",
+      "customerId": "usr_admin_demo",
+      "gateway": "PHONEPE",
+      "gatewayOrderId": "ppe_tx_1791473031572_695",
+      "amount": 329,
+      "currency": "INR",
+      "status": "SUCCESS",
+      "paymentMethod": "PHONEPE_UPI",
+      "createdAt": "2026-10-08T15:23:51.573Z",
+      "gatewayPaymentId": "pay_ppe_1791473037108",
+      "gatewaySignature": "demo_sig_1791473037108",
+      "updatedAt": "2026-10-08T15:23:57.163Z"
+    }
+  ],
+  "otps": [
+    {
+      "id": "otp_1791651447740",
+      "recipient": "satishkumar.ok65@gmail.com",
+      "code": "352915",
+      "type": "RECOVERY",
+      "createdAt": "2026-10-10T16:57:27.740Z",
+      "expiresAt": "2026-10-10T17:07:27.740Z"
+    },
+    {
+      "id": "otp_1791650772177",
+      "recipient": "satish.ok65@gmail.com",
+      "code": "368844",
+      "type": "EMAIL",
+      "createdAt": "2026-10-10T16:46:12.177Z",
+      "expiresAt": "2026-10-10T16:56:12.177Z"
+    },
+    {
+      "id": "otp_1791650733868",
+      "recipient": "satish.ok65@gmail.com",
+      "code": "275988",
+      "type": "EMAIL",
+      "createdAt": "2026-10-10T16:45:33.868Z",
+      "expiresAt": "2026-10-10T16:55:33.869Z"
+    },
+    {
+      "id": "otp_1791650680237",
+      "recipient": "satishkumar.ok65@gmail.com",
+      "code": "953715",
+      "type": "EMAIL",
+      "createdAt": "2026-10-10T16:44:40.237Z",
+      "expiresAt": "2026-10-10T16:54:40.237Z"
+    },
+    {
+      "id": "otp_1791634803810",
+      "recipient": "deepthiedlernity@gmail.com",
+      "code": "909576",
+      "type": "RECOVERY",
+      "createdAt": "2026-10-10T12:20:03.810Z",
+      "expiresAt": "2026-10-10T12:30:03.810Z"
+    },
+    {
+      "id": "otp_1791634745618",
+      "recipient": "deepthiedlernity@gmail.com",
+      "code": "790689",
+      "type": "RECOVERY",
+      "createdAt": "2026-10-10T12:19:05.618Z",
+      "expiresAt": "2026-10-10T12:29:05.618Z"
+    },
+    {
+      "id": "otp_1791560004879",
+      "recipient": "deepthiedlernity@gmail.com",
+      "code": "304186",
+      "type": "EMAIL",
+      "createdAt": "2026-10-09T15:33:24.879Z",
+      "expiresAt": "2026-10-09T15:43:24.879Z"
+    },
+    {
+      "id": "otp_1791559960181",
+      "recipient": "deepthiedlernity@gmail.com",
+      "code": "822610",
+      "type": "EMAIL",
+      "createdAt": "2026-10-09T15:32:40.181Z",
+      "expiresAt": "2026-10-09T15:42:40.181Z"
+    },
+    {
+      "id": "otp_1791557759135",
+      "recipient": "deepudeepuuu730@gmail.com",
+      "code": "869097",
+      "type": "RECOVERY",
+      "createdAt": "2026-10-09T14:55:59.135Z",
+      "expiresAt": "2026-10-09T15:05:59.135Z"
+    }
+  ]
+}
