@@ -71,7 +71,17 @@ export interface CartItem {
   cookName: string;
 }
 
-export type OrderStatus = 'PLACED' | 'ACCEPTED' | 'PREPARING' | 'READY' | 'OUT_FOR_DELIVERY' | 'DELIVERED' | 'CANCELLED';
+export type OrderStatus =
+  | 'PENDING_PAYMENT'
+  | 'PLACED'
+  | 'ACCEPTED'
+  | 'PREPARING'
+  | 'READY'
+  | 'OUT_FOR_DELIVERY'
+  | 'DELIVERED'
+  | 'CANCELLED'
+  | 'PAYMENT_FAILED'
+  | 'PAYMENT_CANCELLED';
 
 export interface OrderItem {
   menuItemId: string;

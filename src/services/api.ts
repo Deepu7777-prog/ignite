@@ -262,6 +262,12 @@ export const api = {
       body: JSON.stringify({ payoutSettings }),
     }),
 
+  updateCookStatus: (cookId: string, availableToday: boolean) =>
+    fetchJson<{ success: boolean; cook: CookProfile }>(`/cooks/${cookId}/status`, {
+      method: 'PATCH',
+      body: JSON.stringify({ availableToday }),
+    }),
+
   // Real Payment Gateway (Razorpay / PhonePe / COD)
   createPaymentOrder: (orderId: string, amount: number, customerId?: string) =>
     fetchJson<{ success: boolean; keyId: string; gatewayOrderId: string; amount: number; currency: string; paymentId: string }>('/payments/create-order', {

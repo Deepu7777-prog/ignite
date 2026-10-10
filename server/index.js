@@ -407,6 +407,16 @@ app.patch('/api/cooks/:id/payout-settings', (req, res) => {
   res.json({ success: true, cook: updatedCook });
 });
 
+app.patch('/api/cooks/:id/status', (req, res) => {
+  const { availableToday } = req.body;
+  const updatedCook = db.update('cookProfiles', req.params.id, { availableToday: Boolean(availableToday) });
+  if (!updatedCook) {
+    return res.status(404).json({ success: false, message: "Cook profile not found" });
+  }
+
+  res.json({ success: true, cook: updatedCook });
+});
+
 // --- MENU MANAGEMENT API ---
 app.get('/api/menu', (req, res) => {
   const { cookId, category, dietaryType } = req.query;
