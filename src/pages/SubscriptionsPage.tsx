@@ -7,7 +7,7 @@ import { useAuth } from '../context/AuthContext';
 export const SubscriptionsPage: React.FC = () => {
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const { user, isDemo } = useAuth();
+  const { user, isDemo, openAuthModal } = useAuth();
 
   useEffect(() => {
     loadSubscriptions();
@@ -28,6 +28,10 @@ export const SubscriptionsPage: React.FC = () => {
   };
 
   const handleToggleStatus = async (id: string, currentStatus: string) => {
+    if (!user && !isDemo) {
+      openAuthModal('LOGIN');
+      return;
+    }
     const newStatus = currentStatus === 'ACTIVE' ? 'PAUSED' : 'ACTIVE';
     try {
       const res = await api.updateSubscriptionStatus(id, newStatus);
@@ -40,9 +44,13 @@ export const SubscriptionsPage: React.FC = () => {
   };
 
   const handleCreateNewSubscription = async () => {
+    if (!user && !isDemo) {
+      openAuthModal('LOGIN');
+      return;
+    }
     try {
       const res = await api.createSubscription({
-        customerId: user?.id || (isDemo ? 'usr_customer_demo' : `cust_${Date.now()}`),
+        customerId: user?.id || (isDemo ? 'usr_customer_demo' : ''),
         cookId: 'cook_priya',
         kitchenName: "Priya's Home Kitchen",
         planType: 'WEEKLY',

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { supabase } from '../services/supabase';
 import { api } from '../services/api';
 import { useAuth } from '../context/AuthContext';
@@ -9,10 +9,12 @@ import { UserRole, User } from '../types';
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
+  initialMode?: 'LOGIN' | 'REGISTER';
+  isInlinePage?: boolean;
 }
 
-export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
-  const [mode, setMode] = useState<'LOGIN' | 'REGISTER' | 'OTP_VERIFY' | 'FORGOT' | 'RESET_PASSWORD'>('LOGIN');
+export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMode = 'LOGIN', isInlinePage = false }) => {
+  const [mode, setMode] = useState<'LOGIN' | 'REGISTER' | 'OTP_VERIFY' | 'FORGOT' | 'RESET_PASSWORD'>(initialMode);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -31,6 +33,13 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
 
   const { loginWithUser, switchDemoRole } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (isOpen && initialMode) {
+      setMode(initialMode);
+    }
+  }, [isOpen, initialMode]);
 
   useEffect(() => {
     let interval: any = null;
@@ -58,6 +67,11 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
   };
 
   const redirectUserByRole = (userRole: UserRole) => {
+    const from = (location.state as any)?.from?.pathname;
+    if (from && from !== '/login' && from !== '/register') {
+      navigate(from);
+      return;
+    }
     if (userRole === 'ADMIN') {
       navigate('/admin-dashboard');
     } else if (userRole === 'COOK') {
@@ -400,9 +414,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
     }
   };
 
-  return (
-    <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
-      <div className="bg-white rounded-3xl max-w-md w-full p-5 sm:p-6 shadow-2xl space-y-4 animate-in fade-in zoom-in-95 border border-slate-200 max-h-[90vh] overflow-y-auto">
+  const modalContent = (
+    <div className={`bg-white rounded-3xl max-w-md w-full p-5 sm:p-6 ${isInlinePage ? 'shadow-xl' : 'shadow-2xl max-h-[90vh] overflow-y-auto animate-in fade-in zoom-in-95'} space-y-4 border border-slate-200`}>
         
         {/* MODAL HEADER */}
         <div className="flex items-center justify-between border-b border-slate-100 pb-3">
@@ -828,8 +841,20 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
             </button>
           </div>
         </div>
-
       </div>
+    );
+
+  if (isInlinePage) {
+    return (
+      <div className="w-full flex items-center justify-center py-6 px-4">
+        {modalContent}
+      </div>
+    );
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
+      {modalContent}
     </div>
   );
 };

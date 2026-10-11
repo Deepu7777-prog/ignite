@@ -25,7 +25,7 @@ export const CookProfilePage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
-  const { user, isDemo } = useAuth();
+  const { user, isDemo, openAuthModal } = useAuth();
 
   useEffect(() => {
     if (id) {
@@ -60,8 +60,12 @@ export const CookProfilePage: React.FC = () => {
 
   const handleToggleFavorite = async () => {
     if (!cook) return;
+    if (!user && !isDemo) {
+      openAuthModal('LOGIN');
+      return;
+    }
     try {
-      const customerId = user?.id || (isDemo ? 'usr_customer_demo' : 'guest_customer');
+      const customerId = user?.id || (isDemo ? 'usr_customer_demo' : '');
       const res = await api.toggleFavorite(customerId, cook.id);
       setIsFavorite(res.isFavorite);
     } catch (err) {

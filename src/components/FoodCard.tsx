@@ -2,6 +2,7 @@ import React from 'react';
 import { MenuItem } from '../types';
 import { Clock, Plus, Check } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 
 interface FoodCardProps {
   item: MenuItem;
@@ -11,8 +12,17 @@ interface FoodCardProps {
 
 export const FoodCard: React.FC<FoodCardProps> = ({ item, cookId, cookName }) => {
   const { addToCart, items } = useCart();
+  const { user, openAuthModal } = useAuth();
 
   const cartQuantity = items.find((i) => i.menuItem.id === item.id)?.quantity || 0;
+
+  const handleAddToCart = () => {
+    if (!user) {
+      openAuthModal('LOGIN');
+      return;
+    }
+    addToCart(item, cookId, cookName);
+  };
 
   return (
     <div className="bg-white rounded-2xl border border-slate-200/80 p-4 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between">
@@ -68,7 +78,7 @@ export const FoodCard: React.FC<FoodCardProps> = ({ item, cookId, cookName }) =>
         </span>
 
         <button
-          onClick={() => addToCart(item, cookId, cookName)}
+          onClick={handleAddToCart}
           className={`px-3.5 py-1.5 rounded-xl font-bold text-xs flex items-center gap-1.5 transition-all shadow-xs ${
             cartQuantity > 0
               ? 'bg-emerald-700 text-white'

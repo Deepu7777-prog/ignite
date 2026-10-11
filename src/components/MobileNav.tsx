@@ -14,7 +14,12 @@ import {
 } from 'lucide-react';
 
 export const MobileNav: React.FC = () => {
-  const { role } = useAuth();
+  const { role, user } = useAuth();
+
+  // Hide MobileNav completely for unauthenticated visitors
+  if (!user) {
+    return null;
+  }
 
   const customerTabs = [
     { to: '/', label: 'Home', icon: Home },

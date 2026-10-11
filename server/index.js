@@ -1165,7 +1165,7 @@ app.post('/api/payments/verify', (req, res) => {
   });
 });
 
-app.post('/api/payments/complete-direct-gateway', (req, res) => {
+app.post(['/api/payments/complete-direct-gateway', '/api/payments/complete-direct', '/api/payments/complete-phonepe'], (req, res) => {
   const { orderId, gatewayOrderId, gatewayPaymentId } = req.body;
   if (!orderId || !gatewayOrderId || !gatewayPaymentId) {
     return res.status(400).json({ success: false, message: "Missing payment parameters" });

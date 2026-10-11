@@ -13,6 +13,10 @@ interface AuthContextType {
   loginWithSupabaseUser: (user: User) => void;
   logout: () => void;
   isLoading: boolean;
+  isAuthModalOpen: boolean;
+  authModalMode: 'LOGIN' | 'REGISTER';
+  openAuthModal: (mode?: 'LOGIN' | 'REGISTER') => void;
+  closeAuthModal: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -22,6 +26,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<User | null>(null);
   const [isDemo, setIsDemo] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
+  const [authModalMode, setAuthModalMode] = useState<'LOGIN' | 'REGISTER'>('LOGIN');
+
+  const openAuthModal = (mode: 'LOGIN' | 'REGISTER' = 'LOGIN') => {
+    setAuthModalMode(mode);
+    setIsAuthModalOpen(true);
+  };
+
+  const closeAuthModal = () => {
+    setIsAuthModalOpen(false);
+  };
 
   useEffect(() => {
     initSession();
@@ -136,6 +151,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     localStorage.removeItem('hcf_auth_user');
     localStorage.removeItem('hcf_auth_role');
     localStorage.removeItem('hcf_is_demo');
+    localStorage.removeItem('hcf_cart');
     try {
       supabase.auth.signOut().catch(() => {});
     } catch (e) {}
@@ -172,6 +188,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         loginWithSupabaseUser: loginWithUser,
         logout,
         isLoading,
+        isAuthModalOpen,
+        authModalMode,
+        openAuthModal,
+        closeAuthModal,
       }}
     >
       {children}

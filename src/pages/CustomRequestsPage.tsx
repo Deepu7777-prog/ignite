@@ -8,7 +8,7 @@ export const CustomRequestsPage: React.FC = () => {
   const [requests, setRequests] = useState<CustomRequest[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const { user, role, isDemo } = useAuth();
+  const { user, role, isDemo, openAuthModal } = useAuth();
 
   // New custom request form
   const [dishName, setDishName] = useState('');
@@ -45,10 +45,14 @@ export const CustomRequestsPage: React.FC = () => {
   const handlePostRequest = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!dishName) return;
+    if (!user && !isDemo) {
+      openAuthModal('LOGIN');
+      return;
+    }
 
     try {
       const res = await api.createCustomRequest({
-        customerId: user?.id || (isDemo ? 'usr_customer_demo' : `cust_${Date.now()}`),
+        customerId: user?.id || (isDemo ? 'usr_customer_demo' : ''),
         customerName: user?.name || (isDemo ? 'Rahul Sharma' : 'Customer'),
         dishName,
         servings: parseInt(servings) || 10,
@@ -108,7 +112,13 @@ export const CustomRequestsPage: React.FC = () => {
         </div>
 
         <button
-          onClick={() => setIsModalOpen(true)}
+          onClick={() => {
+            if (!user && !isDemo) {
+              openAuthModal('LOGIN');
+              return;
+            }
+            setIsModalOpen(true);
+          }}
           className="px-5 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-md shadow-emerald-600/20 transition-all flex items-center gap-2"
         >
           <Plus className="w-4 h-4" /> Ask for Anything a Home Can Make

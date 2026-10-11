@@ -19,6 +19,11 @@ import {
 export const Sidebar: React.FC = () => {
   const { role, user } = useAuth();
 
+  // Hide Sidebar completely for unauthenticated visitors
+  if (!user) {
+    return null;
+  }
+
   const customerLinks = [
     { to: '/customer-dashboard', label: 'Overview', icon: LayoutDashboard },
     { to: '/explore', label: 'Explore Home Cooks', icon: Utensils },

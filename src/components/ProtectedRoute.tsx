@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { UserRole } from '../types';
 
@@ -10,6 +10,7 @@ interface ProtectedRouteProps {
 
 export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles }) => {
   const { role, user, isLoading } = useAuth();
+  const location = useLocation();
 
   if (isLoading) {
     return (
@@ -21,7 +22,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowe
   }
 
   if (!user) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
   if (!allowedRoles.includes(role) || !allowedRoles.includes(user.role)) {
