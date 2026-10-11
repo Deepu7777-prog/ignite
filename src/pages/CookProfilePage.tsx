@@ -25,7 +25,7 @@ export const CookProfilePage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
-  const { user } = useAuth();
+  const { user, isDemo } = useAuth();
 
   useEffect(() => {
     if (id) {
@@ -43,8 +43,9 @@ export const CookProfilePage: React.FC = () => {
         setReviews(res.reviews);
 
         // Check if favorite
-        if (user?.id) {
-          const favRes = await api.getFavorites(user.id);
+        const favUserId = user?.id || (isDemo ? 'usr_customer_demo' : null);
+        if (favUserId) {
+          const favRes = await api.getFavorites(favUserId);
           if (favRes.success) {
             setIsFavorite(favRes.favorites.some((f) => f.cookId === cookId));
           }
@@ -60,7 +61,7 @@ export const CookProfilePage: React.FC = () => {
   const handleToggleFavorite = async () => {
     if (!cook) return;
     try {
-      const customerId = user?.id || 'usr_customer_demo';
+      const customerId = user?.id || (isDemo ? 'usr_customer_demo' : 'guest_customer');
       const res = await api.toggleFavorite(customerId, cook.id);
       setIsFavorite(res.isFavorite);
     } catch (err) {

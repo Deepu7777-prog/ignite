@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { MenuItem } from '../types';
 import { api } from '../services/api';
+import { useAuth } from '../context/AuthContext';
 import { Plus, Edit2, Trash2, Power, Clock, Check, X, Utensils } from 'lucide-react';
 
 export const CookMenuManagement: React.FC = () => {
+  const { user, isDemo } = useAuth();
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -17,11 +19,11 @@ export const CookMenuManagement: React.FC = () => {
   const [dietaryType, setDietaryType] = useState<'VEG' | 'NON_VEG'>('VEG');
   const [image, setImage] = useState('');
 
-  const cookId = 'cook_priya'; // Demo cook
+  const cookId = isDemo ? 'cook_priya' : (user?.id ? (user.id.startsWith('cook_') ? user.id : `cook_${user.id}`) : 'cook_priya');
 
   useEffect(() => {
     loadMenu();
-  }, []);
+  }, [cookId]);
 
   const loadMenu = async () => {
     try {

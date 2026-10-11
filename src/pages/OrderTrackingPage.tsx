@@ -23,7 +23,7 @@ export const OrderTrackingPage: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState<string>('');
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
-  const { user } = useAuth();
+  const { user, isDemo } = useAuth();
 
   useEffect(() => {
     if (id) {
@@ -64,9 +64,9 @@ export const OrderTrackingPage: React.FC = () => {
     try {
       const msgRes = await api.sendMessage({
         orderId: order.id,
-        senderId: user?.id || 'usr_customer_demo',
+        senderId: user?.id || (isDemo ? 'usr_customer_demo' : 'guest_customer'),
         receiverId: order.cookId,
-        senderName: user?.name || 'Rahul Sharma',
+        senderName: user?.name || (isDemo ? 'Rahul Sharma' : 'Customer'),
         text: newMessage.trim(),
       });
 
@@ -284,13 +284,13 @@ export const OrderTrackingPage: React.FC = () => {
 
       {/* RATE & REVIEW SECTION WHEN ORDER IS DELIVERED */}
       {order.status === 'DELIVERED' && (
-        <ReviewSubmissionCard order={order} customerUser={user} />
+        <ReviewSubmissionCard order={order} customerUser={user} isDemo={isDemo} />
       )}
     </div>
   );
 };
 
-const ReviewSubmissionCard: React.FC<{ order: Order; customerUser: any }> = ({ order, customerUser }) => {
+const ReviewSubmissionCard: React.FC<{ order: Order; customerUser: any; isDemo?: boolean }> = ({ order, customerUser, isDemo }) => {
   const [rating, setRating] = useState<number>(5);
   const [comment, setComment] = useState<string>('');
   const [submitted, setSubmitted] = useState<boolean>(false);
@@ -304,8 +304,8 @@ const ReviewSubmissionCard: React.FC<{ order: Order; customerUser: any }> = ({ o
     try {
       const res = await api.addReview({
         orderId: order.id,
-        customerId: customerUser?.id || 'usr_customer_demo',
-        customerName: customerUser?.name || 'Rahul Sharma',
+        customerId: customerUser?.id || (isDemo ? 'usr_customer_demo' : (order.customerId || 'customer')),
+        customerName: customerUser?.name || (isDemo ? 'Rahul Sharma' : 'Customer'),
         cookId: order.cookId,
         rating,
         comment,

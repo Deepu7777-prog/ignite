@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 
 export const CookDashboard: React.FC = () => {
-  const { user } = useAuth();
+  const { user, isDemo } = useAuth();
   const [orders, setOrders] = useState<Order[]>([]);
   const [cookProfile, setCookProfile] = useState<CookProfile | null>(null);
   const [isAvailable, setIsAvailable] = useState<boolean>(true);
@@ -33,11 +33,11 @@ export const CookDashboard: React.FC = () => {
   ]);
 
   const [payoutForm, setPayoutForm] = useState({
-    upiId: 'priya.reddy@ybl',
-    bankName: 'HDFC Bank',
-    accountNumber: '50100234918231',
-    ifscCode: 'HDFC0001245',
-    accountHolderName: 'Priya Reddy',
+    upiId: isDemo ? 'priya.reddy@ybl' : '',
+    bankName: isDemo ? 'HDFC Bank' : '',
+    accountNumber: isDemo ? '50100234918231' : '',
+    ifscCode: isDemo ? 'HDFC0001245' : '',
+    accountHolderName: isDemo ? 'Priya Reddy' : (user?.name || ''),
     payoutMethod: 'DIRECT_UPI' as 'DIRECT_UPI' | 'BANK_TRANSFER' | 'RAZORPAY_ROUTE'
   });
   const [isSavingPayout, setIsSavingPayout] = useState<boolean>(false);
@@ -45,18 +45,18 @@ export const CookDashboard: React.FC = () => {
 
   useEffect(() => {
     loadCookHubData();
-  }, []);
+  }, [user?.id, isDemo]);
 
   const loadCookHubData = async () => {
     try {
       setLoading(true);
-      const cookId = 'cook_priya';
+      const cookId = isDemo ? 'cook_priya' : (user?.id ? (user.id.startsWith('cook_') ? user.id : `cook_${user.id}`) : 'cook_priya');
       const [cookRes, ordersRes] = await Promise.all([
-        api.getCookById(cookId),
-        api.getOrders({ cookId }),
+        api.getCookById(cookId).catch(() => ({ success: false, cook: null })),
+        api.getOrders({ cookId }).catch(() => ({ success: false, orders: [] })),
       ]);
 
-      if (cookRes.success) {
+      if (cookRes.success && cookRes.cook) {
         setCookProfile(cookRes.cook);
         setIsAvailable(cookRes.cook.availableToday);
         if (cookRes.cook.acceptedPaymentMethods) {
@@ -64,11 +64,11 @@ export const CookDashboard: React.FC = () => {
         }
         if (cookRes.cook.payoutSettings) {
           setPayoutForm({
-            upiId: cookRes.cook.payoutSettings.upiId || 'priya.reddy@ybl',
-            bankName: cookRes.cook.payoutSettings.bankName || 'HDFC Bank',
-            accountNumber: cookRes.cook.payoutSettings.accountNumber || '50100234918231',
-            ifscCode: cookRes.cook.payoutSettings.ifscCode || 'HDFC0001245',
-            accountHolderName: cookRes.cook.payoutSettings.accountHolderName || 'Priya Reddy',
+            upiId: cookRes.cook.payoutSettings.upiId || (isDemo ? 'priya.reddy@ybl' : ''),
+            bankName: cookRes.cook.payoutSettings.bankName || (isDemo ? 'HDFC Bank' : ''),
+            accountNumber: cookRes.cook.payoutSettings.accountNumber || (isDemo ? '50100234918231' : ''),
+            ifscCode: cookRes.cook.payoutSettings.ifscCode || (isDemo ? 'HDFC0001245' : ''),
+            accountHolderName: cookRes.cook.payoutSettings.accountHolderName || (isDemo ? 'Priya Reddy' : (user?.name || '')),
             payoutMethod: cookRes.cook.payoutSettings.payoutMethod || 'DIRECT_UPI'
           });
         }
@@ -172,14 +172,14 @@ export const CookDashboard: React.FC = () => {
           <div>
             <div className="flex items-center gap-2">
               <h1 className="font-display text-2xl sm:text-3xl font-extrabold">
-                {cookProfile?.kitchenName || "Priya's Home Kitchen"}
+                {cookProfile?.kitchenName || (isDemo ? "Priya's Home Kitchen" : (user?.name ? `${user.name}'s Kitchen` : "My Home Kitchen"))}
               </h1>
               <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-extrabold border border-emerald-500/30">
                 VERIFIED
               </span>
             </div>
             <p className="text-xs text-slate-300 font-medium">
-              Owner: {cookProfile?.ownerName || "Priya Reddy"} • {cookProfile?.location || "Madhapur, Hyderabad"}
+              Owner: {cookProfile?.ownerName || (isDemo ? "Priya Reddy" : (user?.name || "Home Cook"))} • {cookProfile?.location || "Madhapur, Hyderabad"}
             </p>
           </div>
         </div>

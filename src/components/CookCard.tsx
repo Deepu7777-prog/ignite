@@ -13,7 +13,7 @@ interface CookCardProps {
 
 export const CookCard: React.FC<CookCardProps> = ({ cook, initialIsFavorite = false }) => {
   const [isFavorite, setIsFavorite] = useState<boolean>(initialIsFavorite);
-  const { user } = useAuth();
+  const { user, isDemo } = useAuth();
   const { getDistanceToCook } = useLocation();
 
   // Compute dynamic distance from user's current detected location to kitchen
@@ -23,7 +23,7 @@ export const CookCard: React.FC<CookCardProps> = ({ cook, initialIsFavorite = fa
     e.preventDefault();
     e.stopPropagation();
     try {
-      const customerId = user?.id || 'usr_customer_demo';
+      const customerId = user?.id || (isDemo ? 'usr_customer_demo' : 'anon_customer');
       const res = await api.toggleFavorite(customerId, cook.id);
       setIsFavorite(res.isFavorite);
     } catch (err) {

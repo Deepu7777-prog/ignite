@@ -23,7 +23,7 @@ import {
 
 export const CheckoutPage: React.FC = () => {
   const { items, subtotal, deliveryFee, tax, total, clearCart } = useCart();
-  const { user } = useAuth();
+  const { user, isDemo } = useAuth();
   const navigate = useNavigate();
 
   const [selectedAddress, setSelectedAddress] = useState<string>("Flat 402, Cyber Towers View, Hitec City, Hyderabad - 500081");
@@ -101,7 +101,7 @@ export const CheckoutPage: React.FC = () => {
 
   const createBaseOrder = async () => {
     const orderPayload = {
-      customerId: user?.id || 'usr_customer_demo',
+      customerId: user?.id || (isDemo ? 'usr_customer_demo' : `cust_${Date.now()}`),
       cookId,
       cookName,
       items: items.map((i) => ({
@@ -729,7 +729,7 @@ export const CheckoutPage: React.FC = () => {
                   type="text"
                   value={cardInfo.name}
                   onChange={(e) => setCardInfo({ ...cardInfo, name: e.target.value })}
-                  placeholder="Rahul Sharma"
+                  placeholder={user?.name || (isDemo ? "Rahul Sharma" : "Cardholder Name")}
                   className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium"
                 />
               </div>

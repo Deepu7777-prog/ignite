@@ -8,16 +8,21 @@ export const MessagingPage: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [newMessage, setNewMessage] = useState<string>('');
-  const { user, role } = useAuth();
+  const { user, role, isDemo } = useAuth();
 
   useEffect(() => {
     loadMessages();
-  }, []);
+  }, [user?.id, isDemo]);
 
   const loadMessages = async () => {
     try {
       setLoading(true);
-      const res = await api.getMessages({ userId: user?.id || 'usr_customer_demo' });
+      const currentUserId = user?.id || (isDemo ? 'usr_customer_demo' : '');
+      if (!currentUserId) {
+        setMessages([]);
+        return;
+      }
+      const res = await api.getMessages({ userId: currentUserId });
       if (res.success) {
         setMessages(res.messages);
       }
@@ -33,10 +38,14 @@ export const MessagingPage: React.FC = () => {
     if (!newMessage.trim()) return;
 
     try {
+      const currentSenderId = user?.id || (isDemo ? 'usr_customer_demo' : 'guest_user');
+      const receiverTarget = role === 'COOK' ? (isDemo ? 'usr_customer_demo' : 'customer') : 'usr_cook_priya';
+      const senderDisplayName = user?.name || (isDemo ? 'Rahul Sharma' : (role === 'COOK' ? 'Home Cook' : 'Customer'));
+
       const res = await api.sendMessage({
-        senderId: user?.id || 'usr_customer_demo',
-        receiverId: role === 'COOK' ? 'usr_customer_demo' : 'usr_cook_priya',
-        senderName: user?.name || 'Rahul Sharma',
+        senderId: currentSenderId,
+        receiverId: receiverTarget,
+        senderName: senderDisplayName,
         text: newMessage.trim(),
       });
 

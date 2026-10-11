@@ -7,7 +7,7 @@ import { useAuth } from '../context/AuthContext';
 export const SubscriptionsPage: React.FC = () => {
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const { user } = useAuth();
+  const { user, isDemo } = useAuth();
 
   useEffect(() => {
     loadSubscriptions();
@@ -42,7 +42,7 @@ export const SubscriptionsPage: React.FC = () => {
   const handleCreateNewSubscription = async () => {
     try {
       const res = await api.createSubscription({
-        customerId: user?.id || 'usr_customer_demo',
+        customerId: user?.id || (isDemo ? 'usr_customer_demo' : `cust_${Date.now()}`),
         cookId: 'cook_priya',
         kitchenName: "Priya's Home Kitchen",
         planType: 'WEEKLY',

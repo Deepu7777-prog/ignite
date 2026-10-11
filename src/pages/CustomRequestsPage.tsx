@@ -8,7 +8,7 @@ export const CustomRequestsPage: React.FC = () => {
   const [requests, setRequests] = useState<CustomRequest[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const { user, role } = useAuth();
+  const { user, role, isDemo } = useAuth();
 
   // New custom request form
   const [dishName, setDishName] = useState('');
@@ -48,8 +48,8 @@ export const CustomRequestsPage: React.FC = () => {
 
     try {
       const res = await api.createCustomRequest({
-        customerId: user?.id || 'usr_customer_demo',
-        customerName: user?.name || 'Rahul Sharma',
+        customerId: user?.id || (isDemo ? 'usr_customer_demo' : `cust_${Date.now()}`),
+        customerName: user?.name || (isDemo ? 'Rahul Sharma' : 'Customer'),
         dishName,
         servings: parseInt(servings) || 10,
         preferredDate,
@@ -73,9 +73,11 @@ export const CustomRequestsPage: React.FC = () => {
   const handleCookSubmitQuote = async (reqId: string) => {
     if (!quotePrice) return;
     try {
+      const cookIdentifier = isDemo ? 'cook_priya' : (user?.id ? `cook_${user.id}` : 'cook_priya');
+      const cookDisplayName = isDemo ? "Priya's Home Kitchen" : (user?.name ? `${user.name}'s Kitchen` : "Home Kitchen");
       const res = await api.submitQuote(reqId, {
-        cookId: 'cook_priya',
-        cookName: "Priya's Home Kitchen",
+        cookId: cookIdentifier,
+        cookName: cookDisplayName,
         price: parseFloat(quotePrice),
         deliveryTime: quoteTime,
         message: quoteMsg || "I can prepare authentic fresh home-cooked food for your event!"

@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 
 export const CustomerDashboard: React.FC = () => {
-  const { user } = useAuth();
+  const { user, isDemo } = useAuth();
   const { location } = useLocation();
   const [orders, setOrders] = useState<Order[]>([]);
   const [favorites, setFavorites] = useState<any[]>([]);
@@ -28,16 +28,23 @@ export const CustomerDashboard: React.FC = () => {
 
   useEffect(() => {
     loadDashboardData();
-  }, [user?.id]);
+  }, [user?.id, isDemo]);
 
   const loadDashboardData = async () => {
     try {
       setLoading(true);
-      const customerId = user?.id || 'usr_customer_demo';
+      const customerId = user?.id || (isDemo ? 'usr_customer_demo' : '');
+      if (!customerId) {
+        setOrders([]);
+        setFavorites([]);
+        setSubscriptions([]);
+        setNotifications([]);
+        return;
+      }
       const [ordersRes, favRes, subRes, notifRes] = await Promise.all([
         api.getOrders({ customerId }),
         api.getFavorites(customerId),
-        api.getSubscriptions(),
+        isDemo ? api.getSubscriptions() : Promise.resolve({ success: true, subscriptions: [] }),
         api.getNotifications(customerId),
       ]);
 

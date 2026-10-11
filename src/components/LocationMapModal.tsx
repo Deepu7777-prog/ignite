@@ -117,9 +117,9 @@ export const LocationMapModal: React.FC<LocationMapModalProps> = ({ isOpen, onCl
     setLocation(finalAddress);
 
     // Save confirmed latitude, longitude and address to Supabase addresses table
-    if (gpsCoords) {
+    if (gpsCoords && user?.id) {
       try {
-        await api.getNotifications(user?.id || 'usr_customer_demo'); // triggers api sync
+        await api.getNotifications(user.id); // triggers api sync
       } catch (e) {}
     }
 

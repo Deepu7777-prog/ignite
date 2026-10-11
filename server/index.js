@@ -377,7 +377,10 @@ app.get('/api/cooks', (req, res) => {
 });
 
 app.get('/api/cooks/:id', (req, res) => {
-  const cook = db.findById('cookProfiles', req.params.id);
+  let cook = db.findById('cookProfiles', req.params.id);
+  if (!cook) {
+    cook = db.filter('cookProfiles', c => c.userId === req.params.id || c.id === `cook_${req.params.id}`)[0];
+  }
   if (!cook) {
     return res.status(404).json({ success: false, message: "Cook profile not found" });
   }
@@ -697,7 +700,10 @@ app.post('/api/reviews', (req, res) => {
 // --- FAVORITES API ---
 app.get('/api/favorites', (req, res) => {
   const { customerId } = req.query;
-  const favs = db.filter('favorites', f => f.customerId === (customerId || "usr_customer_demo"));
+  if (!customerId) {
+    return res.json({ success: true, favorites: [], cooks: [] });
+  }
+  const favs = db.filter('favorites', f => f.customerId === customerId);
   const cookIds = favs.map(f => f.cookId);
   const cooks = db.get('cookProfiles').filter(c => cookIds.includes(c.id));
   res.json({ success: true, favorites: favs, cooks });
@@ -818,8 +824,8 @@ app.post('/api/custom-requests', (req, res) => {
 
   const newReq = {
     id: `req_${Date.now()}`,
-    customerId: customerId || "usr_customer_demo",
-    customerName: customerName || "Rahul Sharma",
+    customerId: customerId || "guest_customer",
+    customerName: customerName || "Customer",
     dishName,
     servings: parseInt(servings) || 10,
     preferredDate,
@@ -873,7 +879,7 @@ app.post('/api/subscriptions', (req, res) => {
 
   const newSub = {
     id: `sub_${Date.now()}`,
-    customerId: customerId || "usr_customer_demo",
+    customerId: customerId || "guest_customer",
     cookId,
     kitchenName: kitchenName || "Home Kitchen",
     planType: planType || "WEEKLY",
@@ -902,10 +908,10 @@ app.get('/api/messages', (req, res) => {
 
   if (orderId) {
     msgs = msgs.filter(m => m.orderId === orderId);
-  }
-
-  if (userId) {
+  } else if (userId) {
     msgs = msgs.filter(m => m.senderId === userId || m.receiverId === userId);
+  } else {
+    msgs = [];
   }
 
   res.json({ success: true, messages: msgs });
@@ -932,7 +938,7 @@ app.post('/api/messages', (req, res) => {
 // --- NOTIFICATIONS API ---
 app.get('/api/notifications', (req, res) => {
   const { userId } = req.query;
-  const notifs = db.filter('notifications', n => n.userId === (userId || "usr_customer_demo"));
+  const notifs = userId ? db.filter('notifications', n => n.userId === userId) : [];
   res.json({ success: true, notifications: notifs });
 });
 
@@ -992,7 +998,7 @@ app.post('/api/payments/create-order', (req, res) => {
   const paymentRecord = {
     id: `pay_${Date.now()}`,
     orderId,
-    customerId: customerId || "usr_customer_demo",
+    customerId: customerId || "guest_customer",
     gateway: "RAZORPAY",
     gatewayOrderId,
     amount: parseFloat(amount),
@@ -1025,7 +1031,7 @@ app.post('/api/payments/create-phonepe-order', (req, res) => {
   const paymentRecord = {
     id: `pay_ppe_${Date.now()}`,
     orderId,
-    customerId: customerId || "usr_customer_demo",
+    customerId: customerId || "guest_customer",
     gateway: "PHONEPE",
     gatewayOrderId: phonepeMerchantTransactionId,
     amount: parseFloat(amount),
