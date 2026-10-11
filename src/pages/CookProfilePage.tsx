@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { CookProfile, MenuItem, Review } from '../types';
+import { CookProfile, MenuItem, Review, CookAvailabilitySlot } from '../types';
 import { api } from '../services/api';
 import { FoodCard } from '../components/FoodCard';
 import { useAuth } from '../context/AuthContext';
@@ -22,6 +22,7 @@ export const CookProfilePage: React.FC = () => {
   const [cook, setCook] = useState<CookProfile | null>(null);
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [reviews, setReviews] = useState<Review[]>([]);
+  const [availability, setAvailability] = useState<CookAvailabilitySlot[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
@@ -36,11 +37,19 @@ export const CookProfilePage: React.FC = () => {
   const loadCookProfile = async (cookId: string) => {
     try {
       setLoading(true);
-      const res = await api.getCookById(cookId);
+      const [res, availRes] = await Promise.all([
+        api.getCookById(cookId),
+        api.getCookAvailability(cookId).catch(() => ({ success: false, schedule: [] }))
+      ]);
+
       if (res.success) {
         setCook(res.cook);
         setMenuItems(res.menuItems);
         setReviews(res.reviews);
+
+        if (availRes.success && availRes.schedule) {
+          setAvailability(availRes.schedule);
+        }
 
         // Check if favorite
         const favUserId = user?.id || (isDemo ? 'usr_customer_demo' : null);
@@ -186,6 +195,64 @@ export const CookProfilePage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* UPCOMING AVAILABILITY & WORKING HOURS */}
+      {availability.length > 0 && (
+        <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+            <div>
+              <h3 className="font-display font-extrabold text-lg text-slate-900 flex items-center gap-2">
+                <Calendar className="w-5 h-5 text-emerald-600" />
+                Kitchen Schedule & Working Hours
+              </h3>
+              <p className="text-xs text-slate-500 font-medium mt-0.5">
+                Live operating schedule set by {cook.ownerName}
+              </p>
+            </div>
+            <span className={`text-xs font-bold px-3 py-1 rounded-full border self-start sm:self-auto ${
+              cook.availableToday
+                ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                : 'bg-rose-50 text-rose-700 border-rose-200'
+            }`}>
+              {cook.availableToday ? 'Open Today for Orders' : 'Kitchen Closed Today'}
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
+            {availability.map((slot) => {
+              const d = new Date(slot.date);
+              const dayLabel = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+              return (
+                <div
+                  key={slot.id || slot.date}
+                  className={`p-3 rounded-2xl border text-center transition-all ${
+                    slot.isAvailable
+                      ? 'bg-emerald-50/70 border-emerald-200 text-emerald-950'
+                      : 'bg-slate-50 border-slate-200 text-slate-400 opacity-70'
+                  }`}
+                >
+                  <p className="text-[11px] font-extrabold">{dayLabel}</p>
+                  <span
+                    className={`inline-block my-1 px-2 py-0.5 rounded-full text-[9px] font-extrabold ${
+                      slot.isAvailable ? 'bg-emerald-200 text-emerald-900' : 'bg-slate-200 text-slate-600'
+                    }`}
+                  >
+                    {slot.isAvailable ? 'AVAILABLE' : 'OFF'}
+                  </span>
+                  <p className="text-[10px] font-bold text-slate-700 mt-0.5">
+                    {slot.isAvailable ? `${slot.startTime} - ${slot.endTime}` : 'Kitchen Closed'}
+                  </p>
+                  {slot.notes && (
+                    <p className="text-[9px] text-slate-500 mt-1 line-clamp-1 truncate" title={slot.notes}>
+                      {slot.notes}
+                    </p>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* MENU CATEGORIES & FOOD ITEMS */}
       <div className="space-y-6">

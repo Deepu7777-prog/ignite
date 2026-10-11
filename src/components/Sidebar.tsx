@@ -13,7 +13,8 @@ import {
   Users,
   FileText,
   Settings,
-  TrendingUp
+  TrendingUp,
+  User
 } from 'lucide-react';
 
 export const Sidebar: React.FC = () => {
@@ -28,6 +29,7 @@ export const Sidebar: React.FC = () => {
     { to: '/customer-dashboard', label: 'Overview', icon: LayoutDashboard },
     { to: '/explore', label: 'Explore Home Cooks', icon: Utensils },
     { to: '/orders', label: 'My Orders', icon: ShoppingBag },
+    { to: '/profile', label: 'My Profile', icon: User },
     { to: '/favorites', label: 'Saved Favorites', icon: Heart },
     { to: '/subscriptions', label: 'Meal Subscriptions', icon: Calendar },
     { to: '/messages', label: 'Messages', icon: MessageSquare },
@@ -35,11 +37,12 @@ export const Sidebar: React.FC = () => {
 
   const cookLinks = [
     { to: '/cook-dashboard', label: 'Cook Hub', icon: LayoutDashboard },
-    { to: '/cook-menu', label: 'Manage Menu', icon: Utensils },
     { to: '/cook-orders', label: 'Incoming Orders', icon: ShoppingBag },
+    { to: '/cook-menu', label: 'Manage Menu', icon: Utensils },
+    { to: '/cook/availability', label: 'Working Calendar', icon: Calendar },
     { to: '/cook-earnings', label: 'Earnings & Revenue', icon: TrendingUp },
     { to: '/messages', label: 'Customer Chat', icon: MessageSquare },
-    { to: '/cook-verification', label: 'Verification Details', icon: ShieldCheck },
+    { to: '/cook-verification', label: 'Kitchen Profile & KYC', icon: ShieldCheck },
   ];
 
   const adminLinks = [

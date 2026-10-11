@@ -4,6 +4,7 @@ import { CookProfile } from '../types';
 import { api } from '../services/api';
 import { CookCard } from '../components/CookCard';
 import { useLocation } from '../context/LocationContext';
+import { useAuth } from '../context/AuthContext';
 import {
   MapPin,
   ShieldCheck,
@@ -28,7 +29,8 @@ export const HomePage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [showLocationDropdown, setShowLocationDropdown] = useState<boolean>(false);
-  const { location, setLocation, detectLocation, isDetecting, availableLocations, searchLocations } = useLocation();
+  const { location, setLocation, detectLocation, isDetecting, availableLocations, searchLocations, locationError } = useLocation();
+  const { switchDemoRole } = useAuth();
   const navigate = useNavigate();
   const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -117,6 +119,12 @@ export const HomePage: React.FC = () => {
 
               {/* REAL LOCATION-AWARE SEARCH FORM */}
               <div className="bg-white p-2.5 sm:p-3 rounded-2xl shadow-lg border border-slate-200/80 max-w-xl mx-auto lg:mx-0 space-y-3 relative">
+                {locationError && (
+                  <div className="p-2.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-xs flex items-center gap-2">
+                    <MapPin className="w-4 h-4 text-amber-600 shrink-0" />
+                    <span>{locationError}</span>
+                  </div>
+                )}
                 <form onSubmit={handleSearchSubmit} className="flex items-center gap-2">
                   <div className="relative flex-1">
                     <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -338,12 +346,10 @@ export const HomePage: React.FC = () => {
             <p className="text-xs text-slate-600 leading-relaxed">
               Order fresh Andhra Thalis, North Indian meals, or Tiffins cooked by verified neighbours only after you place your order.
             </p>
-            <Link
-              to="/explore"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:gap-2 transition-all"
-            >
-              Order everyday food <ChevronRight className="w-3.5 h-3.5" />
-            </Link>
+            <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+              Cooked fresh to order
+            </div>
           </div>
 
           {/* MODE 2: CUSTOM FOOD REQUEST */}
@@ -357,12 +363,10 @@ export const HomePage: React.FC = () => {
             <p className="text-xs text-slate-600 leading-relaxed">
               Ask for anything a home can make! Family function Gongura mutton for 20 people or dietary dishes. Nearby cooks quote prices.
             </p>
-            <Link
-              to="/custom-requests"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-teal-700 hover:gap-2 transition-all"
-            >
-              Post a custom request <ChevronRight className="w-3.5 h-3.5" />
-            </Link>
+            <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-teal-700 bg-teal-50 px-2.5 py-1 rounded-lg">
+              <Clock className="w-3.5 h-3.5 text-teal-600" />
+              Direct home cook quotes
+            </div>
           </div>
 
           {/* MODE 3: MEAL SUBSCRIPTIONS */}
@@ -376,12 +380,10 @@ export const HomePage: React.FC = () => {
             <p className="text-xs text-slate-600 leading-relaxed">
               Subscribe to daily, weekly or monthly home food plans. Your lunch auto-arrives from chosen cooks with pause/skip controls.
             </p>
-            <Link
-              to="/subscriptions"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-700 hover:gap-2 transition-all"
-            >
-              Explore meal plans <ChevronRight className="w-3.5 h-3.5" />
-            </Link>
+            <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-lg">
+              <Calendar className="w-3.5 h-3.5 text-indigo-600" />
+              Daily scheduled meals
+            </div>
           </div>
 
           {/* MODE 4: FESTIVAL & CHEF SPECIALS */}
@@ -395,12 +397,10 @@ export const HomePage: React.FC = () => {
             <p className="text-xs text-slate-600 leading-relaxed">
               Genuine festive cooking like Ugadi Pachadi, Bobbatlu, Mysurpa & Sunnundalu made in small batches by homes observing the festival.
             </p>
-            <Link
-              to="/explore?cuisine=Festival Specials"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-800 hover:gap-2 transition-all"
-            >
-              View festival specials <ChevronRight className="w-3.5 h-3.5" />
-            </Link>
+            <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-800 bg-amber-50 px-2.5 py-1 rounded-lg">
+              <Gift className="w-3.5 h-3.5 text-amber-600" />
+              Authentic small batches
+            </div>
           </div>
         </div>
       </section>
@@ -450,7 +450,7 @@ export const HomePage: React.FC = () => {
             </span>
 
             <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight">
-              Every home kitchen is verified by a human <br />
+              Every home kitchen is verified by women <br />
               <span className="text-emerald-400">on a live video call.</span>
             </h2>
 
@@ -515,6 +515,42 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* --- DEMO ACCESS ISOLATION (PUBLIC BOTTOM LINE) --- */}
+      <footer className="w-full border-t border-slate-200/70 pt-8 pb-4 text-center">
+        <p className="text-xs text-slate-500 font-medium flex flex-wrap items-center justify-center gap-2">
+          <span className="font-bold text-slate-700">Demo Access:</span>
+          <button
+            onClick={() => {
+              switchDemoRole('CUSTOMER');
+              navigate('/customer-dashboard');
+            }}
+            className="text-emerald-700 hover:text-emerald-800 font-bold hover:underline cursor-pointer"
+          >
+            Customer
+          </button>
+          <span className="text-slate-300">|</span>
+          <button
+            onClick={() => {
+              switchDemoRole('COOK');
+              navigate('/cook-dashboard');
+            }}
+            className="text-emerald-700 hover:text-emerald-800 font-bold hover:underline cursor-pointer"
+          >
+            Cook / Provider
+          </button>
+          <span className="text-slate-300">|</span>
+          <button
+            onClick={() => {
+              switchDemoRole('ADMIN');
+              navigate('/admin-dashboard');
+            }}
+            className="text-emerald-700 hover:text-emerald-800 font-bold hover:underline cursor-pointer"
+          >
+            Admin
+          </button>
+        </p>
+      </footer>
     </div>
   );
 };

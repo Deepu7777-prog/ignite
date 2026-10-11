@@ -8,9 +8,11 @@ import {
 
 interface LocationContextType {
   location: string;
-  userCoords: { lat: number; lng: number };
+  userCoords: { lat: number; lng: number } | null;
+  locationError: string | null;
+  isGpsDetected: boolean;
   setLocation: (locName: string) => void;
-  detectLocation: () => Promise<void>;
+  detectLocation: () => Promise<boolean>;
   isDetecting: boolean;
   availableLocations: string[];
   searchLocations: (query: string) => string[];
@@ -24,20 +26,23 @@ export const LocationProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return localStorage.getItem('hcf_user_location') || "Madhapur, Hyderabad";
   });
 
-  const [userCoords, setUserCoords] = useState<{ lat: number; lng: number }>(() => {
+  const [userCoords, setUserCoords] = useState<{ lat: number; lng: number } | null>(() => {
     const saved = localStorage.getItem('hcf_user_coords');
     if (saved) {
       try { return JSON.parse(saved); } catch (e) {}
     }
-    return { lat: 17.4483, lng: 78.3915 }; // Default Madhapur
+    return { lat: 17.4483, lng: 78.3915 };
   });
 
   const [isDetecting, setIsDetecting] = useState<boolean>(false);
+  const [locationError, setLocationError] = useState<string | null>(null);
+  const [isGpsDetected, setIsGpsDetected] = useState<boolean>(false);
 
   const availableLocations = HYDERABAD_LOCALITIES.map((l) => l.name);
 
   const setLocation = (locName: string) => {
     setLocationState(locName);
+    setLocationError(null);
     localStorage.setItem('hcf_user_location', locName);
 
     // Find matching coords if available
@@ -52,8 +57,9 @@ export const LocationProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
   };
 
-  const detectLocation = async (): Promise<void> => {
+  const detectLocation = async (): Promise<boolean> => {
     setIsDetecting(true);
+    setLocationError(null);
     return new Promise((resolve) => {
       if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(
@@ -61,10 +67,12 @@ export const LocationProvider: React.FC<{ children: React.ReactNode }> = ({ chil
             const { latitude, longitude } = position.coords;
             const newCoords = { lat: latitude, lng: longitude };
             setUserCoords(newCoords);
+            setIsGpsDetected(true);
+            setLocationError(null);
             localStorage.setItem('hcf_user_coords', JSON.stringify(newCoords));
 
             try {
-              // Try OpenStreetMap reverse geocoding API
+              // Real OpenStreetMap reverse geocoding API
               const res = await fetch(
                 `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`,
                 { headers: { 'User-Agent': 'HomeCookFinder/1.0' } }
@@ -73,41 +81,57 @@ export const LocationProvider: React.FC<{ children: React.ReactNode }> = ({ chil
               if (res.ok) {
                 const data = await res.json();
                 const address = data.address;
-                const suburb = address?.suburb || address?.neighbourhood || address?.residential || address?.road || address?.city_district;
+                const suburb = address?.suburb || address?.neighbourhood || address?.residential || address?.road || address?.subdistrict || address?.city_district;
+                const city = address?.city || address?.town || address?.county || address?.state_district;
                 
-                if (suburb) {
-                  const detectedName = `${suburb}, Hyderabad`;
+                let detectedName = '';
+                if (suburb && city) {
+                  detectedName = `${suburb}, ${city}`;
+                } else if (city) {
+                  detectedName = `${city}`;
+                } else if (suburb) {
+                  detectedName = `${suburb}`;
+                } else if (data.display_name) {
+                  detectedName = data.display_name.split(',').slice(0, 2).join(',').trim();
+                }
+
+                if (detectedName) {
                   setLocationState(detectedName);
                   localStorage.setItem('hcf_user_location', detectedName);
                   setIsDetecting(false);
-                  resolve();
+                  resolve(true);
                   return;
                 }
               }
             } catch (err) {
-              console.warn("Reverse geocoding failed, falling back to nearest locality:", err);
+              console.warn("Reverse geocoding failed online:", err);
             }
 
-            // Fallback: match closest known locality in Hyderabad
-            const closest = findClosestLocality(latitude, longitude);
-            setLocationState(closest.name);
-            localStorage.setItem('hcf_user_location', closest.name);
+            // Real coordinate fallback without hardcoding any location
+            const fallbackLoc = `GPS (${latitude.toFixed(3)}, ${longitude.toFixed(3)})`;
+            setLocationState(fallbackLoc);
+            localStorage.setItem('hcf_user_location', fallbackLoc);
             setIsDetecting(false);
-            resolve();
+            resolve(true);
           },
           (error) => {
-            console.warn("Geolocation permission denied or error:", error);
-            // Default fallback to Madhapur
-            setLocationState("Madhapur, Hyderabad");
+            console.warn("Geolocation permission error:", error);
             setIsDetecting(false);
-            resolve();
+            setIsGpsDetected(false);
+            if (error.code === 1) {
+              setLocationError("Location permission was denied. Please allow location access in your browser or select your neighbourhood manually.");
+            } else {
+              setLocationError("Unable to acquire GPS signal. Please select your neighbourhood manually.");
+            }
+            resolve(false);
           },
-          { timeout: 8000, enableHighAccuracy: true }
+          { timeout: 10000, enableHighAccuracy: true }
         );
       } else {
-        setLocationState("Madhapur, Hyderabad");
         setIsDetecting(false);
-        resolve();
+        setIsGpsDetected(false);
+        setLocationError("Geolocation is not supported by your browser.");
+        resolve(false);
       }
     });
   };
@@ -119,6 +143,7 @@ export const LocationProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   };
 
   const getDistanceToCook = (cookLat: number, cookLng: number): number => {
+    if (!userCoords) return 2.5;
     return calculateHaversineDistance(userCoords.lat, userCoords.lng, cookLat, cookLng);
   };
 
@@ -127,6 +152,8 @@ export const LocationProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       value={{
         location,
         userCoords,
+        locationError,
+        isGpsDetected,
         setLocation,
         detectLocation,
         isDetecting,

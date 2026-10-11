@@ -179,6 +179,14 @@ export const Navbar: React.FC = () => {
                 >
                   My Dashboard
                 </Link>
+                <Link
+                  to="/profile"
+                  className={`px-3 py-2 rounded-xl transition-colors ${
+                    routeLocation.pathname === '/profile' ? 'text-emerald-700 bg-emerald-50' : 'hover:bg-slate-100 hover:text-slate-900'
+                  }`}
+                >
+                  My Profile
+                </Link>
               </>
             )}
 
@@ -208,6 +216,14 @@ export const Navbar: React.FC = () => {
                   }`}
                 >
                   Manage Menu
+                </Link>
+                <Link
+                  to="/cook/availability"
+                  className={`px-3 py-2 rounded-xl transition-colors ${
+                    routeLocation.pathname === '/cook/availability' ? 'text-emerald-700 bg-emerald-50' : 'hover:bg-slate-100 hover:text-slate-900'
+                  }`}
+                >
+                  Working Calendar
                 </Link>
                 <Link
                   to="/cook-earnings"
@@ -457,6 +473,13 @@ export const Navbar: React.FC = () => {
                       My Dashboard
                     </Link>
                     <Link
+                      to="/profile"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="p-2.5 rounded-xl bg-emerald-50 text-emerald-800 hover:bg-emerald-100 text-center"
+                    >
+                      My Profile
+                    </Link>
+                    <Link
                       to="/favorites"
                       onClick={() => setIsMobileMenuOpen(false)}
                       className="p-2.5 rounded-xl bg-slate-50 text-slate-800 hover:bg-slate-100 text-center"
@@ -488,6 +511,13 @@ export const Navbar: React.FC = () => {
                       className="p-2.5 rounded-xl bg-slate-50 text-slate-800 hover:bg-slate-100 text-center"
                     >
                       Manage Menu
+                    </Link>
+                    <Link
+                      to="/cook/availability"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="p-2.5 rounded-xl bg-emerald-50 text-emerald-800 hover:bg-emerald-100 text-center"
+                    >
+                      Working Calendar
                     </Link>
                     <Link
                       to="/cook-earnings"

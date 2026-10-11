@@ -10,7 +10,8 @@ import {
   Utensils,
   LayoutDashboard,
   ShieldCheck,
-  BarChart3
+  BarChart3,
+  Calendar
 } from 'lucide-react';
 
 export const MobileNav: React.FC = () => {
@@ -26,15 +27,15 @@ export const MobileNav: React.FC = () => {
     { to: '/explore', label: 'Explore', icon: Compass },
     { to: '/orders', label: 'Orders', icon: ShoppingBag },
     { to: '/messages', label: 'Messages', icon: MessageSquare },
-    { to: '/customer-dashboard', label: 'Profile', icon: User },
+    { to: '/profile', label: 'Profile', icon: User },
   ];
 
   const cookTabs = [
-    { to: '/cook-dashboard', label: 'Home', icon: Home },
+    { to: '/cook-dashboard', label: 'Hub', icon: Home },
     { to: '/cook-orders', label: 'Orders', icon: ShoppingBag },
     { to: '/cook-menu', label: 'Menu', icon: Utensils },
-    { to: '/messages', label: 'Messages', icon: MessageSquare },
-    { to: '/cook-verification', label: 'Profile', icon: User },
+    { to: '/cook/availability', label: 'Calendar', icon: Calendar },
+    { to: '/messages', label: 'Chat', icon: MessageSquare },
   ];
 
   const adminTabs = [

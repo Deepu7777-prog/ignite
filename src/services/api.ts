@@ -9,7 +9,8 @@ import {
   VerificationApplication,
   Message,
   Notification,
-  AdminStats
+  AdminStats,
+  CookAvailabilitySlot
 } from '../types';
 
 const API_BASE = '/api';
@@ -266,6 +267,15 @@ export const api = {
     fetchJson<{ success: boolean; cook: CookProfile }>(`/cooks/${cookId}/status`, {
       method: 'PATCH',
       body: JSON.stringify({ availableToday }),
+    }),
+
+  getCookAvailability: (cookId: string) =>
+    fetchJson<{ success: boolean; cookId: string; schedule: CookAvailabilitySlot[] }>(`/cooks/${cookId}/availability`),
+
+  updateCookAvailability: (cookId: string, schedule: CookAvailabilitySlot[]) =>
+    fetchJson<{ success: boolean; cookId: string; schedule: CookAvailabilitySlot[] }>(`/cooks/${cookId}/availability`, {
+      method: 'PUT',
+      body: JSON.stringify({ schedule }),
     }),
 
   // Real Payment Gateway (Razorpay / PhonePe / COD)

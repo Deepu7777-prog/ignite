@@ -36,6 +36,17 @@ export interface CookProfile {
   openingHours: string;
   acceptedPaymentMethods?: string[];
   payoutSettings?: PayoutSettings;
+  availabilitySchedule?: CookAvailabilitySlot[];
+}
+
+export interface CookAvailabilitySlot {
+  id: string;
+  date: string;
+  dayName?: string;
+  isAvailable: boolean;
+  startTime: string;
+  endTime: string;
+  notes?: string;
 }
 
 export interface PayoutSettings {

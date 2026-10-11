@@ -1048,7 +1048,8 @@ class DatabaseEngine {
 
   // Update by ID
   update(collectionName, id, updates) {
-    const list = this.get(collectionName);
+    if (!this.data[collectionName]) this.data[collectionName] = [];
+    const list = this.data[collectionName];
     const index = list.findIndex(item => item.id === id);
     if (index !== -1) {
       list[index] = { ...list[index], ...updates, updatedAt: new Date().toISOString() };
@@ -1060,7 +1061,8 @@ class DatabaseEngine {
 
   // Delete by ID
   delete(collectionName, id) {
-    const list = this.get(collectionName);
+    if (!this.data[collectionName]) return null;
+    const list = this.data[collectionName];
     const index = list.findIndex(item => item.id === id);
     if (index !== -1) {
       const removed = list.splice(index, 1);

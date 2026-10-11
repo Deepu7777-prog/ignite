@@ -40,47 +40,45 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   useEffect(() => {
     initSession();
+
+    // Listen to real Supabase auth state changes
+    const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (session?.user) {
+        const supaUser = session.user;
+        const supaRole = (supaUser.user_metadata?.role as UserRole) || 'CUSTOMER';
+        const userObj: User = {
+          id: supaUser.id,
+          email: supaUser.email || '',
+          name: supaUser.user_metadata?.name || supaUser.email?.split('@')[0] || 'User',
+          phone: supaUser.user_metadata?.phone || '',
+          role: supaRole,
+          avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+        };
+        setUser(userObj);
+        setRoleState(supaRole);
+        setIsDemo(false);
+        sessionStorage.removeItem('hcf_demo_session');
+      } else if (event === 'SIGNED_OUT') {
+        setUser(null);
+        setRoleState('CUSTOMER');
+        setIsDemo(false);
+        sessionStorage.removeItem('hcf_demo_session');
+        localStorage.removeItem('hcf_auth_user');
+        localStorage.removeItem('hcf_auth_role');
+        localStorage.removeItem('hcf_is_demo');
+        localStorage.removeItem('hcf_cart');
+      }
+    });
+
+    return () => {
+      authListener?.subscription?.unsubscribe();
+    };
   }, []);
 
   const initSession = async () => {
     setIsLoading(true);
     try {
-      // 1. Check local storage persistent user session
-      const savedUserStr = localStorage.getItem('hcf_auth_user');
-      const savedRoleStr = localStorage.getItem('hcf_auth_role');
-      const savedIsDemo = localStorage.getItem('hcf_is_demo') === 'true';
-
-      if (savedUserStr && savedRoleStr) {
-        const parsedUser: User = JSON.parse(savedUserStr);
-
-        // If saved role is ADMIN and not demo mode, perform strict server authorization check
-        if (parsedUser.role === 'ADMIN' && !savedIsDemo) {
-          try {
-            const checkRes = await api.checkAdminAuthorization({ userId: parsedUser.id, email: parsedUser.email });
-            if (!checkRes.isAuthorized) {
-              console.warn("Saved Admin session is no longer authorized. Revoking Admin access.");
-              localStorage.removeItem('hcf_auth_user');
-              localStorage.removeItem('hcf_auth_role');
-              localStorage.removeItem('hcf_is_demo');
-              setUser(null);
-              setRoleState('CUSTOMER');
-              setIsDemo(false);
-              setIsLoading(false);
-              return;
-            }
-          } catch (e) {
-            console.warn("Failed to verify Admin authorization online:", e);
-          }
-        }
-
-        setUser(parsedUser);
-        setRoleState(savedRoleStr as UserRole);
-        setIsDemo(savedIsDemo);
-        setIsLoading(false);
-        return;
-      }
-
-      // 2. Check Supabase session token
+      // 1. PRIMARY: Query real Supabase session
       try {
         const { data } = await supabase.auth.getSession();
         if (data?.session?.user) {
@@ -111,9 +109,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           setUser(userObj);
           setRoleState(supaRole);
           setIsDemo(false);
-          localStorage.setItem('hcf_auth_user', JSON.stringify(userObj));
-          localStorage.setItem('hcf_auth_role', supaRole);
-          localStorage.setItem('hcf_is_demo', 'false');
+          sessionStorage.removeItem('hcf_demo_session');
           setIsLoading(false);
           return;
         }
@@ -121,10 +117,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         console.warn("Supabase session check skipped or offline:", e);
       }
 
-      // 3. No active session -> Clean guest state (No fake/demo fallback)
+      // 2. Check explicitly active Demo Mode in current session only
+      const sessionDemo = sessionStorage.getItem('hcf_demo_session');
+      if (sessionDemo) {
+        try {
+          const parsedDemo = JSON.parse(sessionDemo);
+          setUser(parsedDemo.user);
+          setRoleState(parsedDemo.role);
+          setIsDemo(true);
+          setIsLoading(false);
+          return;
+        } catch (e) {}
+      }
+
+      // 3. UNAUTHENTICATED = UNKNOWN VISITOR (Clear any legacy demo/user flags)
       setUser(null);
       setRoleState('CUSTOMER');
       setIsDemo(false);
+      localStorage.removeItem('hcf_auth_user');
+      localStorage.removeItem('hcf_auth_role');
+      localStorage.removeItem('hcf_is_demo');
     } catch (err) {
       console.error("Error initializing session:", err);
       setUser(null);
@@ -136,24 +148,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const loginWithUser = (loggedUser: User) => {
+    sessionStorage.removeItem('hcf_demo_session');
     setUser(loggedUser);
     setRoleState(loggedUser.role);
     setIsDemo(false);
-    localStorage.setItem('hcf_auth_user', JSON.stringify(loggedUser));
-    localStorage.setItem('hcf_auth_role', loggedUser.role);
-    localStorage.setItem('hcf_is_demo', 'false');
   };
 
-  const logout = () => {
+  const logout = async () => {
     setUser(null);
     setRoleState('CUSTOMER');
     setIsDemo(false);
+    sessionStorage.removeItem('hcf_demo_session');
     localStorage.removeItem('hcf_auth_user');
     localStorage.removeItem('hcf_auth_role');
     localStorage.removeItem('hcf_is_demo');
     localStorage.removeItem('hcf_cart');
     try {
-      supabase.auth.signOut().catch(() => {});
+      await supabase.auth.signOut();
     } catch (e) {}
   };
 
@@ -165,9 +176,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUser(res.user);
         setRoleState(targetRole);
         setIsDemo(true);
-        localStorage.setItem('hcf_auth_user', JSON.stringify(res.user));
-        localStorage.setItem('hcf_auth_role', targetRole);
-        localStorage.setItem('hcf_is_demo', 'true');
+        sessionStorage.setItem('hcf_demo_session', JSON.stringify({ user: res.user, role: targetRole }));
       }
     } catch (err) {
       console.error("Failed to switch demo role:", err);

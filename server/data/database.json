@@ -256,7 +256,73 @@
       "aadhaarStatus": "VERIFIED",
       "availableToday": true,
       "prepTimeMinutes": 25,
-      "openingHours": "11:00 AM - 10:00 PM"
+      "openingHours": "11:00 AM - 10:00 PM",
+      "availabilitySchedule": [
+        {
+          "id": "slot_cook_priya_2026-10-11",
+          "date": "2026-10-11",
+          "dayName": "Sunday",
+          "isAvailable": true,
+          "startTime": "10:00 AM",
+          "endTime": "02:00 PM",
+          "notes": "Fresh Homemade Lunch & Dinner"
+        },
+        {
+          "id": "slot_cook_priya_2026-10-12",
+          "date": "2026-10-12",
+          "dayName": "Monday",
+          "isAvailable": true,
+          "startTime": "10:00 AM",
+          "endTime": "02:00 PM",
+          "notes": "Fresh Homemade Lunch & Dinner"
+        },
+        {
+          "id": "slot_cook_priya_2026-10-13",
+          "date": "2026-10-13",
+          "dayName": "Tuesday",
+          "isAvailable": true,
+          "startTime": "10:00 AM",
+          "endTime": "02:00 PM",
+          "notes": "Fresh Homemade Lunch & Dinner"
+        },
+        {
+          "id": "slot_cook_priya_2026-10-14",
+          "date": "2026-10-14",
+          "dayName": "Wednesday",
+          "isAvailable": true,
+          "startTime": "10:00 AM",
+          "endTime": "02:00 PM",
+          "notes": "Fresh Homemade Lunch & Dinner"
+        },
+        {
+          "id": "slot_cook_priya_2026-10-15",
+          "date": "2026-10-15",
+          "dayName": "Thursday",
+          "isAvailable": true,
+          "startTime": "10:00 AM",
+          "endTime": "02:00 PM",
+          "notes": "Fresh Homemade Lunch & Dinner"
+        },
+        {
+          "id": "slot_cook_priya_2026-10-16",
+          "date": "2026-10-16",
+          "dayName": "Friday",
+          "isAvailable": true,
+          "startTime": "10:00 AM",
+          "endTime": "02:00 PM",
+          "notes": "Fresh Homemade Lunch & Dinner"
+        },
+        {
+          "id": "slot_cook_priya_2026-10-17",
+          "date": "2026-10-17",
+          "dayName": "Saturday",
+          "isAvailable": false,
+          "startTime": "10:00 AM",
+          "endTime": "02:00 PM",
+          "notes": "Weekend Special Orders"
+        }
+      ],
+      "updatedAt": "2026-10-11T16:32:05.871Z"
     },
     {
       "id": "cook_reema",

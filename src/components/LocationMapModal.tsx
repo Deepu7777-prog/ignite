@@ -130,7 +130,9 @@ export const LocationMapModal: React.FC<LocationMapModalProps> = ({ isOpen, onCl
 
   const currentCenter: [number, number] = gpsCoords
     ? [gpsCoords.lat, gpsCoords.lng]
-    : [userCoords.lat, userCoords.lng];
+    : userCoords
+    ? [userCoords.lat, userCoords.lng]
+    : [17.4483, 78.3915];
 
   return (
     <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">

@@ -429,6 +429,64 @@ app.patch('/api/cooks/:id/status', (req, res) => {
   res.json({ success: true, cook: updatedCook });
 });
 
+// --- COOK AVAILABILITY SCHEDULE (DATE & TIME CALENDAR) ---
+app.get('/api/cooks/:id/availability', (req, res) => {
+  let cook = db.findById('cookProfiles', req.params.id);
+  if (!cook) {
+    cook = db.filter('cookProfiles', c => c.userId === req.params.id || c.id === `cook_${req.params.id}`)[0];
+  }
+  if (!cook) {
+    return res.status(404).json({ success: false, message: "Cook profile not found" });
+  }
+
+  let schedule = cook.availabilitySchedule;
+  if (!schedule || !Array.isArray(schedule) || schedule.length === 0) {
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const today = new Date();
+    schedule = [];
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(today);
+      d.setDate(today.getDate() + i);
+      const dateStr = d.toISOString().split('T')[0];
+      const dayName = days[d.getDay()];
+      schedule.push({
+        id: `slot_${cook.id}_${dateStr}`,
+        date: dateStr,
+        dayName,
+        isAvailable: i < 6,
+        startTime: '10:00 AM',
+        endTime: '02:00 PM',
+        notes: i === 6 ? 'Weekend Special Orders' : 'Fresh Lunch & Dinner Available'
+      });
+    }
+    db.update('cookProfiles', cook.id, { availabilitySchedule: schedule });
+  }
+
+  res.json({ success: true, cookId: cook.id, schedule });
+});
+
+app.put('/api/cooks/:id/availability', (req, res) => {
+  const { schedule } = req.body;
+  if (!Array.isArray(schedule)) {
+    return res.status(400).json({ success: false, message: "schedule must be an array of availability slots" });
+  }
+
+  let cook = db.findById('cookProfiles', req.params.id);
+  if (!cook) {
+    cook = db.filter('cookProfiles', c => c.userId === req.params.id || c.id === `cook_${req.params.id}`)[0];
+  }
+  if (!cook) {
+    return res.status(404).json({ success: false, message: "Cook profile not found" });
+  }
+
+  const updatedCook = db.update('cookProfiles', cook.id, {
+    availabilitySchedule: schedule,
+    updatedAt: new Date().toISOString()
+  });
+
+  res.json({ success: true, cookId: cook.id, schedule: updatedCook.availabilitySchedule });
+});
+
 // --- MENU MANAGEMENT API ---
 app.get('/api/menu', (req, res) => {
   const { cookId, category, dietaryType } = req.query;

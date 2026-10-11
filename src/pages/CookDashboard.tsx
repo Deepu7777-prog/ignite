@@ -14,7 +14,8 @@ import {
   ShieldCheck,
   Power,
   DollarSign,
-  AlertCircle
+  AlertCircle,
+  Calendar
 } from 'lucide-react';
 
 export const CookDashboard: React.FC = () => {
@@ -197,6 +198,14 @@ export const CookDashboard: React.FC = () => {
             <Power className="w-4 h-4" />
             Kitchen Online: {isAvailable ? 'ACTIVE' : 'OFFLINE'}
           </button>
+
+          <Link
+            to="/cook/availability"
+            className="px-4 py-2.5 rounded-2xl bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 font-extrabold text-xs hover:bg-emerald-500/30 transition-colors flex items-center gap-1.5 shadow-sm"
+          >
+            <Calendar className="w-4 h-4 text-emerald-400" />
+            Working Calendar
+          </Link>
 
           <Link
             to="/cook-menu"

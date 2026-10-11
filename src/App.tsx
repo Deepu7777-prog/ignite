@@ -28,6 +28,8 @@ import { SubscriptionsPage } from './pages/SubscriptionsPage';
 import { CustomRequestsPage } from './pages/CustomRequestsPage';
 import { MessagingPage } from './pages/MessagingPage';
 import { LoginPage } from './pages/LoginPage';
+import { CustomerProfilePage } from './pages/CustomerProfilePage';
+import { CookAvailabilityPage } from './pages/CookAvailabilityPage';
 
 const OrdersRouteHandler: React.FC = () => {
   const { user } = useAuth();
@@ -70,6 +72,7 @@ const AppContent: React.FC = () => {
             {/* CUSTOMER PROTECTED ROUTES */}
             <Route path="/customer" element={<Navigate to="/customer-dashboard" replace />} />
             <Route path="/customer-dashboard" element={<ProtectedRoute allowedRoles={['CUSTOMER']}><CustomerDashboard /></ProtectedRoute>} />
+            <Route path="/profile" element={<ProtectedRoute allowedRoles={['CUSTOMER']}><CustomerProfilePage /></ProtectedRoute>} />
             <Route path="/orders" element={<ProtectedRoute allowedRoles={['CUSTOMER', 'COOK', 'ADMIN']}><OrdersRouteHandler /></ProtectedRoute>} />
             <Route path="/favorites" element={<ProtectedRoute allowedRoles={['CUSTOMER']}><CustomerDashboard /></ProtectedRoute>} />
             <Route path="/cart" element={<ProtectedRoute allowedRoles={['CUSTOMER']}><CartRouteHandler /></ProtectedRoute>} />
@@ -80,8 +83,14 @@ const AppContent: React.FC = () => {
             <Route path="/cook" element={<Navigate to="/cook-dashboard" replace />} />
             <Route path="/cook-dashboard" element={<ProtectedRoute allowedRoles={['COOK']}><CookDashboard /></ProtectedRoute>} />
             <Route path="/cook-orders" element={<ProtectedRoute allowedRoles={['COOK']}><CookDashboard /></ProtectedRoute>} />
+            <Route path="/cook/orders" element={<ProtectedRoute allowedRoles={['COOK']}><CookDashboard /></ProtectedRoute>} />
             <Route path="/cook-earnings" element={<ProtectedRoute allowedRoles={['COOK']}><CookDashboard /></ProtectedRoute>} />
             <Route path="/cook-menu" element={<ProtectedRoute allowedRoles={['COOK']}><CookMenuManagement /></ProtectedRoute>} />
+            <Route path="/cook/menu" element={<ProtectedRoute allowedRoles={['COOK']}><CookMenuManagement /></ProtectedRoute>} />
+            <Route path="/cook/availability" element={<ProtectedRoute allowedRoles={['COOK']}><CookAvailabilityPage /></ProtectedRoute>} />
+            <Route path="/cook-availability" element={<ProtectedRoute allowedRoles={['COOK']}><CookAvailabilityPage /></ProtectedRoute>} />
+            <Route path="/cook/messages" element={<ProtectedRoute allowedRoles={['COOK']}><MessagingPage /></ProtectedRoute>} />
+            <Route path="/cook/profile" element={<ProtectedRoute allowedRoles={['COOK']}><CookVerificationPage /></ProtectedRoute>} />
 
             {/* ADMIN PROTECTED ROUTES */}
             <Route path="/admin" element={<Navigate to="/admin-dashboard" replace />} />
