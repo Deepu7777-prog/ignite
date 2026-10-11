@@ -52,15 +52,15 @@ export const Navbar: React.FC = () => {
         {/* MAIN NAVBAR */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
           {/* BRAND LOGO */}
-          <Link to="/" className="flex items-center gap-3 shrink-0 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 flex items-center justify-center text-white shadow-md shadow-emerald-600/20 group-hover:scale-105 transition-transform">
-              <Utensils className="w-5 h-5" />
+          <Link to="/" className="flex items-center gap-2 sm:gap-3 shrink-0 group min-w-0">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 flex items-center justify-center text-white shadow-md shadow-emerald-600/20 group-hover:scale-105 transition-transform shrink-0">
+              <Utensils className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
-            <div className="leading-tight">
-              <span className="block font-display text-lg sm:text-xl font-extrabold text-slate-900 tracking-tight group-hover:text-emerald-600 transition-colors">
+            <div className="leading-tight min-w-0">
+              <span className="block font-display text-base sm:text-lg lg:text-xl font-extrabold text-slate-900 tracking-tight group-hover:text-emerald-600 transition-colors truncate">
                 Home Cook Finder
               </span>
-              <span className="block text-[11px] text-slate-500 font-medium -mt-0.5">
+              <span className="hidden sm:block text-[11px] text-slate-500 font-medium -mt-0.5">
                 Find Real Home Food Near You
               </span>
             </div>
@@ -178,16 +178,16 @@ export const Navbar: React.FC = () => {
           </nav>
 
           {/* RIGHT ACTIONS */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
             {/* CART BUTTON */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative px-3.5 py-2 rounded-xl bg-emerald-600 text-white font-bold text-xs shadow-md shadow-emerald-600/20 hover:bg-emerald-700 transition-all flex items-center gap-2"
+              className="relative px-2.5 sm:px-3.5 py-2 rounded-xl bg-emerald-600 text-white font-bold text-xs shadow-md shadow-emerald-600/20 hover:bg-emerald-700 transition-all flex items-center gap-1.5 shrink-0"
             >
               <ShoppingBag className="w-4 h-4" />
               <span className="hidden sm:inline">Cart</span>
               {totalCount > 0 && (
-                <span className="bg-white text-emerald-700 text-[11px] font-extrabold w-5 h-5 rounded-full flex items-center justify-center">
+                <span className="bg-white text-emerald-700 text-[10px] font-extrabold w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center">
                   {totalCount}
                 </span>
               )}
@@ -205,14 +205,14 @@ export const Navbar: React.FC = () => {
             )}
 
             {/* SUPABASE AUTH SIGN IN / USER PROFILE & LOGOUT */}
-            <div className="flex items-center gap-2 pl-1 border-l border-slate-200">
+            <div className="flex items-center gap-1.5 sm:gap-2 pl-1 border-l border-slate-200 shrink-0">
               {user ? (
-                <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-2 text-left p-1 rounded-xl bg-slate-50 border border-slate-200/60">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <div className="flex items-center gap-1.5 sm:gap-2 text-left p-1 rounded-xl bg-slate-50 border border-slate-200/60 shrink-0">
                     <img
                       src={user.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"}
                       alt={user.name}
-                      className="w-8 h-8 rounded-full object-cover ring-2 ring-emerald-500/20 shrink-0"
+                      className="w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover ring-2 ring-emerald-500/20 shrink-0"
                     />
                     <div className="hidden sm:block text-left leading-tight pr-1">
                       <span className="block text-xs font-bold text-slate-900 truncate max-w-[100px]">
@@ -229,7 +229,7 @@ export const Navbar: React.FC = () => {
                       logout();
                       navigate('/');
                     }}
-                    className="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-colors"
+                    className="px-2 sm:px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-colors shrink-0"
                     title="Sign Out from Account"
                   >
                     Logout
@@ -238,10 +238,11 @@ export const Navbar: React.FC = () => {
               ) : (
                 <button
                   onClick={() => setIsAuthModalOpen(true)}
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-bold transition-colors"
+                  className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-bold transition-colors shrink-0"
                 >
-                  <LogIn className="w-4 h-4 text-emerald-600" />
-                  Sign In / Register
+                  <LogIn className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600" />
+                  <span className="hidden sm:inline">Sign In / Register</span>
+                  <span className="sm:hidden">Sign In</span>
                 </button>
               )}
             </div>

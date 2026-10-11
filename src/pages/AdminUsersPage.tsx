@@ -41,7 +41,7 @@ export const AdminUsersPage: React.FC = () => {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8 w-full max-w-full overflow-x-hidden">
       <div className="border-b border-slate-200 pb-4">
         <h1 className="font-display text-3xl font-extrabold text-slate-900">
           All Users Directory

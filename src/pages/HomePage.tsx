@@ -78,45 +78,45 @@ export const HomePage: React.FC = () => {
   const matchingLocationSuggestions = searchLocations(searchQuery);
 
   return (
-    <div className="space-y-16 pb-16">
+    <div className="space-y-12 sm:space-y-16 pb-8 sm:pb-12 w-full max-w-full overflow-x-hidden">
       {/* --- HERO SECTION (EMERGENT PRIMARY REFERENCE VISUAL STYLE) --- */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-50/70 via-white to-teal-50/50 pt-10 pb-16 lg:pt-16 lg:pb-24 border-b border-emerald-100/60">
+      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-50/70 via-white to-teal-50/50 pt-8 pb-12 sm:pt-10 sm:pb-16 lg:pt-16 lg:pb-24 border-b border-emerald-100/60 w-full max-w-full">
         {/* Soft Background Accents */}
-        <div className="absolute top-10 left-10 w-96 h-96 bg-emerald-300/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-teal-300/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 left-0 w-72 sm:w-96 h-72 sm:h-96 bg-emerald-300/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-72 sm:w-96 h-72 sm:h-96 bg-teal-300/20 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
             {/* LEFT HERO TEXT */}
-            <div className="lg:col-span-7 text-center lg:text-left space-y-6">
+            <div className="lg:col-span-7 text-center lg:text-left space-y-5 sm:space-y-6">
               {/* KITCHEN COUNT BADGE */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 backdrop-blur border border-emerald-200 shadow-xs text-xs font-bold text-slate-800">
-                <span className="relative flex h-2.5 w-2.5">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/90 backdrop-blur border border-emerald-200 shadow-xs text-xs font-bold text-slate-800 max-w-full truncate">
+                <span className="relative flex h-2.5 w-2.5 shrink-0">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-600" />
                 </span>
-                <span>{cooks.length || 10}+ Verified Home Kitchens</span>
-                <span className="text-slate-400">•</span>
-                <span className="text-emerald-700 font-extrabold flex items-center gap-1">
+                <span className="truncate">{cooks.length || 10}+ Verified Home Kitchens</span>
+                <span className="text-slate-400 shrink-0">•</span>
+                <span className="text-emerald-700 font-extrabold flex items-center gap-1 shrink-0">
                   <MapPin className="w-3 h-3 text-emerald-600" />
                   {location}
                 </span>
               </div>
 
               {/* MAIN TITLE & SUPPORT */}
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.08]">
+              <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12] sm:leading-[1.08]">
                 Find Real Home Food <br />
                 <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 bg-clip-text text-transparent">
                   Near You
                 </span>
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+              <p className="text-sm sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
                 Discover verified local home cooks and fresh homemade meals. Every kitchen is verified on a video call — cooking fresh only after you place your order.
               </p>
 
               {/* REAL LOCATION-AWARE SEARCH FORM */}
-              <div className="bg-white p-3 rounded-2xl shadow-lg border border-slate-200/80 max-w-xl mx-auto lg:mx-0 space-y-3 relative">
+              <div className="bg-white p-2.5 sm:p-3 rounded-2xl shadow-lg border border-slate-200/80 max-w-xl mx-auto lg:mx-0 space-y-3 relative">
                 <form onSubmit={handleSearchSubmit} className="flex items-center gap-2">
                   <div className="relative flex-1">
                     <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -129,13 +129,13 @@ export const HomePage: React.FC = () => {
                         setSearchQuery(e.target.value);
                         setShowLocationDropdown(true);
                       }}
-                      placeholder="Search Gongura mutton, Biryani, Thali, or locality..."
-                      className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                      placeholder="Search dishes or locality..."
+                      className="w-full pl-10 pr-3 py-2 sm:py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
                     />
                   </div>
                   <button
                     type="submit"
-                    className="px-5 py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-xs hover:bg-emerald-700 shadow-md shadow-emerald-600/20 transition-all shrink-0 flex items-center gap-1.5"
+                    className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-xs hover:bg-emerald-700 shadow-md shadow-emerald-600/20 transition-all shrink-0 flex items-center gap-1.5"
                   >
                     <Search className="w-3.5 h-3.5" />
                     Search
@@ -144,39 +144,45 @@ export const HomePage: React.FC = () => {
 
                 {/* INTERACTIVE LOCATION SUGGESTIONS DROPDOWN */}
                 {showLocationDropdown && (
-                  <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-xl border border-slate-200 p-2 z-50 text-xs animate-in fade-in slide-in-from-top-2">
-                    <button
-                      onClick={handleDetectGPS}
-                      className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl bg-emerald-50 text-emerald-800 font-extrabold hover:bg-emerald-100 transition-colors mb-1"
-                    >
-                      <span className="flex items-center gap-2">
-                        <Navigation className="w-4 h-4 text-emerald-600" />
-                        {isDetecting ? "Detecting GPS location..." : "Use Current GPS Location"}
-                      </span>
-                      <span className="text-[10px] bg-emerald-200 text-emerald-900 px-2 py-0.5 rounded-full font-bold">GPS</span>
-                    </button>
+                  <>
+                    <div
+                      className="fixed inset-0 z-40"
+                      onClick={() => setShowLocationDropdown(false)}
+                    />
+                    <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-xl border border-slate-200 p-2 z-50 text-xs animate-in fade-in slide-in-from-top-2 max-h-72 overflow-y-auto">
+                      <button
+                        onClick={handleDetectGPS}
+                        className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl bg-emerald-50 text-emerald-800 font-extrabold hover:bg-emerald-100 transition-colors mb-1"
+                      >
+                        <span className="flex items-center gap-2">
+                          <Navigation className="w-4 h-4 text-emerald-600" />
+                          {isDetecting ? "Detecting GPS location..." : "Use Current GPS Location"}
+                        </span>
+                        <span className="text-[10px] bg-emerald-200 text-emerald-900 px-2 py-0.5 rounded-full font-bold">GPS</span>
+                      </button>
 
-                    <div className="py-1">
-                      <p className="px-3 py-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                        Select Neighbourhood in Hyderabad
-                      </p>
-                      {matchingLocationSuggestions.map((loc) => (
-                        <button
-                          key={loc}
-                          onClick={() => handleSelectLocation(loc)}
-                          className={`w-full text-left px-3 py-2 rounded-xl flex items-center justify-between font-semibold transition-colors ${
-                            location === loc ? 'bg-emerald-50 text-emerald-700 font-extrabold' : 'text-slate-700 hover:bg-slate-50'
-                          }`}
-                        >
-                          <span className="flex items-center gap-2">
-                            <MapPin className="w-3.5 h-3.5 text-slate-400" />
-                            {loc}
-                          </span>
-                          <span className="text-[10px] text-slate-400 font-medium">Select</span>
-                        </button>
-                      ))}
+                      <div className="py-1">
+                        <p className="px-3 py-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                          Select Neighbourhood in Hyderabad
+                        </p>
+                        {matchingLocationSuggestions.map((loc) => (
+                          <button
+                            key={loc}
+                            onClick={() => handleSelectLocation(loc)}
+                            className={`w-full text-left px-3 py-2 rounded-xl flex items-center justify-between font-semibold transition-colors ${
+                              location === loc ? 'bg-emerald-50 text-emerald-700 font-extrabold' : 'text-slate-700 hover:bg-slate-50'
+                            }`}
+                          >
+                            <span className="flex items-center gap-2">
+                              <MapPin className="w-3.5 h-3.5 text-slate-400" />
+                              {loc}
+                            </span>
+                            <span className="text-[10px] text-slate-400 font-medium">Select</span>
+                          </button>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  </>
                 )}
 
                 {/* LOCATION BUTTONS */}
@@ -293,13 +299,13 @@ export const HomePage: React.FC = () => {
                 </div>
 
                 {/* FLOATING VERIFIED BADGE */}
-                <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl p-3.5 border border-slate-200 flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
-                    <BadgeCheck className="w-5 h-5 text-emerald-600" />
+                <div className="absolute -bottom-3 left-2 sm:-left-4 sm:-bottom-4 bg-white rounded-2xl shadow-xl p-3 sm:p-3.5 border border-slate-200 flex items-center gap-2.5 sm:gap-3 max-w-[calc(100%-1rem)]">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+                    <BadgeCheck className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-[10px] uppercase font-bold text-slate-400">Verified Today</p>
-                    <p className="text-xs font-extrabold text-slate-900">100% Home Kitchens</p>
+                    <p className="text-xs font-extrabold text-slate-900 truncate">100% Home Kitchens</p>
                   </div>
                 </div>
               </div>
@@ -435,7 +441,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* --- TRUST MOAT / VERIFICATION PROCESS SECTION --- */}
-      <section className="bg-slate-900 text-white rounded-3xl max-w-7xl mx-auto mx-4 sm:mx-6 p-8 sm:p-12 relative overflow-hidden">
+      <section className="bg-slate-900 text-white rounded-3xl max-w-7xl mx-4 sm:mx-auto p-5 sm:p-8 lg:p-12 relative overflow-hidden">
         <div className="grid lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7 space-y-5">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xs border border-emerald-500/30">

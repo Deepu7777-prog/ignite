@@ -97,7 +97,7 @@ export const CookProfilePage: React.FC = () => {
     : menuItems.filter((i) => i.category === selectedCategory);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8 w-full max-w-full overflow-x-hidden">
       {/* HEADER KITCHEN BANNER & PROFILE INFO */}
       <div className="bg-white rounded-3xl border border-slate-200/80 shadow-xs overflow-hidden">
         <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-slate-900">

@@ -111,7 +111,7 @@ export const OrderTrackingPage: React.FC = () => {
   const currentStepIndex = steps.findIndex((s) => s.key === order.status);
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 space-y-8">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 space-y-8 w-full max-w-full overflow-x-hidden">
       {/* BACK BUTTON */}
       <Link
         to="/customer-dashboard"
@@ -145,8 +145,8 @@ export const OrderTrackingPage: React.FC = () => {
         </div>
 
         {/* TRACKING STEPPER PROGRESS BAR */}
-        <div className="pt-6 border-t border-slate-100">
-          <div className="grid grid-cols-6 gap-2 text-center">
+        <div className="pt-6 border-t border-slate-100 overflow-x-auto pb-2 scrollbar-none">
+          <div className="grid grid-cols-6 gap-2 text-center min-w-[460px] sm:min-w-0">
             {steps.map((step, idx) => {
               const Icon = step.icon;
               const isCompleted = idx <= currentStepIndex;

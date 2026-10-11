@@ -33,13 +33,13 @@ export const App: React.FC = () => {
       <AuthProvider>
         <LocationProvider>
           <CartProvider>
-            <div className="min-h-screen flex flex-col bg-slate-50 font-sans text-slate-900 pb-16 lg:pb-0">
+            <div className="min-h-screen flex flex-col bg-slate-50 font-sans text-slate-900 pb-16 lg:pb-0 w-full max-w-full overflow-x-hidden">
               <Navbar />
 
-              <div className="flex-1 flex">
+              <div className="flex-1 flex w-full max-w-full overflow-x-hidden">
                 <Sidebar />
 
-                <main className="flex-1 min-w-0">
+                <main className="flex-1 min-w-0 w-full max-w-full overflow-x-hidden">
                   <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/explore" element={<ExplorePage />} />
