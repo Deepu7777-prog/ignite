@@ -53,7 +53,7 @@ export const CookVerificationPage: React.FC = () => {
           Application Submitted for Inspection!
         </h2>
         <p className="text-xs text-slate-600 leading-relaxed max-w-md mx-auto">
-          Thank you for applying to list your kitchen on <strong>Home Cook Finder</strong>. Your Aadhaar KYC & FSSAI details have been uploaded. Our admin team will schedule a 1-on-1 video call to inspect your home kitchen hygiene before granting the <strong>Verified Kitchen Badge</strong>.
+          Thank you for applying to list your kitchen on <strong>APNA RUCHI</strong>. Your Aadhaar KYC & FSSAI details have been uploaded. Our admin team will schedule a 1-on-1 video call to inspect your home kitchen hygiene before granting the <strong>APNA RUCHI Verified Kitchen Badge</strong>.
         </p>
         <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200 text-xs font-semibold text-amber-900">
           Status: <strong>PENDING ADMIN VIDEO CALL AUDIT</strong>

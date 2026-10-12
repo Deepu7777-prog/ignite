@@ -201,8 +201,8 @@ export const CheckoutPage: React.FC = () => {
           key: payOrderRes.keyId,
           amount: payOrderRes.amount,
           currency: payOrderRes.currency,
-          name: "Home Cook Finder",
-          description: `Homemade Meal Order #${createdOrder.orderNumber}`,
+          name: "APNA RUCHI",
+          description: `Ghar Ka Swaad - Order #${createdOrder.orderNumber}`,
           order_id: payOrderRes.gatewayOrderId,
           handler: async function (response: any) {
             if (!response.razorpay_signature || !response.razorpay_payment_id) {

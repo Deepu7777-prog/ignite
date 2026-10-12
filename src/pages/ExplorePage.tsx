@@ -72,51 +72,51 @@ export const ExplorePage: React.FC = () => {
         
         <div className="max-w-xl mx-auto space-y-2">
           <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-extrabold uppercase tracking-wider">
-            Verified Home Kitchens
+            APNA RUCHI • Verified Kitchens
           </span>
-          <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-[#113923] tracking-tight">
             Sign In to Explore Home Cooks & Menus
           </h2>
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            To view neighborhood home kitchens, authentic homemade dishes, customer reviews, and order fresh meals, please sign in or create an account.
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+            To view neighborhood home kitchens, authentic homemade dishes, customer reviews, and order fresh meals, please sign in to APNA RUCHI.
           </p>
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-sm mx-auto">
           <button
             onClick={() => openAuthModal('LOGIN')}
-            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold text-xs shadow-md shadow-emerald-700/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
             <LogIn className="w-4 h-4" />
             Sign In to Explore
           </button>
           <button
             onClick={() => openAuthModal('REGISTER')}
-            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-extrabold text-xs transition-colors cursor-pointer"
+            className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-[#f5eee2] hover:bg-[#ebdcc7] text-[#123924] font-extrabold text-xs transition-colors cursor-pointer border border-[#ebdcc7]"
           >
             Create Free Account
           </button>
         </div>
 
         {/* Feature Highlights Grid */}
-        <div className="grid sm:grid-cols-3 gap-4 pt-8 border-t border-emerald-100 text-left">
-          <div className="p-4 rounded-2xl bg-white border border-emerald-100/90 shadow-2xs">
-            <h4 className="font-extrabold text-slate-900 text-xs mb-1 flex items-center gap-1.5">
+        <div className="grid sm:grid-cols-3 gap-4 pt-8 border-t border-[#ebdcc7]/60 text-left">
+          <div className="p-4 rounded-3xl bg-[#fffdfa] border border-[#ebdcc7] shadow-soft">
+            <h4 className="font-extrabold text-[#113923] text-xs mb-1 flex items-center gap-1.5">
               <span>🏠</span> 100% Home Cooked
             </h4>
-            <p className="text-[11px] text-slate-500 leading-relaxed">Prepared in family kitchens with traditional recipes, not commercial cloud kitchens.</p>
+            <p className="text-[11px] text-slate-500 leading-relaxed font-medium">Prepared in family kitchens with traditional recipes, not commercial cloud kitchens.</p>
           </div>
-          <div className="p-4 rounded-2xl bg-white border border-emerald-100/90 shadow-2xs">
-            <h4 className="font-extrabold text-slate-900 text-xs mb-1 flex items-center gap-1.5">
+          <div className="p-4 rounded-3xl bg-[#fffdfa] border border-[#ebdcc7] shadow-soft">
+            <h4 className="font-extrabold text-[#113923] text-xs mb-1 flex items-center gap-1.5">
               <span>🔍</span> Hygiene Verified
             </h4>
-            <p className="text-[11px] text-slate-500 leading-relaxed">Every cook undergoes kitchen video audit and food safety compliance.</p>
+            <p className="text-[11px] text-slate-500 leading-relaxed font-medium">Every cook undergoes kitchen video audit and food safety compliance.</p>
           </div>
-          <div className="p-4 rounded-2xl bg-white border border-emerald-100/90 shadow-2xs">
-            <h4 className="font-extrabold text-slate-900 text-xs mb-1 flex items-center gap-1.5">
+          <div className="p-4 rounded-3xl bg-[#fffdfa] border border-[#ebdcc7] shadow-soft">
+            <h4 className="font-extrabold text-[#113923] text-xs mb-1 flex items-center gap-1.5">
               <span>⚡</span> Fresh On Order
             </h4>
-            <p className="text-[11px] text-slate-500 leading-relaxed">Made fresh after you order using pure ingredients and clean drinking water.</p>
+            <p className="text-[11px] text-slate-500 leading-relaxed font-medium">Made fresh after you order using pure ingredients and clean drinking water.</p>
           </div>
         </div>
       </div>
@@ -127,16 +127,16 @@ export const ExplorePage: React.FC = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8 w-full max-w-full overflow-x-hidden">
       {/* PAGE HEADER */}
       <div>
-        <h1 className="font-display text-3xl font-extrabold text-slate-900">
-          Home Cooks Near You
+        <h1 className="font-display text-3xl font-extrabold text-[#113923]">
+          APNA RUCHI Home Cooks Near You
         </h1>
         <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
-          Browse verified home kitchens cooking fresh homemade food upon your order in Hyderabad.
+          Browse verified neighbourhood home kitchens cooking fresh homemade food upon your order in Hyderabad.
         </p>
       </div>
 
       {/* SEARCH & FILTER CONTROLS */}
-      <div className="bg-white rounded-3xl p-5 border border-slate-200/80 shadow-xs space-y-4">
+      <div className="bg-[#fffdfa] rounded-3xl p-5 border border-[#ebdcc7] shadow-soft space-y-4">
         {/* SEARCH BAR */}
         <div className="relative">
           <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />

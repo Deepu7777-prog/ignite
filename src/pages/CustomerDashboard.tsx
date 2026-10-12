@@ -66,8 +66,8 @@ export const CustomerDashboard: React.FC = () => {
       {/* WELCOME BANNER (GREEN + WHITE DASHBOARD STYLE) */}
       <div className="bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-800 text-white rounded-3xl p-6 sm:p-8 shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="space-y-2">
-          <span className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider text-emerald-200 bg-emerald-900/40 px-3 py-1 rounded-full border border-emerald-500/30">
-            <Sparkles className="w-3.5 h-3.5" /> Customer Dashboard
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider text-amber-200 bg-emerald-950/40 px-3 py-1 rounded-full border border-emerald-500/30">
+            <Sparkles className="w-3.5 h-3.5 text-amber-300" /> APNA RUCHI • Customer Hub
           </span>
           <h1 className="font-display text-2xl sm:text-3xl font-extrabold">
             Welcome back, {user?.name || 'Customer'}!

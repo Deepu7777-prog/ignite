@@ -46,20 +46,20 @@ export const Navbar: React.FC = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200/80 shadow-xs">
+      <header className="sticky top-0 z-40 bg-[#fffdfa]/95 backdrop-blur-md border-b border-[#ebdcc7]/60 shadow-soft">
         {/* MAIN NAVBAR */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
           {/* BRAND LOGO */}
           <Link to="/" className="flex items-center gap-2 sm:gap-3 shrink-0 group min-w-0">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 flex items-center justify-center text-white shadow-md shadow-emerald-600/20 group-hover:scale-105 transition-transform shrink-0">
-              <Utensils className="w-4 h-4 sm:w-5 sm:h-5" />
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-br from-emerald-700 via-emerald-600 to-teal-800 flex items-center justify-center text-white shadow-md shadow-emerald-700/20 group-hover:scale-105 transition-transform shrink-0 border border-emerald-500/30">
+              <Utensils className="w-4 h-4 sm:w-5 sm:h-5 text-amber-200" />
             </div>
             <div className="leading-tight min-w-0">
-              <span className="block font-display text-base sm:text-lg lg:text-xl font-extrabold text-slate-900 tracking-tight group-hover:text-emerald-600 transition-colors truncate">
-                Home Cook Finder
+              <span className="block font-display text-base sm:text-lg lg:text-xl font-extrabold text-[#113923] tracking-tight group-hover:text-emerald-700 transition-colors truncate">
+                APNA RUCHI
               </span>
-              <span className="hidden sm:block text-[11px] text-slate-500 font-medium -mt-0.5">
-                Find Real Home Food Near You
+              <span className="hidden sm:block text-[10.5px] text-[#2d6a4f] font-bold -mt-0.5 tracking-wide">
+                Ghar Ka Swaad • Fresh Home Food
               </span>
             </div>
           </Link>
@@ -68,7 +68,7 @@ export const Navbar: React.FC = () => {
           <div className="relative hidden md:block">
             <button
               onClick={() => setIsLocationOpen(!isLocationOpen)}
-              className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-100/80 hover:bg-slate-200/80 border border-slate-200 text-slate-800 text-xs font-semibold transition-colors"
+              className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#fbf8f1] hover:bg-[#f5eee2] border border-[#ebdcc7] text-[#1b4332] text-xs font-bold transition-colors shadow-2xs"
             >
               <MapPin className="w-4 h-4 text-emerald-600 shrink-0" />
               <span className="max-w-[150px] truncate">{location}</span>

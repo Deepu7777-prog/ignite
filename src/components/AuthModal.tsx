@@ -478,10 +478,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
   };
 
   const modalContent = (
-    <div className={`bg-white rounded-3xl max-w-md w-full p-5 sm:p-6 ${isInlinePage ? 'shadow-xl' : 'shadow-2xl max-h-[90vh] overflow-y-auto animate-in fade-in zoom-in-95'} space-y-4 border border-slate-200`}>
+    <div className={`bg-[#fffdfa] rounded-3xl max-w-md w-full p-5 sm:p-6 ${isInlinePage ? 'shadow-xl' : 'shadow-2xl max-h-[90vh] overflow-y-auto animate-in fade-in zoom-in-95'} space-y-4 border border-[#ebdcc7]`}>
         
         {/* MODAL HEADER */}
-        <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div className="flex items-center justify-between border-b border-[#ebdcc7]/60 pb-3">
           <div className="flex items-center gap-2">
             {mode !== 'LOGIN' && mode !== 'REGISTER' && (
               <button
@@ -492,15 +492,15 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
                 <ArrowLeft className="w-4 h-4" />
               </button>
             )}
-            <div className="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
+            <div className="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
               <Lock className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-display font-extrabold text-base text-slate-900">
+              <h3 className="font-display font-extrabold text-base text-[#123924]">
                 {mode === 'LOGIN'
-                  ? 'Sign In to Account'
+                  ? 'Sign In to APNA RUCHI'
                   : mode === 'REGISTER'
-                  ? 'Create New Account'
+                  ? 'Join APNA RUCHI'
                   : mode === 'OTP_VERIFY'
                   ? 'Verify 6-Digit OTP Code'
                   : mode === 'FORGOT'
@@ -509,8 +509,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
                   ? 'Sign in with Google'
                   : 'Set New Password'}
               </h3>
-              <p className="text-[11px] text-slate-500 font-medium">
-                {mode === 'GOOGLE_ACCOUNT_SELECT' ? 'Choose an account to continue' : 'Real-World Marketplace Authentication'}
+              <p className="text-[11px] text-[#2d6a4f] font-semibold">
+                {mode === 'GOOGLE_ACCOUNT_SELECT' ? 'Choose an account to continue' : 'Ghar Ka Swaad • Real Home Food'}
               </p>
             </div>
           </div>
@@ -963,8 +963,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
                   <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
                 </svg>
               </div>
-              <p className="font-extrabold text-sm text-slate-900">Choose a Google Account</p>
-              <p className="text-[11px] text-slate-500">to continue to Home Cook Finder as <span className="font-bold text-emerald-700">{role}</span></p>
+              <p className="font-extrabold text-sm text-[#123924]">Choose a Google Account</p>
+              <p className="text-[11px] text-slate-500">to continue to APNA RUCHI as <span className="font-bold text-emerald-700">{role}</span></p>
             </div>
 
             <div className="space-y-2">
@@ -973,9 +973,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
                 type="button"
                 onClick={() => handleGoogleAccountLogin(email || 'deepu.customer@gmail.com', name || 'Deepu')}
                 disabled={isLoading}
-                className="w-full flex items-center gap-3 p-3 rounded-2xl border border-slate-200/90 hover:border-emerald-400 bg-white hover:bg-emerald-50/40 transition-all text-left shadow-2xs group cursor-pointer"
+                className="w-full flex items-center gap-3 p-3 rounded-2xl border border-[#ebdcc7] hover:border-emerald-400 bg-white hover:bg-emerald-50/40 transition-all text-left shadow-2xs group cursor-pointer"
               >
-                <div className="w-10 h-10 rounded-full bg-emerald-600 text-white font-black flex items-center justify-center text-sm shadow-xs shrink-0">
+                <div className="w-10 h-10 rounded-full bg-emerald-700 text-white font-black flex items-center justify-center text-sm shadow-xs shrink-0">
                   {((name || 'Deepu')[0]).toUpperCase()}
                 </div>
                 <div className="flex-1 min-w-0">
@@ -999,15 +999,15 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
                 <button
                   type="button"
                   onClick={() => setShowCustomGoogleInput(true)}
-                  className="w-full flex items-center gap-3 p-3 rounded-2xl border border-dashed border-slate-200 hover:border-emerald-300 hover:bg-slate-50 transition-all text-left text-slate-600 font-bold text-xs cursor-pointer"
+                  className="w-full flex items-center gap-3 p-3 rounded-2xl border border-dashed border-[#ebdcc7] hover:border-emerald-300 hover:bg-[#fbf8f1] transition-all text-left text-slate-600 font-bold text-xs cursor-pointer"
                 >
-                  <div className="w-10 h-10 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-full bg-[#f5eee2] text-slate-600 flex items-center justify-center shrink-0">
                     <UserIcon className="w-4 h-4" />
                   </div>
                   <span>Use another Google account</span>
                 </button>
               ) : (
-                <div className="p-3 bg-slate-50 border border-slate-200 rounded-2xl space-y-2">
+                <div className="p-3 bg-[#fbf8f1] border border-[#ebdcc7] rounded-2xl space-y-2">
                   <div>
                     <label className="block text-[11px] font-bold text-slate-700 mb-1">Your Google Name</label>
                     <input
@@ -1015,7 +1015,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
                       value={customGoogleName}
                       onChange={(e) => setCustomGoogleName(e.target.value)}
                       placeholder="e.g. Deepu"
-                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-medium text-slate-900 outline-none"
+                      className="w-full px-3 py-2 bg-white border border-[#ebdcc7] rounded-xl text-xs font-medium text-slate-900 outline-none"
                     />
                   </div>
                   <div>
@@ -1025,14 +1025,14 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
                       value={customGoogleEmail}
                       onChange={(e) => setCustomGoogleEmail(e.target.value)}
                       placeholder="e.g. deepu@gmail.com"
-                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-medium text-slate-900 outline-none"
+                      className="w-full px-3 py-2 bg-white border border-[#ebdcc7] rounded-xl text-xs font-medium text-slate-900 outline-none"
                     />
                   </div>
                   <button
                     type="button"
                     onClick={() => handleGoogleAccountLogin(customGoogleEmail, customGoogleName)}
                     disabled={isLoading || !customGoogleEmail.trim()}
-                    className="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-xs transition-all disabled:opacity-50 cursor-pointer"
+                    className="w-full py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold text-xs shadow-xs transition-all disabled:opacity-50 cursor-pointer"
                   >
                     {isLoading ? 'Authenticating...' : 'Sign In with This Account'}
                   </button>
@@ -1041,7 +1041,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
             </div>
 
             <p className="text-[10px] text-slate-400 text-center leading-normal px-2">
-              To continue, Google will verify your identity with Home Cook Finder and redirect you safely.
+              To continue, Google will verify your identity with APNA RUCHI and redirect you safely.
             </p>
 
             <button

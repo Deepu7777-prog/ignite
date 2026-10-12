@@ -135,21 +135,21 @@ export const Footer: React.FC = () => {
           {/* COLUMN 1: BRAND & VISION (2 COLS WIDE ON LG) */}
           <div className="lg:col-span-2 space-y-4">
             <Link to="/" className="flex items-center gap-2.5 group w-fit">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-slate-950 font-black shadow-md shadow-emerald-500/20 group-hover:scale-105 transition-transform">
-                <Utensils className="w-5 h-5" />
+              <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-700 flex items-center justify-center text-white font-black shadow-md shadow-emerald-600/20 group-hover:scale-105 transition-transform border border-emerald-500/30">
+                <Utensils className="w-5 h-5 text-amber-200" />
               </div>
               <div>
                 <span className="font-display text-lg font-black tracking-tight text-white group-hover:text-emerald-400 transition-colors">
-                  Home Cook Finder
+                  APNA RUCHI
                 </span>
-                <span className="block text-[11px] text-slate-400 font-medium -mt-0.5">
-                  Find Real Home Food Near You
+                <span className="block text-[11px] text-emerald-300/80 font-medium -mt-0.5">
+                  Ghar Ka Swaad • Real Home Food
                 </span>
               </div>
             </Link>
 
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
-              India's first verified home kitchen network. Connecting hungry foodies with real neighbourhood mothers and cooks who prepare small-batch meals only after you place your order.
+              India's authentic neighbourhood home kitchen network. Connecting hungry foodies with real neighbourhood mothers and cooks who prepare fresh meals only after you order.
             </p>
 
             <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400 bg-emerald-950/60 p-2.5 rounded-xl border border-emerald-500/20 w-fit">
@@ -258,7 +258,7 @@ export const Footer: React.FC = () => {
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                <span>support@homecookfinder.in</span>
+                <span>support@apnaruchi.in</span>
               </li>
               <li className="pt-2">
                 {!user ? (
@@ -266,7 +266,7 @@ export const Footer: React.FC = () => {
                     onClick={() => openAuthModal('REGISTER')}
                     className="w-full px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-md transition-colors cursor-pointer"
                   >
-                    Join Home Cook Finder
+                    Join APNA RUCHI
                   </button>
                 ) : (
                   <span className="inline-block text-[11px] font-bold text-emerald-400 bg-emerald-950 px-2.5 py-1 rounded-lg border border-emerald-500/20">
@@ -283,7 +283,7 @@ export const Footer: React.FC = () => {
       <div className="border-t border-slate-900 bg-slate-950/90 py-5 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left text-xs text-slate-500 font-medium">
           <div>
-            © 2026 Home Cook Finder. Cooked fresh with love. All rights reserved.
+            © 2026 APNA RUCHI. Cooked fresh with love. All rights reserved.
           </div>
 
           {/* ONE-LINE DEMO ACCESS (SEPARATE & ACCESSIBLE) */}

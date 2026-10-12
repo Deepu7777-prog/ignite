@@ -36,7 +36,7 @@ export const CookCard: React.FC<CookCardProps> = ({ cook, initialIsFavorite = fa
   };
 
   return (
-    <div className="group bg-white rounded-2xl border border-emerald-100/90 shadow-2xs hover:shadow-md hover:border-emerald-300/80 transition-all duration-300 overflow-hidden flex flex-col justify-between">
+    <div className="group bg-[#fffdfa] rounded-3xl border border-[#ebdcc7]/90 shadow-soft hover:shadow-card-hover hover:border-emerald-300/90 transition-all duration-300 overflow-hidden flex flex-col justify-between hover:-translate-y-1">
       <div>
         {/* PHOTO & BADGES HEADER */}
         <div className="relative h-48 w-full overflow-hidden bg-slate-100">
@@ -49,7 +49,7 @@ export const CookCard: React.FC<CookCardProps> = ({ cook, initialIsFavorite = fa
 
           {/* VERIFIED BADGE */}
           {cook.isVerified && (
-            <div className="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1 rounded-full text-[11px] font-extrabold text-emerald-800 flex items-center gap-1.5 shadow-2xs border border-emerald-200">
+            <div className="absolute top-3 left-3 bg-[#fffdfa]/95 backdrop-blur px-2.5 py-1 rounded-full text-[11px] font-extrabold text-[#113923] flex items-center gap-1.5 shadow-soft border border-[#ebdcc7]">
               <BadgeCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
               Verified Kitchen
             </div>
@@ -69,11 +69,11 @@ export const CookCard: React.FC<CookCardProps> = ({ cook, initialIsFavorite = fa
 
           {/* DISTANCE & STARTING PRICE OVERLAY */}
           <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs font-semibold">
-            <span className="flex items-center gap-1 bg-slate-900/65 backdrop-blur px-2.5 py-1 rounded-lg">
+            <span className="flex items-center gap-1 bg-slate-900/65 backdrop-blur px-2.5 py-1 rounded-xl">
               <MapPin className="w-3.5 h-3.5 text-emerald-400" />
               {dynamicDistance} km away
             </span>
-            <span className="bg-emerald-600/95 backdrop-blur px-2.5 py-1 rounded-lg font-bold">
+            <span className="bg-emerald-700/95 backdrop-blur px-2.5 py-1 rounded-xl font-bold">
               From ₹{cook.startingPrice}
             </span>
           </div>
@@ -83,7 +83,7 @@ export const CookCard: React.FC<CookCardProps> = ({ cook, initialIsFavorite = fa
         <div className="p-5">
           <div className="flex items-start justify-between gap-2 mb-2">
             <div>
-              <h3 className="font-display font-extrabold text-slate-900 text-lg group-hover:text-emerald-700 transition-colors leading-snug">
+              <h3 className="font-display font-extrabold text-[#113923] text-lg group-hover:text-emerald-700 transition-colors leading-snug">
                 {cook.kitchenName}
               </h3>
               <p className="text-xs text-slate-500 font-medium">
@@ -91,7 +91,7 @@ export const CookCard: React.FC<CookCardProps> = ({ cook, initialIsFavorite = fa
               </p>
             </div>
             {/* RATING BADGE */}
-            <div className="flex items-center gap-1 bg-amber-50/90 border border-amber-200/90 text-amber-900 px-2 py-1 rounded-lg text-xs font-black shrink-0">
+            <div className="flex items-center gap-1 bg-amber-50 border border-amber-200/90 text-amber-900 px-2 py-1 rounded-xl text-xs font-black shrink-0">
               <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
               <span>{cook.rating}</span>
               <span className="text-slate-400 font-medium text-[10px]">({cook.reviewCount})</span>
@@ -103,7 +103,7 @@ export const CookCard: React.FC<CookCardProps> = ({ cook, initialIsFavorite = fa
             {cook.cuisines.map((c) => (
               <span
                 key={c}
-                className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50/80 border border-emerald-100 text-emerald-800"
+                className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#edf4ee] border border-[#cde1d3]/80 text-[#133826]"
               >
                 {c}
               </span>
@@ -111,7 +111,7 @@ export const CookCard: React.FC<CookCardProps> = ({ cook, initialIsFavorite = fa
           </div>
 
           {/* BIO SNIPPET */}
-          <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed mb-4">
+          <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed mb-4 font-medium">
             {cook.bio}
           </p>
         </div>
@@ -121,7 +121,7 @@ export const CookCard: React.FC<CookCardProps> = ({ cook, initialIsFavorite = fa
       <div className="px-5 pb-5 pt-0">
         <Link
           to={`/cook/${cook.id}`}
-          className="w-full py-2.5 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white border border-emerald-200/90 hover:border-emerald-600 font-bold text-xs flex items-center justify-center gap-2 transition-all duration-200 shadow-2xs"
+          className="w-full py-2.5 px-4 rounded-2xl bg-[#fcfaf7] hover:bg-emerald-700 text-[#123924] hover:text-white border border-[#ebdcc7] hover:border-emerald-700 font-bold text-xs flex items-center justify-center gap-2 transition-all duration-200 shadow-2xs hover:shadow-xs"
         >
           <Utensils className="w-3.5 h-3.5" />
           View Kitchen & Menu

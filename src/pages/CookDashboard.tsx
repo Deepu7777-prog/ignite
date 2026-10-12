@@ -175,8 +175,8 @@ export const CookDashboard: React.FC = () => {
               <h1 className="font-display text-2xl sm:text-3xl font-extrabold">
                 {cookProfile?.kitchenName || (isDemo ? "Priya's Home Kitchen" : (user?.name ? `${user.name}'s Kitchen` : "My Home Kitchen"))}
               </h1>
-              <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-extrabold border border-emerald-500/30">
-                VERIFIED
+              <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-extrabold border border-emerald-500/30">
+                APNA RUCHI VERIFIED
               </span>
             </div>
             <p className="text-xs text-slate-300 font-medium">
