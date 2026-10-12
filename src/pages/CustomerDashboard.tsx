@@ -63,26 +63,26 @@ export const CustomerDashboard: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8 w-full max-w-full overflow-x-hidden">
-      {/* WELCOME BANNER (EMERGENT REFERENCE DASHBOARD STYLE) */}
-      <div className="bg-gradient-to-r from-slate-900 to-slate-800 text-white rounded-3xl p-6 sm:p-8 shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      {/* WELCOME BANNER (GREEN + WHITE DASHBOARD STYLE) */}
+      <div className="bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-800 text-white rounded-3xl p-6 sm:p-8 shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="space-y-2">
-          <span className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider text-emerald-200 bg-emerald-900/40 px-3 py-1 rounded-full border border-emerald-500/30">
             <Sparkles className="w-3.5 h-3.5" /> Customer Dashboard
           </span>
           <h1 className="font-display text-2xl sm:text-3xl font-extrabold">
             Welcome back, {user?.name || 'Customer'}!
           </h1>
-          <p className="text-xs sm:text-sm text-slate-300 font-medium flex items-center gap-1.5">
-            <MapPin className="w-4 h-4 text-emerald-400 shrink-0" />
+          <p className="text-xs sm:text-sm text-emerald-100 font-medium flex items-center gap-1.5">
+            <MapPin className="w-4 h-4 text-emerald-300 shrink-0" />
             Current Location: <strong className="text-white">{location}</strong>
           </p>
         </div>
 
         <Link
           to="/explore"
-          className="px-5 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-md transition-all flex items-center gap-2 shrink-0"
+          className="px-5 py-3 rounded-xl bg-white hover:bg-emerald-50 text-emerald-800 font-extrabold text-xs shadow-md transition-all flex items-center gap-2 shrink-0 cursor-pointer"
         >
-          <Utensils className="w-4 h-4" />
+          <Utensils className="w-4 h-4 text-emerald-700" />
           Order Home Food
         </Link>
       </div>

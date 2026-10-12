@@ -305,9 +305,9 @@ export const Navbar: React.FC = () => {
             {(!user || role === 'CUSTOMER') && (
               <Link
                 to="/cook-verification"
-                className="hidden xl:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-amber-50 text-amber-800 border border-amber-200 text-xs font-bold hover:bg-amber-100 transition-colors"
+                className="hidden xl:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold hover:bg-emerald-100/80 transition-colors"
               >
-                <ShieldCheck className="w-4 h-4 text-amber-600" />
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
                 Become a Home Cook
               </Link>
             )}
@@ -346,9 +346,9 @@ export const Navbar: React.FC = () => {
               ) : (
                 <button
                   onClick={() => openAuthModal('LOGIN')}
-                  className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-bold transition-colors shrink-0"
+                  className="flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white shadow-2xs hover:shadow-xs text-xs font-extrabold transition-all shrink-0 cursor-pointer"
                 >
-                  <LogIn className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600" />
+                  <LogIn className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
                   <span className="hidden sm:inline">Sign In / Register</span>
                   <span className="sm:hidden">Sign In</span>
                 </button>

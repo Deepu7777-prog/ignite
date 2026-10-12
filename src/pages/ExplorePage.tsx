@@ -99,18 +99,24 @@ export const ExplorePage: React.FC = () => {
         </div>
 
         {/* Feature Highlights Grid */}
-        <div className="grid sm:grid-cols-3 gap-4 pt-8 border-t border-slate-200/80 text-left">
-          <div className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
-            <h4 className="font-bold text-slate-900 text-xs mb-1">🏠 100% Home Cooked</h4>
-            <p className="text-[11px] text-slate-500">Prepared in family kitchens with traditional recipes, not commercial cloud kitchens.</p>
+        <div className="grid sm:grid-cols-3 gap-4 pt-8 border-t border-emerald-100 text-left">
+          <div className="p-4 rounded-2xl bg-white border border-emerald-100/90 shadow-2xs">
+            <h4 className="font-extrabold text-slate-900 text-xs mb-1 flex items-center gap-1.5">
+              <span>🏠</span> 100% Home Cooked
+            </h4>
+            <p className="text-[11px] text-slate-500 leading-relaxed">Prepared in family kitchens with traditional recipes, not commercial cloud kitchens.</p>
           </div>
-          <div className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
-            <h4 className="font-bold text-slate-900 text-xs mb-1">🔍 Hygiene Verified</h4>
-            <p className="text-[11px] text-slate-500">Every cook undergoes kitchen video audit and food safety compliance.</p>
+          <div className="p-4 rounded-2xl bg-white border border-emerald-100/90 shadow-2xs">
+            <h4 className="font-extrabold text-slate-900 text-xs mb-1 flex items-center gap-1.5">
+              <span>🔍</span> Hygiene Verified
+            </h4>
+            <p className="text-[11px] text-slate-500 leading-relaxed">Every cook undergoes kitchen video audit and food safety compliance.</p>
           </div>
-          <div className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
-            <h4 className="font-bold text-slate-900 text-xs mb-1">⚡ Fresh On Order</h4>
-            <p className="text-[11px] text-slate-500">Made fresh after you order using pure ingredients and clean drinking water.</p>
+          <div className="p-4 rounded-2xl bg-white border border-emerald-100/90 shadow-2xs">
+            <h4 className="font-extrabold text-slate-900 text-xs mb-1 flex items-center gap-1.5">
+              <span>⚡</span> Fresh On Order
+            </h4>
+            <p className="text-[11px] text-slate-500 leading-relaxed">Made fresh after you order using pure ingredients and clean drinking water.</p>
           </div>
         </div>
       </div>

@@ -163,12 +163,12 @@ export const CookDashboard: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8 w-full max-w-full overflow-x-hidden">
       {/* KITCHEN BANNER HEADER */}
-      <div className="bg-gradient-to-r from-slate-900 via-emerald-950 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="bg-gradient-to-r from-emerald-900 via-emerald-800 to-teal-900 text-white rounded-3xl p-6 sm:p-8 shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
           <img
             src={cookProfile?.photo || "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=80"}
             alt="Kitchen"
-            className="w-16 h-16 rounded-2xl object-cover ring-2 ring-emerald-500/30 shrink-0"
+            className="w-16 h-16 rounded-2xl object-cover ring-2 ring-emerald-400/40 shrink-0"
           />
           <div>
             <div className="flex items-center gap-2">
