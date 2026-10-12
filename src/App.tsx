@@ -8,6 +8,7 @@ import { Sidebar } from './components/Sidebar';
 import { MobileNav } from './components/MobileNav';
 import { CartDrawer } from './components/CartDrawer';
 import { AuthModal } from './components/AuthModal';
+import { Footer } from './components/Footer';
 
 import { ProtectedRoute } from './components/ProtectedRoute';
 
@@ -110,6 +111,7 @@ const AppContent: React.FC = () => {
         </main>
       </div>
 
+      <Footer />
       <CartDrawer />
       <MobileNav />
 

@@ -49,10 +49,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         const userObj: User = {
           id: supaUser.id,
           email: supaUser.email || '',
-          name: supaUser.user_metadata?.name || supaUser.email?.split('@')[0] || 'User',
+          name: supaUser.user_metadata?.full_name || supaUser.user_metadata?.name || supaUser.email?.split('@')[0] || 'User',
           phone: supaUser.user_metadata?.phone || '',
           role: supaRole,
-          avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+          avatar: supaUser.user_metadata?.avatar_url || supaUser.user_metadata?.picture || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
         };
         setUser(userObj);
         setRoleState(supaRole);
@@ -87,10 +87,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           const userObj: User = {
             id: supaUser.id,
             email: supaUser.email || '',
-            name: supaUser.user_metadata?.name || supaUser.email?.split('@')[0] || 'User',
+            name: supaUser.user_metadata?.full_name || supaUser.user_metadata?.name || supaUser.email?.split('@')[0] || 'User',
             phone: supaUser.user_metadata?.phone || '',
             role: supaRole,
-            avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+            avatar: supaUser.user_metadata?.avatar_url || supaUser.user_metadata?.picture || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
           };
 
           // If Supabase user has ADMIN role, verify active admin authorization

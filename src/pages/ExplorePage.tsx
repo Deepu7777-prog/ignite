@@ -3,9 +3,11 @@ import { useSearchParams } from 'react-router-dom';
 import { CookProfile } from '../types';
 import { api } from '../services/api';
 import { CookCard } from '../components/CookCard';
-import { Search, Filter, MapPin, Star, Utensils, Check } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import { Search, Filter, MapPin, Star, Utensils, Check, LogIn } from 'lucide-react';
 
 export const ExplorePage: React.FC = () => {
+  const { user, openAuthModal } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
   const [cooks, setCooks] = useState<CookProfile[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -34,8 +36,10 @@ export const ExplorePage: React.FC = () => {
   ];
 
   useEffect(() => {
-    loadCooks();
-  }, [search, selectedCuisine, isVegOnly, minRating, maxDistance, availableToday]);
+    if (user) {
+      loadCooks();
+    }
+  }, [user, search, selectedCuisine, isVegOnly, minRating, maxDistance, availableToday]);
 
   const loadCooks = async () => {
     try {
@@ -58,6 +62,60 @@ export const ExplorePage: React.FC = () => {
       setLoading(false);
     }
   };
+
+  if (!user) {
+    return (
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16 text-center space-y-6 w-full max-w-full overflow-x-hidden">
+        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-emerald-50 border border-emerald-100 flex items-center justify-center mx-auto text-emerald-600 shadow-xs">
+          <Utensils className="w-8 h-8 sm:w-10 sm:h-10" />
+        </div>
+        
+        <div className="max-w-xl mx-auto space-y-2">
+          <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-extrabold uppercase tracking-wider">
+            Verified Home Kitchens
+          </span>
+          <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            Sign In to Explore Home Cooks & Menus
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            To view neighborhood home kitchens, authentic homemade dishes, customer reviews, and order fresh meals, please sign in or create an account.
+          </p>
+        </div>
+
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-sm mx-auto">
+          <button
+            onClick={() => openAuthModal('LOGIN')}
+            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <LogIn className="w-4 h-4" />
+            Sign In to Explore
+          </button>
+          <button
+            onClick={() => openAuthModal('REGISTER')}
+            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-extrabold text-xs transition-colors cursor-pointer"
+          >
+            Create Free Account
+          </button>
+        </div>
+
+        {/* Feature Highlights Grid */}
+        <div className="grid sm:grid-cols-3 gap-4 pt-8 border-t border-slate-200/80 text-left">
+          <div className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
+            <h4 className="font-bold text-slate-900 text-xs mb-1">🏠 100% Home Cooked</h4>
+            <p className="text-[11px] text-slate-500">Prepared in family kitchens with traditional recipes, not commercial cloud kitchens.</p>
+          </div>
+          <div className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
+            <h4 className="font-bold text-slate-900 text-xs mb-1">🔍 Hygiene Verified</h4>
+            <p className="text-[11px] text-slate-500">Every cook undergoes kitchen video audit and food safety compliance.</p>
+          </div>
+          <div className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
+            <h4 className="font-bold text-slate-900 text-xs mb-1">⚡ Fresh On Order</h4>
+            <p className="text-[11px] text-slate-500">Made fresh after you order using pure ingredients and clean drinking water.</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8 w-full max-w-full overflow-x-hidden">
