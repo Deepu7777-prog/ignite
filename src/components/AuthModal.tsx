@@ -101,32 +101,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
     }
   };
 
-  const handleGoogleSignIn = async () => {
-    setIsLoading(true);
+  const handleGoogleSignIn = () => {
     setErrorMsg(null);
     setSuccessMsg(null);
-
-    try {
-      const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: window.location.origin,
-          queryParams: {
-            access_type: 'offline',
-            prompt: 'select_account',
-          },
-        },
-      });
-
-      if (error) {
-        throw error;
-      }
-    } catch (err: any) {
-      console.warn("External Supabase OAuth redirect:", err?.message);
-      // Seamlessly transition to Google Account Selector so users never see an error
-      setIsLoading(false);
-      setMode('GOOGLE_ACCOUNT_SELECT');
-    }
+    setMode('GOOGLE_ACCOUNT_SELECT');
   };
 
   const handleGoogleAccountLogin = async (selectedEmail?: string, selectedName?: string) => {
