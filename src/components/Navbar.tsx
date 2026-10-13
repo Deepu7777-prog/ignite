@@ -46,19 +46,19 @@ export const Navbar: React.FC = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-[#fffdfa]/95 backdrop-blur-md border-b border-[#ebdcc7]/60 shadow-soft">
+      <header className="sticky top-0 z-40 bg-[#FFFDF7]/92 backdrop-blur-md border-b border-[#DDEEDF] shadow-nav">
         {/* MAIN NAVBAR */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
           {/* BRAND LOGO */}
-          <Link to="/" className="flex items-center gap-2 sm:gap-3 shrink-0 group min-w-0">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-br from-emerald-700 via-emerald-600 to-teal-800 flex items-center justify-center text-white shadow-md shadow-emerald-700/20 group-hover:scale-105 transition-transform shrink-0 border border-emerald-500/30">
-              <Utensils className="w-4 h-4 sm:w-5 sm:h-5 text-amber-200" />
+          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 shrink-0 group min-w-0">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-br from-[#075C45] via-[#077A58] to-[#079669] flex items-center justify-center text-[#FFFDF7] shadow-garden group-hover:scale-105 transition-transform duration-300 shrink-0 border border-[#CDEEDC]/40">
+              <Utensils className="w-4 h-4 sm:w-5 sm:h-5 text-[#E8D99A]" />
             </div>
             <div className="leading-tight min-w-0">
-              <span className="block font-display text-base sm:text-lg lg:text-xl font-extrabold text-[#113923] tracking-tight group-hover:text-emerald-700 transition-colors truncate">
+              <span className="block font-display text-base sm:text-lg lg:text-xl font-extrabold text-[#075C45] tracking-tight group-hover:text-[#079669] transition-colors truncate">
                 APNA RUCHI
               </span>
-              <span className="hidden sm:block text-[10.5px] text-[#2d6a4f] font-bold -mt-0.5 tracking-wide">
+              <span className="hidden sm:block text-[10.5px] text-[#123F35]/75 font-bold -mt-0.5 tracking-wide">
                 Ghar Ka Swaad • Fresh Home Food
               </span>
             </div>
@@ -68,29 +68,29 @@ export const Navbar: React.FC = () => {
           <div className="relative hidden md:block">
             <button
               onClick={() => setIsLocationOpen(!isLocationOpen)}
-              className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#fbf8f1] hover:bg-[#f5eee2] border border-[#ebdcc7] text-[#1b4332] text-xs font-bold transition-colors shadow-2xs"
+              className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F8F4E8] hover:bg-[#F1F8F1] border border-[#DDEEDF] text-[#123F35] text-xs font-bold transition-all duration-200 shadow-2xs"
             >
-              <MapPin className="w-4 h-4 text-emerald-600 shrink-0" />
+              <MapPin className="w-4 h-4 text-[#079669] shrink-0" />
               <span className="max-w-[150px] truncate">{location}</span>
-              <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+              <ChevronDown className="w-3.5 h-3.5 text-[#075C45]/70" />
             </button>
 
             {isLocationOpen && (
-              <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-slate-200 p-2 z-50 animate-in fade-in slide-in-from-top-2">
-                <div className="p-2 border-b border-slate-100 space-y-1">
+              <div className="absolute top-full left-0 mt-2 w-64 bg-[#FFFDF7] rounded-3xl shadow-garden-lg border border-[#DDEEDF] p-2.5 z-50 animate-in fade-in slide-in-from-top-2">
+                <div className="p-2 border-b border-[#DDEEDF]/60 space-y-1">
                   <button
                     onClick={() => {
                       setIsLocationOpen(false);
                       setIsMapModalOpen(true);
                     }}
-                    className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-emerald-600 text-white text-xs font-extrabold shadow-sm hover:bg-emerald-700 transition-colors"
+                    className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-2xl bg-[#079669] text-[#FFFDF7] text-xs font-extrabold shadow-sm hover:bg-[#075C45] transition-colors"
                   >
                     <Navigation className="w-3.5 h-3.5" />
                     📍 Use My Current Location
                   </button>
                 </div>
                 <div className="py-1">
-                  <p className="px-3 py-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                  <p className="px-3 py-1.5 text-[10px] font-bold text-[#075C45]/60 uppercase tracking-wider">
                     Popular Neighbourhoods
                   </p>
                   {availableLocations.map((loc) => (
@@ -101,7 +101,7 @@ export const Navbar: React.FC = () => {
                         setIsLocationOpen(false);
                       }}
                       className={`w-full text-left px-3 py-2 text-xs rounded-xl font-medium transition-colors ${
-                        location === loc ? 'bg-slate-100 text-emerald-700 font-bold' : 'text-slate-700 hover:bg-slate-50'
+                        location === loc ? 'bg-[#F1F8F1] text-[#075C45] font-bold border border-[#DDEEDF]' : 'text-[#123F35] hover:bg-[#F8F4E8]'
                       }`}
                     >
                       {loc}
@@ -113,22 +113,22 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* NAVIGATION LINKS */}
-          <nav className="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-700">
+          <nav className="hidden lg:flex items-center gap-1.5 text-sm font-semibold text-[#123F35]">
             {/* PUBLIC NAVIGATION (BEFORE LOGIN) */}
             {!user && (
               <>
                 <Link
                   to="/explore"
-                  className={`px-3 py-2 rounded-xl transition-colors ${
-                    routeLocation.pathname === '/explore' ? 'text-emerald-700 bg-emerald-50' : 'hover:bg-slate-100 hover:text-slate-900'
+                  className={`px-3.5 py-2 rounded-2xl transition-all duration-200 ${
+                    routeLocation.pathname === '/explore' ? 'text-[#075C45] bg-[#F1F8F1] border border-[#DDEEDF] font-bold shadow-2xs' : 'hover:bg-[#F8F4E8] hover:text-[#075C45]'
                   }`}
                 >
                   Find Home Cooks
                 </Link>
                 <Link
                   to="/cook-verification"
-                  className={`px-3 py-2 rounded-xl transition-colors ${
-                    routeLocation.pathname === '/cook-verification' ? 'text-emerald-700 bg-emerald-50' : 'hover:bg-slate-100 hover:text-slate-900'
+                  className={`px-3.5 py-2 rounded-2xl transition-all duration-200 ${
+                    routeLocation.pathname === '/cook-verification' ? 'text-[#075C45] bg-[#F1F8F1] border border-[#DDEEDF] font-bold shadow-2xs' : 'hover:bg-[#F8F4E8] hover:text-[#075C45]'
                   }`}
                 >
                   Become a Home Cook
@@ -141,48 +141,48 @@ export const Navbar: React.FC = () => {
               <>
                 <Link
                   to="/explore"
-                  className={`px-3 py-2 rounded-xl transition-colors ${
-                    routeLocation.pathname === '/explore' ? 'text-emerald-700 bg-emerald-50' : 'hover:bg-slate-100 hover:text-slate-900'
+                  className={`px-3.5 py-2 rounded-2xl transition-all duration-200 ${
+                    routeLocation.pathname === '/explore' ? 'text-[#075C45] bg-[#F1F8F1] border border-[#DDEEDF] font-bold shadow-2xs' : 'hover:bg-[#F8F4E8] hover:text-[#075C45]'
                   }`}
                 >
                   Explore Cooks
                 </Link>
                 <Link
                   to="/orders"
-                  className={`px-3 py-2 rounded-xl transition-colors ${
-                    routeLocation.pathname === '/orders' ? 'text-emerald-700 bg-emerald-50' : 'hover:bg-slate-100 hover:text-slate-900'
+                  className={`px-3.5 py-2 rounded-2xl transition-all duration-200 ${
+                    routeLocation.pathname === '/orders' ? 'text-[#075C45] bg-[#F1F8F1] border border-[#DDEEDF] font-bold shadow-2xs' : 'hover:bg-[#F8F4E8] hover:text-[#075C45]'
                   }`}
                 >
                   My Orders
                 </Link>
                 <Link
                   to="/subscriptions"
-                  className={`px-3 py-2 rounded-xl transition-colors ${
-                    routeLocation.pathname === '/subscriptions' ? 'text-emerald-700 bg-emerald-50' : 'hover:bg-slate-100 hover:text-slate-900'
+                  className={`px-3.5 py-2 rounded-2xl transition-all duration-200 ${
+                    routeLocation.pathname === '/subscriptions' ? 'text-[#075C45] bg-[#F1F8F1] border border-[#DDEEDF] font-bold shadow-2xs' : 'hover:bg-[#F8F4E8] hover:text-[#075C45]'
                   }`}
                 >
                   Meal Plans
                 </Link>
                 <Link
                   to="/custom-requests"
-                  className={`px-3 py-2 rounded-xl transition-colors ${
-                    routeLocation.pathname === '/custom-requests' ? 'text-emerald-700 bg-emerald-50' : 'hover:bg-slate-100 hover:text-slate-900'
+                  className={`px-3.5 py-2 rounded-2xl transition-all duration-200 ${
+                    routeLocation.pathname === '/custom-requests' ? 'text-[#075C45] bg-[#F1F8F1] border border-[#DDEEDF] font-bold shadow-2xs' : 'hover:bg-[#F8F4E8] hover:text-[#075C45]'
                   }`}
                 >
                   Custom Request
                 </Link>
                 <Link
                   to="/customer-dashboard"
-                  className={`px-3 py-2 rounded-xl transition-colors ${
-                    routeLocation.pathname === '/customer-dashboard' ? 'text-emerald-700 bg-emerald-50' : 'hover:bg-slate-100 hover:text-slate-900'
+                  className={`px-3.5 py-2 rounded-2xl transition-all duration-200 ${
+                    routeLocation.pathname === '/customer-dashboard' ? 'text-[#075C45] bg-[#F1F8F1] border border-[#DDEEDF] font-bold shadow-2xs' : 'hover:bg-[#F8F4E8] hover:text-[#075C45]'
                   }`}
                 >
                   My Dashboard
                 </Link>
                 <Link
                   to="/profile"
-                  className={`px-3 py-2 rounded-xl transition-colors ${
-                    routeLocation.pathname === '/profile' ? 'text-emerald-700 bg-emerald-50' : 'hover:bg-slate-100 hover:text-slate-900'
+                  className={`px-3.5 py-2 rounded-2xl transition-all duration-200 ${
+                    routeLocation.pathname === '/profile' ? 'text-[#075C45] bg-[#F1F8F1] border border-[#DDEEDF] font-bold shadow-2xs' : 'hover:bg-[#F8F4E8] hover:text-[#075C45]'
                   }`}
                 >
                   My Profile
@@ -195,48 +195,48 @@ export const Navbar: React.FC = () => {
               <>
                 <Link
                   to="/cook-dashboard"
-                  className={`px-3 py-2 rounded-xl transition-colors ${
-                    routeLocation.pathname === '/cook-dashboard' ? 'text-emerald-700 bg-emerald-50' : 'hover:bg-slate-100 hover:text-slate-900'
+                  className={`px-3 py-2 rounded-xl transition-all ${
+                    routeLocation.pathname === '/cook-dashboard' ? 'text-[#075C45] bg-[#F1F8F1] border border-[#DDEEDF]' : 'hover:bg-[#F8F4E8] hover:text-[#075C45]'
                   }`}
                 >
                   Cook Hub
                 </Link>
                 <Link
                   to="/cook-orders"
-                  className={`px-3 py-2 rounded-xl transition-colors ${
-                    routeLocation.pathname === '/cook-orders' ? 'text-emerald-700 bg-emerald-50' : 'hover:bg-slate-100 hover:text-slate-900'
+                  className={`px-3 py-2 rounded-xl transition-all ${
+                    routeLocation.pathname === '/cook-orders' ? 'text-[#075C45] bg-[#F1F8F1] border border-[#DDEEDF]' : 'hover:bg-[#F8F4E8] hover:text-[#075C45]'
                   }`}
                 >
                   Incoming Orders
                 </Link>
                 <Link
                   to="/cook-menu"
-                  className={`px-3 py-2 rounded-xl transition-colors ${
-                    routeLocation.pathname === '/cook-menu' ? 'text-emerald-700 bg-emerald-50' : 'hover:bg-slate-100 hover:text-slate-900'
+                  className={`px-3 py-2 rounded-xl transition-all ${
+                    routeLocation.pathname === '/cook-menu' ? 'text-[#075C45] bg-[#F1F8F1] border border-[#DDEEDF]' : 'hover:bg-[#F8F4E8] hover:text-[#075C45]'
                   }`}
                 >
                   Manage Menu
                 </Link>
                 <Link
                   to="/cook/availability"
-                  className={`px-3 py-2 rounded-xl transition-colors ${
-                    routeLocation.pathname === '/cook/availability' ? 'text-emerald-700 bg-emerald-50' : 'hover:bg-slate-100 hover:text-slate-900'
+                  className={`px-3 py-2 rounded-xl transition-all ${
+                    routeLocation.pathname === '/cook/availability' ? 'text-[#075C45] bg-[#F1F8F1] border border-[#DDEEDF]' : 'hover:bg-[#F8F4E8] hover:text-[#075C45]'
                   }`}
                 >
                   Working Calendar
                 </Link>
                 <Link
                   to="/cook-earnings"
-                  className={`px-3 py-2 rounded-xl transition-colors ${
-                    routeLocation.pathname === '/cook-earnings' ? 'text-emerald-700 bg-emerald-50' : 'hover:bg-slate-100 hover:text-slate-900'
+                  className={`px-3 py-2 rounded-xl transition-all ${
+                    routeLocation.pathname === '/cook-earnings' ? 'text-[#075C45] bg-[#F1F8F1] border border-[#DDEEDF]' : 'hover:bg-[#F8F4E8] hover:text-[#075C45]'
                   }`}
                 >
                   Earnings
                 </Link>
                 <Link
                   to="/messages"
-                  className={`px-3 py-2 rounded-xl transition-colors ${
-                    routeLocation.pathname === '/messages' ? 'text-emerald-700 bg-emerald-50' : 'hover:bg-slate-100 hover:text-slate-900'
+                  className={`px-3 py-2 rounded-xl transition-all ${
+                    routeLocation.pathname === '/messages' ? 'text-[#075C45] bg-[#F1F8F1] border border-[#DDEEDF]' : 'hover:bg-[#F8F4E8] hover:text-[#075C45]'
                   }`}
                 >
                   Customer Chat
@@ -249,32 +249,32 @@ export const Navbar: React.FC = () => {
               <>
                 <Link
                   to="/admin-dashboard"
-                  className={`px-3 py-2 rounded-xl transition-colors ${
-                    routeLocation.pathname === '/admin-dashboard' ? 'text-emerald-700 bg-emerald-50' : 'hover:bg-slate-100 hover:text-slate-900'
+                  className={`px-3 py-2 rounded-xl transition-all ${
+                    routeLocation.pathname === '/admin-dashboard' ? 'text-[#075C45] bg-[#F1F8F1] border border-[#DDEEDF]' : 'hover:bg-[#F8F4E8] hover:text-[#075C45]'
                   }`}
                 >
                   Admin Portal
                 </Link>
                 <Link
                   to="/admin-verifications"
-                  className={`px-3 py-2 rounded-xl transition-colors ${
-                    routeLocation.pathname === '/admin-verifications' ? 'text-emerald-700 bg-emerald-50' : 'hover:bg-slate-100 hover:text-slate-900'
+                  className={`px-3 py-2 rounded-xl transition-all ${
+                    routeLocation.pathname === '/admin-verifications' ? 'text-[#075C45] bg-[#F1F8F1] border border-[#DDEEDF]' : 'hover:bg-[#F8F4E8] hover:text-[#075C45]'
                   }`}
                 >
                   Pending Kitchens
                 </Link>
                 <Link
                   to="/admin-orders"
-                  className={`px-3 py-2 rounded-xl transition-colors ${
-                    routeLocation.pathname === '/admin-orders' ? 'text-emerald-700 bg-emerald-50' : 'hover:bg-slate-100 hover:text-slate-900'
+                  className={`px-3 py-2 rounded-xl transition-all ${
+                    routeLocation.pathname === '/admin-orders' ? 'text-[#075C45] bg-[#F1F8F1] border border-[#DDEEDF]' : 'hover:bg-[#F8F4E8] hover:text-[#075C45]'
                   }`}
                 >
                   All Orders
                 </Link>
                 <Link
                   to="/admin-users"
-                  className={`px-3 py-2 rounded-xl transition-colors ${
-                    routeLocation.pathname === '/admin-users' ? 'text-emerald-700 bg-emerald-50' : 'hover:bg-slate-100 hover:text-slate-900'
+                  className={`px-3 py-2 rounded-xl transition-all ${
+                    routeLocation.pathname === '/admin-users' ? 'text-[#075C45] bg-[#F1F8F1] border border-[#DDEEDF]' : 'hover:bg-[#F8F4E8] hover:text-[#075C45]'
                   }`}
                 >
                   Users Directory
@@ -289,12 +289,12 @@ export const Navbar: React.FC = () => {
             {user && role === 'CUSTOMER' && (
               <button
                 onClick={() => setIsCartOpen(true)}
-                className="relative px-2.5 sm:px-3.5 py-2 rounded-xl bg-emerald-600 text-white font-bold text-xs shadow-md shadow-emerald-600/20 hover:bg-emerald-700 transition-all flex items-center gap-1.5 shrink-0"
+                className="relative px-2.5 sm:px-3.5 py-2 rounded-2xl bg-[#079669] text-[#FFFDF7] font-bold text-xs shadow-sm hover:bg-[#075C45] transition-all flex items-center gap-1.5 shrink-0 cursor-pointer"
               >
                 <ShoppingBag className="w-4 h-4" />
                 <span className="hidden sm:inline">Cart</span>
                 {totalCount > 0 && (
-                  <span className="bg-white text-emerald-700 text-[10px] font-extrabold w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center">
+                  <span className="bg-[#FFFDF7] text-[#075C45] text-[10px] font-extrabold w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center">
                     {totalCount}
                   </span>
                 )}
@@ -305,28 +305,28 @@ export const Navbar: React.FC = () => {
             {(!user || role === 'CUSTOMER') && (
               <Link
                 to="/cook-verification"
-                className="hidden xl:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold hover:bg-emerald-100/80 transition-colors"
+                className="hidden xl:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-[#F1F8F1] text-[#075C45] border border-[#DDEEDF] text-xs font-bold hover:bg-[#DDEEDF]/70 transition-colors"
               >
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                <ShieldCheck className="w-4 h-4 text-[#079669]" />
                 Become a Home Cook
               </Link>
             )}
 
             {/* AUTH ACTIONS: SIGN IN / REGISTER OR USER PROFILE */}
-            <div className="flex items-center gap-1.5 sm:gap-2 pl-1 border-l border-slate-200 shrink-0">
+            <div className="flex items-center gap-1.5 sm:gap-2 pl-1.5 border-l border-[#DDEEDF] shrink-0">
               {user ? (
                 <div className="flex items-center gap-1.5 sm:gap-2">
-                  <div className="flex items-center gap-1.5 sm:gap-2 text-left p-1 rounded-xl bg-slate-50 border border-slate-200/60 shrink-0">
+                  <div className="flex items-center gap-1.5 sm:gap-2 text-left p-1 rounded-2xl bg-[#F8F4E8] border border-[#DDEEDF] shrink-0">
                     <img
                       src={user.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"}
                       alt={user.name}
-                      className="w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover ring-2 ring-emerald-500/20 shrink-0"
+                      className="w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover ring-2 ring-[#079669]/25 shrink-0"
                     />
-                    <div className="hidden sm:block text-left leading-tight pr-1">
-                      <span className="block text-xs font-bold text-slate-900 truncate max-w-[100px]">
+                    <div className="hidden sm:block text-left leading-tight pr-1.5">
+                      <span className="block text-xs font-bold text-[#123F35] truncate max-w-[100px]">
                         {user.name}
                       </span>
-                      <span className="block text-[10px] text-emerald-700 font-extrabold uppercase">
+                      <span className="block text-[10px] text-[#079669] font-extrabold uppercase">
                         {isDemo ? 'DEMO MODE' : user.role}
                       </span>
                     </div>
@@ -337,7 +337,7 @@ export const Navbar: React.FC = () => {
                       logout();
                       navigate('/');
                     }}
-                    className="px-2 sm:px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-colors shrink-0"
+                    className="px-2.5 sm:px-3 py-1.5 rounded-xl bg-[#F8F4E8] hover:bg-[#DDEEDF] border border-[#DDEEDF] text-[#075C45] text-xs font-bold transition-colors shrink-0 cursor-pointer"
                     title="Sign Out from Account"
                   >
                     Logout
@@ -346,9 +346,9 @@ export const Navbar: React.FC = () => {
               ) : (
                 <button
                   onClick={() => openAuthModal('LOGIN')}
-                  className="flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white shadow-2xs hover:shadow-xs text-xs font-extrabold transition-all shrink-0 cursor-pointer"
+                  className="flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-2xl bg-[#079669] hover:bg-[#075C45] active:scale-[0.98] text-[#FFFDF7] shadow-sm hover:shadow-md text-xs font-extrabold transition-all shrink-0 cursor-pointer"
                 >
-                  <LogIn className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+                  <LogIn className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FFFDF7]" />
                   <span className="hidden sm:inline">Sign In / Register</span>
                   <span className="sm:hidden">Sign In</span>
                 </button>
@@ -358,22 +358,23 @@ export const Navbar: React.FC = () => {
             {/* MOBILE MENU TOGGLE */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors"
+              className="lg:hidden p-2 rounded-2xl text-[#075C45] bg-[#F8F4E8] border border-[#DDEEDF] hover:bg-[#F1F8F1] transition-colors cursor-pointer"
+              aria-label="Toggle Menu"
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
 
         {/* MOBILE EXPANDED MENU */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden border-t border-slate-200 bg-white px-4 py-4 space-y-3">
+          <div className="lg:hidden border-t border-[#DDEEDF] bg-[#FFFDF7] px-4 py-4 space-y-3 shadow-garden">
             <button
               onClick={() => {
                 setIsMobileMenuOpen(false);
                 setIsMapModalOpen(true);
               }}
-              className="w-full flex items-center justify-center gap-2 p-2.5 bg-emerald-600 text-white rounded-xl text-xs font-extrabold shadow-sm"
+              className="w-full flex items-center justify-center gap-2 p-2.5 bg-[#079669] hover:bg-[#075C45] text-[#FFFDF7] rounded-2xl text-xs font-extrabold shadow-sm transition-colors"
             >
               <Navigation className="w-4 h-4" />
               📍 Use My Current Location
@@ -386,9 +387,9 @@ export const Navbar: React.FC = () => {
                     setIsMobileMenuOpen(false);
                     openAuthModal('LOGIN');
                   }}
-                  className="w-full flex items-center justify-center gap-2 p-2.5 bg-slate-900 text-white rounded-xl text-xs font-extrabold shadow-sm"
+                  className="w-full flex items-center justify-center gap-2 p-2.5 bg-[#075C45] text-[#FFFDF7] rounded-2xl text-xs font-extrabold shadow-sm"
                 >
-                  <LogIn className="w-4 h-4 text-emerald-400" />
+                  <LogIn className="w-4 h-4 text-[#CDEEDC]" />
                   Sign In / Register
                 </button>
 
@@ -396,14 +397,14 @@ export const Navbar: React.FC = () => {
                   <Link
                     to="/explore"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-3 rounded-xl bg-slate-50 text-slate-800 hover:bg-slate-100 text-center"
+                    className="p-3 rounded-2xl bg-[#F8F4E8] border border-[#DDEEDF] text-[#123F35] hover:bg-[#F1F8F1] text-center"
                   >
                     Find Home Cooks
                   </Link>
                   <Link
                     to="/cook-verification"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-3 rounded-xl bg-amber-50 text-amber-800 hover:bg-amber-100 text-center"
+                    className="p-3 rounded-2xl bg-[#F1F8F1] border border-[#DDEEDF] text-[#075C45] hover:bg-[#DDEEDF] text-center"
                   >
                     Become Cook
                   </Link>
@@ -411,16 +412,16 @@ export const Navbar: React.FC = () => {
               </>
             ) : (
               <div className="space-y-3">
-                <div className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 border border-slate-200">
+                <div className="flex items-center justify-between p-3 rounded-2xl bg-[#F8F4E8] border border-[#DDEEDF]">
                   <div className="flex items-center gap-2">
                     <img
                       src={user.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"}
                       alt={user.name}
-                      className="w-8 h-8 rounded-full object-cover"
+                      className="w-8 h-8 rounded-full object-cover ring-2 ring-[#079669]/25"
                     />
                     <div>
-                      <p className="text-xs font-extrabold text-slate-900">{user.name}</p>
-                      <p className="text-[10px] text-emerald-700 font-bold uppercase">{isDemo ? 'DEMO MODE' : user.role}</p>
+                      <p className="text-xs font-extrabold text-[#123F35]">{user.name}</p>
+                      <p className="text-[10px] text-[#079669] font-bold uppercase">{isDemo ? 'DEMO MODE' : user.role}</p>
                     </div>
                   </div>
                   <button
@@ -429,7 +430,7 @@ export const Navbar: React.FC = () => {
                       setIsMobileMenuOpen(false);
                       navigate('/');
                     }}
-                    className="px-3 py-1 rounded-xl bg-white border border-slate-200 text-slate-700 text-xs font-bold hover:bg-slate-100"
+                    className="px-3 py-1 rounded-xl bg-[#FFFDF7] border border-[#DDEEDF] text-[#075C45] text-xs font-bold hover:bg-[#F1F8F1]"
                   >
                     Logout
                   </button>
@@ -440,49 +441,49 @@ export const Navbar: React.FC = () => {
                     <Link
                       to="/explore"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-2.5 rounded-xl bg-slate-50 text-slate-800 hover:bg-slate-100 text-center"
+                      className="p-2.5 rounded-xl bg-[#F8F4E8] border border-[#DDEEDF]/70 text-[#123F35] hover:bg-[#F1F8F1] text-center"
                     >
                       Explore Cooks
                     </Link>
                     <Link
                       to="/orders"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-2.5 rounded-xl bg-slate-50 text-slate-800 hover:bg-slate-100 text-center"
+                      className="p-2.5 rounded-xl bg-[#F8F4E8] border border-[#DDEEDF]/70 text-[#123F35] hover:bg-[#F1F8F1] text-center"
                     >
                       My Orders
                     </Link>
                     <Link
                       to="/subscriptions"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-2.5 rounded-xl bg-slate-50 text-slate-800 hover:bg-slate-100 text-center"
+                      className="p-2.5 rounded-xl bg-[#F8F4E8] border border-[#DDEEDF]/70 text-[#123F35] hover:bg-[#F1F8F1] text-center"
                     >
                       Meal Plans
                     </Link>
                     <Link
                       to="/custom-requests"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-2.5 rounded-xl bg-slate-50 text-slate-800 hover:bg-slate-100 text-center"
+                      className="p-2.5 rounded-xl bg-[#F8F4E8] border border-[#DDEEDF]/70 text-[#123F35] hover:bg-[#F1F8F1] text-center"
                     >
                       Custom Request
                     </Link>
                     <Link
                       to="/customer-dashboard"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-2.5 rounded-xl bg-slate-50 text-slate-800 hover:bg-slate-100 text-center"
+                      className="p-2.5 rounded-xl bg-[#F8F4E8] border border-[#DDEEDF]/70 text-[#123F35] hover:bg-[#F1F8F1] text-center"
                     >
                       My Dashboard
                     </Link>
                     <Link
                       to="/profile"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-2.5 rounded-xl bg-emerald-50 text-emerald-800 hover:bg-emerald-100 text-center"
+                      className="p-2.5 rounded-xl bg-[#F1F8F1] border border-[#DDEEDF] text-[#075C45] hover:bg-[#DDEEDF] text-center"
                     >
                       My Profile
                     </Link>
                     <Link
                       to="/favorites"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-2.5 rounded-xl bg-slate-50 text-slate-800 hover:bg-slate-100 text-center"
+                      className="p-2.5 rounded-xl bg-[#F8F4E8] border border-[#DDEEDF]/70 text-[#123F35] hover:bg-[#F1F8F1] text-center"
                     >
                       Saved Favorites
                     </Link>
@@ -494,42 +495,42 @@ export const Navbar: React.FC = () => {
                     <Link
                       to="/cook-dashboard"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-2.5 rounded-xl bg-slate-50 text-slate-800 hover:bg-slate-100 text-center"
+                      className="p-2.5 rounded-xl bg-[#F8F4E8] border border-[#DDEEDF]/70 text-[#123F35] hover:bg-[#F1F8F1] text-center"
                     >
                       Cook Hub
                     </Link>
                     <Link
                       to="/cook-orders"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-2.5 rounded-xl bg-slate-50 text-slate-800 hover:bg-slate-100 text-center"
+                      className="p-2.5 rounded-xl bg-[#F8F4E8] border border-[#DDEEDF]/70 text-[#123F35] hover:bg-[#F1F8F1] text-center"
                     >
                       Incoming Orders
                     </Link>
                     <Link
                       to="/cook-menu"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-2.5 rounded-xl bg-slate-50 text-slate-800 hover:bg-slate-100 text-center"
+                      className="p-2.5 rounded-xl bg-[#F8F4E8] border border-[#DDEEDF]/70 text-[#123F35] hover:bg-[#F1F8F1] text-center"
                     >
                       Manage Menu
                     </Link>
                     <Link
                       to="/cook/availability"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-2.5 rounded-xl bg-emerald-50 text-emerald-800 hover:bg-emerald-100 text-center"
+                      className="p-2.5 rounded-xl bg-[#F1F8F1] border border-[#DDEEDF] text-[#075C45] hover:bg-[#DDEEDF] text-center"
                     >
                       Working Calendar
                     </Link>
                     <Link
                       to="/cook-earnings"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-2.5 rounded-xl bg-slate-50 text-slate-800 hover:bg-slate-100 text-center"
+                      className="p-2.5 rounded-xl bg-[#F8F4E8] border border-[#DDEEDF]/70 text-[#123F35] hover:bg-[#F1F8F1] text-center"
                     >
                       Earnings
                     </Link>
                     <Link
                       to="/messages"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-2.5 rounded-xl bg-slate-50 text-slate-800 hover:bg-slate-100 text-center"
+                      className="p-2.5 rounded-xl bg-[#F8F4E8] border border-[#DDEEDF]/70 text-[#123F35] hover:bg-[#F1F8F1] text-center"
                     >
                       Customer Chat
                     </Link>
@@ -541,28 +542,28 @@ export const Navbar: React.FC = () => {
                     <Link
                       to="/admin-dashboard"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-2.5 rounded-xl bg-slate-50 text-slate-800 hover:bg-slate-100 text-center"
+                      className="p-2.5 rounded-xl bg-[#F8F4E8] border border-[#DDEEDF]/70 text-[#123F35] hover:bg-[#F1F8F1] text-center"
                     >
                       Admin Portal
                     </Link>
                     <Link
                       to="/admin-verifications"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-2.5 rounded-xl bg-slate-50 text-slate-800 hover:bg-slate-100 text-center"
+                      className="p-2.5 rounded-xl bg-[#F8F4E8] border border-[#DDEEDF]/70 text-[#123F35] hover:bg-[#F1F8F1] text-center"
                     >
                       Kitchen Approvals
                     </Link>
                     <Link
                       to="/admin-orders"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-2.5 rounded-xl bg-slate-50 text-slate-800 hover:bg-slate-100 text-center"
+                      className="p-2.5 rounded-xl bg-[#F8F4E8] border border-[#DDEEDF]/70 text-[#123F35] hover:bg-[#F1F8F1] text-center"
                     >
                       All Orders
                     </Link>
                     <Link
                       to="/admin-users"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-2.5 rounded-xl bg-slate-50 text-slate-800 hover:bg-slate-100 text-center"
+                      className="p-2.5 rounded-xl bg-[#F8F4E8] border border-[#DDEEDF]/70 text-[#123F35] hover:bg-[#F1F8F1] text-center"
                     >
                       User Directory
                     </Link>

@@ -49,7 +49,7 @@ export const MobileNav: React.FC = () => {
   const tabs = role === 'ADMIN' ? adminTabs : role === 'COOK' ? cookTabs : customerTabs;
 
   return (
-    <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur border-t border-slate-200 px-2 py-1 shadow-lg">
+    <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#FFFDF7]/95 backdrop-blur border-t border-[#DDEEDF] px-2 py-1 shadow-garden-lg">
       <div className="grid grid-cols-5 gap-1">
         {tabs.map((tab) => {
           const Icon = tab.icon;
@@ -59,7 +59,7 @@ export const MobileNav: React.FC = () => {
               to={tab.to}
               className={({ isActive }) =>
                 `flex flex-col items-center justify-center py-1.5 px-1 rounded-xl text-[10px] font-bold transition-colors ${
-                  isActive ? 'text-emerald-600 bg-emerald-50' : 'text-slate-500 hover:text-slate-900'
+                  isActive ? 'text-[#075C45] bg-[#F1F8F1] border border-[#DDEEDF]' : 'text-[#123F35]/65 hover:text-[#075C45]'
                 }`
               }
             >

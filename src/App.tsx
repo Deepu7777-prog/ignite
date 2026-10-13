@@ -9,6 +9,7 @@ import { MobileNav } from './components/MobileNav';
 import { CartDrawer } from './components/CartDrawer';
 import { AuthModal } from './components/AuthModal';
 import { Footer } from './components/Footer';
+import { FallingLeaves } from './components/FallingLeaves';
 
 import { ProtectedRoute } from './components/ProtectedRoute';
 
@@ -50,10 +51,14 @@ const AppContent: React.FC = () => {
   const { user, isAuthModalOpen, closeAuthModal, authModalMode } = useAuth();
 
   return (
-    <div className={`min-h-screen flex flex-col bg-slate-50 font-sans text-slate-900 ${user ? 'pb-16 lg:pb-0' : ''} w-full max-w-full overflow-x-hidden`}>
-      <Navbar />
+    <div className={`min-h-screen flex flex-col bg-[#FFFDF7] font-sans text-[#123F35] ${user ? 'pb-16 lg:pb-0' : ''} w-full max-w-full overflow-x-hidden relative`}>
+      {/* Subtle Falling Leaves Animation Layer (Behind All Content) */}
+      <FallingLeaves />
 
-      <div className="flex-1 flex w-full max-w-full overflow-x-hidden">
+      <div className="relative z-10 flex flex-col min-h-screen w-full max-w-full">
+        <Navbar />
+
+        <div className="flex-1 flex w-full max-w-full overflow-x-hidden">
         <Sidebar />
 
         <main className="flex-1 min-w-0 w-full max-w-full overflow-x-hidden">
@@ -121,6 +126,7 @@ const AppContent: React.FC = () => {
         onClose={closeAuthModal}
         initialMode={authModalMode}
       />
+      </div>
     </div>
   );
 };

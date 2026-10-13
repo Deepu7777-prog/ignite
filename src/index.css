@@ -14,7 +14,9 @@
   }
 
   body {
-    @apply bg-[#fcfaf7] text-slate-900 font-sans antialiased;
+    background-color: #FFFDF7;
+    color: #123F35;
+    @apply font-sans antialiased;
   }
 
   #root {
@@ -22,24 +24,25 @@
     max-width: 100vw;
     width: 100%;
     min-height: 100vh;
-    background-color: #fcfaf7;
+    background-color: #FFFDF7;
+    position: relative;
   }
 }
 
-/* Custom smooth scrollbar */
+/* Custom smooth botanical scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #F8F4E8;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #a8ccb2;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #079669;
 }
 
 /* Infinite Marquee Scrollable Tickers */
@@ -56,7 +59,7 @@
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 28s linear infinite;
+  animation: marquee 32s linear infinite;
 }
 
 .animate-marquee:hover {
@@ -66,9 +69,65 @@
 .animate-marquee-reverse {
   display: flex;
   width: max-content;
-  animation: marquee-reverse 32s linear infinite;
+  animation: marquee-reverse 36s linear infinite;
 }
 
 .animate-marquee-reverse:hover {
   animation-play-state: paused;
+}
+
+/* Falling Leaves & Botanical Animations */
+@keyframes leafFall {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--leaf-opacity, 0.22);
+  }
+  90% {
+    opacity: var(--leaf-opacity, 0.22);
+  }
+  100% {
+    transform: translate3d(var(--leaf-drift, 45px), 108vh, 0) rotate(var(--leaf-rot, 260deg));
+    opacity: 0;
+  }
+}
+
+@keyframes leafSway {
+  0%, 100% {
+    margin-left: 0px;
+  }
+  50% {
+    margin-left: var(--leaf-sway, 24px);
+  }
+}
+
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(4deg);
+  }
+}
+
+.animate-leaf-fall {
+  animation:
+    leafFall var(--fall-duration, 22s) linear var(--fall-delay, 0s) infinite,
+    leafSway var(--sway-duration, 6s) ease-in-out var(--fall-delay, 0s) infinite;
+  will-change: transform, opacity;
+}
+
+.animate-float-gentle {
+  animation: floatGentle 5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-leaf-fall,
+  .animate-float-gentle,
+  .animate-marquee,
+  .animate-marquee-reverse {
+    animation: none !important;
+  }
 }

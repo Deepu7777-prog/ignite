@@ -56,23 +56,23 @@ export const Sidebar: React.FC = () => {
   const links = role === 'ADMIN' ? adminLinks : role === 'COOK' ? cookLinks : customerLinks;
 
   return (
-    <aside className="w-64 shrink-0 hidden lg:block bg-white border-r border-slate-200 min-h-[calc(100vh-4rem)] p-4">
+    <aside className="w-64 shrink-0 hidden lg:block bg-[#FFFDF7] border-r border-[#DDEEDF] min-h-[calc(100vh-4rem)] p-4 shadow-garden">
       {/* USER PROFILE CARD */}
-      <div className="p-3 mb-6 bg-slate-50 rounded-2xl border border-slate-200/80 flex items-center gap-3">
+      <div className="p-3 mb-6 bg-[#F8F4E8] rounded-2xl border border-[#DDEEDF] flex items-center gap-3">
         <img
           src={user?.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"}
           alt={user?.name || "Guest User"}
-          className="w-10 h-10 rounded-full object-cover ring-2 ring-emerald-500/20"
+          className="w-10 h-10 rounded-full object-cover ring-2 ring-[#079669]/25"
         />
         <div className="min-w-0">
-          <p className="text-xs font-extrabold text-slate-900 truncate">{user?.name || "Guest User"}</p>
-          <p className="text-[10px] font-semibold text-emerald-700 uppercase tracking-wider">{user ? role : 'GUEST'}</p>
+          <p className="text-xs font-extrabold text-[#123F35] truncate">{user?.name || "Guest User"}</p>
+          <p className="text-[10px] font-semibold text-[#079669] uppercase tracking-wider">{user ? role : 'GUEST'}</p>
         </div>
       </div>
 
       {/* NAVIGATION SECTION */}
       <div className="space-y-1">
-        <p className="px-3 py-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+        <p className="px-3 py-1.5 text-[10px] font-bold text-[#075C45]/60 uppercase tracking-wider">
           {role} Dashboard
         </p>
         {links.map((item) => {
@@ -84,8 +84,8 @@ export const Sidebar: React.FC = () => {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all ${
                   isActive
-                    ? 'bg-emerald-50 text-emerald-700 shadow-xs'
-                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                    ? 'bg-[#F1F8F1] text-[#075C45] border border-[#DDEEDF] shadow-2xs'
+                    : 'text-[#123F35]/75 hover:bg-[#F8F4E8] hover:text-[#075C45]'
                 }`
               }
             >
