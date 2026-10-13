@@ -162,37 +162,45 @@ export const CookDashboard: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8 w-full max-w-full overflow-x-hidden">
-      {/* KITCHEN BANNER HEADER */}
-      <div className="bg-gradient-to-r from-emerald-900 via-emerald-800 to-teal-900 text-white rounded-3xl p-6 sm:p-8 shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div className="flex items-center gap-4">
+      {/* KITCHEN BANNER HEADER — FRESH GARDEN HOMEMADE SHOWCASE */}
+      <div className="relative overflow-hidden bg-gradient-to-r from-[#075C45] via-[#077A58] to-[#079669] text-[#FFFDF7] rounded-[28px] sm:rounded-3xl p-6 sm:p-8 shadow-garden-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 border border-[#CDEEDC]/30">
+        {/* Soft Decorative Botanical Glow */}
+        <div className="absolute -top-10 -right-10 w-60 h-60 bg-[#CDEEDC]/20 rounded-full blur-2xl pointer-events-none" />
+
+        <div className="flex items-center gap-4 relative z-10">
           <img
             src={cookProfile?.photo || "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=80"}
             alt="Kitchen"
-            className="w-16 h-16 rounded-2xl object-cover ring-2 ring-emerald-400/40 shrink-0"
+            className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover ring-2 ring-[#E8D99A] shadow-md shrink-0"
           />
-          <div>
-            <div className="flex items-center gap-2">
-              <h1 className="font-display text-2xl sm:text-3xl font-extrabold">
+          <div className="space-y-1">
+            <div className="flex flex-wrap items-center gap-2">
+              <h1 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight">
                 {cookProfile?.kitchenName || (isDemo ? "Priya's Home Kitchen" : (user?.name ? `${user.name}'s Kitchen` : "My Home Kitchen"))}
               </h1>
-              <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-extrabold border border-emerald-500/30">
-                APNA RUCHI VERIFIED
+              <span className="px-3 py-0.5 rounded-full bg-[#FFFDF7]/20 backdrop-blur text-[#E8D99A] text-[10px] font-black uppercase tracking-wider border border-[#E8D99A]/40">
+                🌿 APNA RUCHI VERIFIED
               </span>
             </div>
-            <p className="text-xs text-slate-300 font-medium">
-              Owner: {cookProfile?.ownerName || (isDemo ? "Priya Reddy" : (user?.name || "Home Cook"))} • {cookProfile?.location || "Madhapur, Hyderabad"}
+            <p className="text-xs text-[#F8F4E8]/90 font-medium flex items-center gap-1.5">
+              <span>Home Cook: <strong>{cookProfile?.ownerName || (isDemo ? "Priya Reddy" : (user?.name || "Home Cook"))}</strong></span>
+              <span>•</span>
+              <span>📍 {cookProfile?.location || "Madhapur, Hyderabad"}</span>
+            </p>
+            <p className="font-handwriting text-xl text-[#CDEEDC] pt-0.5">
+              “Cooked with pure spices and mother's love.”
             </p>
           </div>
         </div>
 
         {/* ONLINE AVAILABILITY TOGGLE & QUICK ACTIONS */}
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2.5 relative z-10">
           <button
             onClick={toggleAvailability}
-            className={`px-4 py-2.5 rounded-2xl font-extrabold text-xs flex items-center gap-2 transition-all shadow-md ${
+            className={`px-4 py-2.5 rounded-2xl font-black text-xs flex items-center gap-2 transition-all shadow-garden cursor-pointer ${
               isAvailable
-                ? 'bg-emerald-500 text-slate-950 hover:bg-emerald-400'
-                : 'bg-slate-800 text-slate-400 border border-slate-700'
+                ? 'bg-[#E8D99A] text-[#075C45] hover:bg-[#fff0ba]'
+                : 'bg-[#054836] text-[#CDEEDC] border border-[#CDEEDC]/30'
             }`}
           >
             <Power className="w-4 h-4" />
@@ -201,78 +209,90 @@ export const CookDashboard: React.FC = () => {
 
           <Link
             to="/cook/availability"
-            className="px-4 py-2.5 rounded-2xl bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 font-extrabold text-xs hover:bg-emerald-500/30 transition-colors flex items-center gap-1.5 shadow-sm"
+            className="px-4 py-2.5 rounded-2xl bg-[#FFFDF7]/15 backdrop-blur border border-[#CDEEDC]/40 text-[#FFFDF7] font-extrabold text-xs hover:bg-[#FFFDF7]/25 transition-colors flex items-center gap-1.5 shadow-sm"
           >
-            <Calendar className="w-4 h-4 text-emerald-400" />
+            <Calendar className="w-4 h-4 text-[#E8D99A]" />
             Working Calendar
           </Link>
 
           <Link
             to="/cook-menu"
-            className="px-4 py-2.5 rounded-2xl bg-white text-slate-900 font-extrabold text-xs hover:bg-slate-100 transition-colors flex items-center gap-1.5 shadow-sm"
+            className="px-4 py-2.5 rounded-2xl bg-[#FFFDF7] text-[#075C45] font-extrabold text-xs hover:bg-[#F8F4E8] transition-colors flex items-center gap-1.5 shadow-garden"
           >
-            <Plus className="w-4 h-4 text-emerald-600" />
+            <Plus className="w-4 h-4 text-[#079669]" />
             Manage Menu
           </Link>
         </div>
       </div>
 
-      {/* EARNINGS STATS CARDS (EMERGENT REFERENCE DASHBOARD STYLE) */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-2">
-          <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
-            Total Revenue
-          </span>
-          <p className="font-display text-3xl font-extrabold text-slate-900">
+      {/* EARNINGS STATS CARDS — GARDEN FRESH STYLE */}
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="bg-[#FFFDF7] rounded-[24px] p-6 border border-[#DDEEDF] shadow-garden space-y-2 relative overflow-hidden group hover:-translate-y-0.5 transition-transform">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#075C45]/70">
+              Total Revenue
+            </span>
+            <span className="text-lg">💰</span>
+          </div>
+          <p className="font-display text-3xl font-extrabold text-[#123F35]">
             ₹{totalRevenue}
           </p>
-          <span className="text-xs font-semibold text-slate-500">{orders.length} total orders completed</span>
+          <span className="text-xs font-semibold text-[#075C45]/80 block">{orders.length} total orders completed</span>
         </div>
 
-        <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-2">
-          <span className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-600">
-            Net Earnings (Take Home)
-          </span>
-          <p className="font-display text-3xl font-extrabold text-emerald-700">
+        <div className="bg-[#FFFDF7] rounded-[24px] p-6 border border-[#DDEEDF] shadow-garden space-y-2 relative overflow-hidden group hover:-translate-y-0.5 transition-transform">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#079669]">
+              Net Take-Home Earnings
+            </span>
+            <span className="text-lg">🌿</span>
+          </div>
+          <p className="font-display text-3xl font-extrabold text-[#079669]">
             ₹{netEarnings}
           </p>
-          <span className="text-xs font-semibold text-slate-500">After 10% platform fee (₹{platformFee})</span>
+          <span className="text-xs font-semibold text-[#075C45]/80 block">After 10% platform fee (₹{platformFee})</span>
         </div>
 
-        <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-2">
-          <span className="text-[10px] font-extrabold uppercase tracking-wider text-amber-600">
-            Pending Orders
-          </span>
-          <p className="font-display text-3xl font-extrabold text-amber-900">
+        <div className="bg-[#FFFDF7] rounded-[24px] p-6 border border-[#DDEEDF] shadow-garden space-y-2 relative overflow-hidden group hover:-translate-y-0.5 transition-transform">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#b45309]">
+              Pending Orders
+            </span>
+            <span className="text-lg">🍲</span>
+          </div>
+          <p className="font-display text-3xl font-extrabold text-[#b45309]">
             {pendingOrders.length}
           </p>
-          <span className="text-xs font-semibold text-slate-500">Requires cook acceptance</span>
+          <span className="text-xs font-semibold text-[#123F35]/70 block">Awaiting cook acceptance</span>
         </div>
 
-        <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-2">
-          <span className="text-[10px] font-extrabold uppercase tracking-wider text-indigo-600">
-            Active Cooking
-          </span>
-          <p className="font-display text-3xl font-extrabold text-indigo-900">
+        <div className="bg-[#FFFDF7] rounded-[24px] p-6 border border-[#DDEEDF] shadow-garden space-y-2 relative overflow-hidden group hover:-translate-y-0.5 transition-transform">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#075C45]">
+              Active Cooking Handis
+            </span>
+            <span className="text-lg">🥘</span>
+          </div>
+          <p className="font-display text-3xl font-extrabold text-[#075C45]">
             {activePreparingOrders.length}
           </p>
-          <span className="text-xs font-semibold text-slate-500">In preparation or out for delivery</span>
+          <span className="text-xs font-semibold text-[#123F35]/70 block">In preparation or out for delivery</span>
         </div>
       </div>
 
       {/* COOK KITCHEN PAYMENT METHODS PREFERENCES SETTINGS */}
-      <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+      <div className="bg-[#FFFDF7] rounded-[24px] p-6 border border-[#DDEEDF] shadow-garden space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#DDEEDF]/70 pb-3">
           <div>
-            <h2 className="font-display font-extrabold text-lg text-slate-900 flex items-center gap-2">
-              <DollarSign className="w-5 h-5 text-emerald-600" />
+            <h2 className="font-display font-extrabold text-lg text-[#123F35] flex items-center gap-2">
+              <DollarSign className="w-5 h-5 text-[#079669]" />
               Kitchen Accepted Payment Options
             </h2>
-            <p className="text-xs text-slate-500 font-medium">
+            <p className="text-xs text-[#123F35]/70 font-medium">
               Control which payment options customers can use at checkout for your kitchen.
             </p>
           </div>
-          <span className="text-[11px] font-extrabold bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full border border-emerald-200 shrink-0">
+          <span className="text-[11px] font-extrabold bg-[#F1F8F1] text-[#075C45] px-3 py-1 rounded-full border border-[#DDEEDF] shrink-0">
             {acceptedMethods.length} Methods Active
           </span>
         </div>
@@ -391,19 +411,19 @@ export const CookDashboard: React.FC = () => {
       </div>
 
       {/* COOK PAYOUT & BANK / UPI SETTLEMENT SETTINGS */}
-      <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+      <div className="bg-[#FFFDF7] rounded-[24px] p-6 border border-[#DDEEDF] shadow-garden space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#DDEEDF]/70 pb-3">
           <div>
-            <h2 className="font-display font-extrabold text-lg text-slate-900 flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5 text-emerald-600" />
+            <h2 className="font-display font-extrabold text-lg text-[#123F35] flex items-center gap-2">
+              <ShieldCheck className="w-5 h-5 text-[#079669]" />
               Payout & Settlement Settings
             </h2>
-            <p className="text-xs text-slate-500 font-medium">
+            <p className="text-xs text-[#123F35]/70 font-medium">
               Configure your bank account or UPI ID to receive weekly direct payouts for your earnings.
             </p>
           </div>
           {payoutMsg && (
-            <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200">
+            <span className="text-xs font-bold text-[#075C45] bg-[#F1F8F1] px-3 py-1.5 rounded-full border border-[#DDEEDF]">
               {payoutMsg}
             </span>
           )}
@@ -412,22 +432,22 @@ export const CookDashboard: React.FC = () => {
         <form onSubmit={handleSavePayoutSettings} className="space-y-4">
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">UPI VPA Address (Preferred)</label>
+              <label className="block text-xs font-bold text-[#123F35] mb-1">UPI VPA Address (Preferred)</label>
               <input
                 type="text"
                 value={payoutForm.upiId}
                 onChange={(e) => setPayoutForm({ ...payoutForm, upiId: e.target.value })}
                 placeholder="e.g. priya.reddy@ybl"
-                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none"
+                className="w-full px-4 py-2.5 bg-[#F8F4E8] border border-[#DDEEDF] rounded-xl text-xs font-medium text-[#123F35] focus:ring-2 focus:ring-[#079669]/25 focus:border-[#079669] outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">Payout Method</label>
+              <label className="block text-xs font-bold text-[#123F35] mb-1">Payout Method</label>
               <select
                 value={payoutForm.payoutMethod}
                 onChange={(e) => setPayoutForm({ ...payoutForm, payoutMethod: e.target.value as any })}
-                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none"
+                className="w-full px-4 py-2.5 bg-[#F8F4E8] border border-[#DDEEDF] rounded-xl text-xs font-medium text-[#123F35] focus:ring-2 focus:ring-[#079669]/25 focus:border-[#079669] outline-none"
               >
                 <option value="DIRECT_UPI">Instant Direct UPI (PhonePe / GPay / Paytm)</option>
                 <option value="BANK_TRANSFER">Direct Bank NEFT / IMPS Transfer</option>
@@ -436,46 +456,46 @@ export const CookDashboard: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">Account Holder Name</label>
+              <label className="block text-xs font-bold text-[#123F35] mb-1">Account Holder Name</label>
               <input
                 type="text"
                 value={payoutForm.accountHolderName}
                 onChange={(e) => setPayoutForm({ ...payoutForm, accountHolderName: e.target.value })}
                 placeholder="Name as per Bank Account"
-                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none"
+                className="w-full px-4 py-2.5 bg-[#F8F4E8] border border-[#DDEEDF] rounded-xl text-xs font-medium text-[#123F35] focus:ring-2 focus:ring-[#079669]/25 focus:border-[#079669] outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">Bank Name</label>
+              <label className="block text-xs font-bold text-[#123F35] mb-1">Bank Name</label>
               <input
                 type="text"
                 value={payoutForm.bankName}
                 onChange={(e) => setPayoutForm({ ...payoutForm, bankName: e.target.value })}
                 placeholder="e.g. HDFC Bank, State Bank of India"
-                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none"
+                className="w-full px-4 py-2.5 bg-[#F8F4E8] border border-[#DDEEDF] rounded-xl text-xs font-medium text-[#123F35] focus:ring-2 focus:ring-[#079669]/25 focus:border-[#079669] outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">Account Number</label>
+              <label className="block text-xs font-bold text-[#123F35] mb-1">Account Number</label>
               <input
                 type="text"
                 value={payoutForm.accountNumber}
                 onChange={(e) => setPayoutForm({ ...payoutForm, accountNumber: e.target.value })}
                 placeholder="Enter 12-16 digit Account Number"
-                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none"
+                className="w-full px-4 py-2.5 bg-[#F8F4E8] border border-[#DDEEDF] rounded-xl text-xs font-medium text-[#123F35] focus:ring-2 focus:ring-[#079669]/25 focus:border-[#079669] outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">IFSC Code</label>
+              <label className="block text-xs font-bold text-[#123F35] mb-1">IFSC Code</label>
               <input
                 type="text"
                 value={payoutForm.ifscCode}
                 onChange={(e) => setPayoutForm({ ...payoutForm, ifscCode: e.target.value.toUpperCase() })}
                 placeholder="e.g. HDFC0001245"
-                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium uppercase focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none"
+                className="w-full px-4 py-2.5 bg-[#F8F4E8] border border-[#DDEEDF] rounded-xl text-xs font-medium text-[#123F35] uppercase focus:ring-2 focus:ring-[#079669]/25 focus:border-[#079669] outline-none"
               />
             </div>
           </div>
@@ -484,7 +504,7 @@ export const CookDashboard: React.FC = () => {
             <button
               type="submit"
               disabled={isSavingPayout}
-              className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs rounded-xl transition-all shadow-xs disabled:opacity-50"
+              className="px-5 py-2.5 bg-[#079669] hover:bg-[#075C45] text-[#FFFDF7] font-extrabold text-xs rounded-xl transition-all shadow-garden disabled:opacity-50 cursor-pointer"
             >
               {isSavingPayout ? 'Saving Payout Settings...' : 'Save Payout Details'}
             </button>
@@ -493,13 +513,13 @@ export const CookDashboard: React.FC = () => {
       </div>
 
       {/* LIVE ORDERS MANAGEMENT QUEUE */}
-      <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-6">
-        <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-          <h2 className="font-display font-extrabold text-xl text-slate-900 flex items-center gap-2">
-            <ShoppingBag className="w-5 h-5 text-emerald-600" />
+      <div className="bg-[#FFFDF7] rounded-[24px] p-6 border border-[#DDEEDF] shadow-garden space-y-6">
+        <div className="flex items-center justify-between border-b border-[#DDEEDF]/70 pb-3">
+          <h2 className="font-display font-extrabold text-xl text-[#123F35] flex items-center gap-2">
+            <ShoppingBag className="w-5 h-5 text-[#079669]" />
             Live Incoming Orders Queue
           </h2>
-          <span className="text-xs font-bold text-slate-500">
+          <span className="text-xs font-bold text-[#075C45] bg-[#F1F8F1] px-3 py-1 rounded-full border border-[#DDEEDF]">
             {orders.length} Total Orders
           </span>
         </div>
@@ -515,39 +535,42 @@ export const CookDashboard: React.FC = () => {
             {orders.map((ord) => (
               <div
                 key={ord.id}
-                className="p-5 rounded-3xl border border-slate-200 bg-slate-50/50 space-y-4 hover:border-slate-300 transition-all"
+                className="p-5 rounded-3xl border border-[#DDEEDF] bg-[#F8F4E8]/50 space-y-4 hover:border-[#079669]/40 transition-all shadow-2xs"
               >
-                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200/60 pb-3">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#DDEEDF]/70 pb-3">
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-extrabold text-sm text-slate-900">#{ord.orderNumber}</span>
+                      <span className="font-extrabold text-sm text-[#123F35]">#{ord.orderNumber}</span>
                       <StatusBadge status={ord.status} />
                     </div>
-                    <p className="text-xs text-slate-500 font-medium">
+                    <p className="text-xs text-[#123F35]/70 font-medium">
                       Placed by customer on {new Date(ord.createdAt).toLocaleTimeString()}
                     </p>
                   </div>
 
                   <div className="text-right">
-                    <span className="text-sm font-extrabold text-emerald-700">₹{ord.total}</span>
-                    <span className="block text-[10px] text-slate-400 font-semibold">{ord.paymentMethod}</span>
+                    <span className="text-sm font-extrabold text-[#075C45]">₹{ord.total}</span>
+                    <span className="block text-[10px] text-[#075C45]/70 font-semibold">{ord.paymentMethod}</span>
                   </div>
                 </div>
 
                 {/* ORDER ITEMS LIST */}
-                <div className="space-y-1.5 text-xs text-slate-700 font-medium">
+                <div className="space-y-1.5 text-xs text-[#123F35] font-medium">
                   {ord.items.map((item, idx) => (
                     <div key={idx} className="flex justify-between">
-                      <span>{item.quantity}x {item.name}</span>
-                      <span className="font-bold text-slate-900">₹{item.price * item.quantity}</span>
+                      <span className="flex items-center gap-1.5">
+                        <span className="text-sm">🍲</span>
+                        <span>{item.quantity}x {item.name}</span>
+                      </span>
+                      <span className="font-bold text-[#123F35]">₹{item.price * item.quantity}</span>
                     </div>
                   ))}
                 </div>
 
                 {/* STATUS TRANSITION ACTION BUTTONS FOR COOK */}
-                <div className="pt-3 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
-                  <div className="text-[11px] text-slate-500 font-medium">
-                    Address: <strong>{ord.deliveryAddress.addressLine}</strong>
+                <div className="pt-3 border-t border-[#DDEEDF]/70 flex flex-wrap items-center justify-between gap-3">
+                  <div className="text-[11px] text-[#123F35]/70 font-medium">
+                    Address: <strong className="text-[#123F35]">{ord.deliveryAddress.addressLine}</strong>
                   </div>
 
                   <div className="flex flex-wrap items-center gap-2">

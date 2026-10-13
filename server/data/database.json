@@ -351,7 +351,73 @@
       "aadhaarStatus": "VERIFIED",
       "availableToday": true,
       "prepTimeMinutes": 20,
-      "openingHours": "12:00 PM - 9:30 PM"
+      "openingHours": "12:00 PM - 9:30 PM",
+      "availabilitySchedule": [
+        {
+          "id": "slot_cook_reema_2026-10-13",
+          "date": "2026-10-13",
+          "dayName": "Tuesday",
+          "isAvailable": true,
+          "startTime": "10:00 AM",
+          "endTime": "02:00 PM",
+          "notes": "Fresh Lunch & Dinner Available"
+        },
+        {
+          "id": "slot_cook_reema_2026-10-14",
+          "date": "2026-10-14",
+          "dayName": "Wednesday",
+          "isAvailable": true,
+          "startTime": "10:00 AM",
+          "endTime": "02:00 PM",
+          "notes": "Fresh Lunch & Dinner Available"
+        },
+        {
+          "id": "slot_cook_reema_2026-10-15",
+          "date": "2026-10-15",
+          "dayName": "Thursday",
+          "isAvailable": true,
+          "startTime": "10:00 AM",
+          "endTime": "02:00 PM",
+          "notes": "Fresh Lunch & Dinner Available"
+        },
+        {
+          "id": "slot_cook_reema_2026-10-16",
+          "date": "2026-10-16",
+          "dayName": "Friday",
+          "isAvailable": true,
+          "startTime": "10:00 AM",
+          "endTime": "02:00 PM",
+          "notes": "Fresh Lunch & Dinner Available"
+        },
+        {
+          "id": "slot_cook_reema_2026-10-17",
+          "date": "2026-10-17",
+          "dayName": "Saturday",
+          "isAvailable": true,
+          "startTime": "10:00 AM",
+          "endTime": "02:00 PM",
+          "notes": "Fresh Lunch & Dinner Available"
+        },
+        {
+          "id": "slot_cook_reema_2026-10-18",
+          "date": "2026-10-18",
+          "dayName": "Sunday",
+          "isAvailable": true,
+          "startTime": "10:00 AM",
+          "endTime": "02:00 PM",
+          "notes": "Fresh Lunch & Dinner Available"
+        },
+        {
+          "id": "slot_cook_reema_2026-10-19",
+          "date": "2026-10-19",
+          "dayName": "Monday",
+          "isAvailable": false,
+          "startTime": "10:00 AM",
+          "endTime": "02:00 PM",
+          "notes": "Weekend Special Orders"
+        }
+      ],
+      "updatedAt": "2026-10-13T07:34:13.988Z"
     },
     {
       "id": "cook_sunitha",
@@ -968,6 +1034,41 @@
     }
   ],
   "orders": [
+    {
+      "id": "ord_1791876863438",
+      "orderNumber": "HCF-5802",
+      "customerId": "usr_1791650733838",
+      "cookId": "cook_reema",
+      "cookName": "Reema's Home Delights",
+      "items": [
+        {
+          "menuItemId": "itm_5",
+          "name": "Dal Chawal Thali with Desi Ghee",
+          "price": 90,
+          "quantity": 1,
+          "image": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=500&q=80"
+        }
+      ],
+      "subtotal": 90,
+      "deliveryFee": 35,
+      "tax": 5,
+      "total": 130,
+      "deliveryAddress": {
+        "id": "addr_checkout",
+        "label": "Home",
+        "addressLine": "Flat 402, Cyber Towers View, Hitec City, Hyderabad - 500081",
+        "city": "Hyderabad",
+        "pincode": "500081"
+      },
+      "deliveryOption": "Standard Delivery (30-40 mins)",
+      "paymentMethod": "PHONEPE_UPI",
+      "paymentStatus": "PAID",
+      "status": "PLACED",
+      "prepTimeMinutes": 25,
+      "etaMinutes": 30,
+      "createdAt": "2026-10-13T07:34:23.438Z",
+      "updatedAt": "2026-10-13T07:34:24.934Z"
+    },
     {
       "id": "ord_1791651531297",
       "orderNumber": "HCF-9510",
@@ -1925,6 +2026,15 @@
   ],
   "notifications": [
     {
+      "id": "notif_1791876864936",
+      "userId": "cook_reema",
+      "title": "New Paid Order Received!",
+      "message": "Order #HCF-5802 placed worth ₹130 (PAID).",
+      "type": "ORDER",
+      "isRead": false,
+      "createdAt": "2026-10-13T07:34:24.936Z"
+    },
+    {
       "id": "notif_1791651558445",
       "userId": "usr_customer_demo",
       "title": "Order Status: ACCEPTED",
@@ -2250,6 +2360,21 @@
     }
   ],
   "payments": [
+    {
+      "id": "pay_ppe_1791876863455",
+      "orderId": "ord_1791876863438",
+      "customerId": "usr_1791650733838",
+      "gateway": "PHONEPE",
+      "gatewayOrderId": "ppe_tx_1791876863455_131",
+      "amount": 130,
+      "currency": "INR",
+      "status": "SUCCESS",
+      "paymentMethod": "PHONEPE_UPI",
+      "createdAt": "2026-10-13T07:34:23.455Z",
+      "gatewayPaymentId": "pay_ppe_1791876864882",
+      "gatewaySignature": "c85b5b9d2a33b5ed930913abc846cc3bb6f395dfb91d649d866fe82f0f92957c",
+      "updatedAt": "2026-10-13T07:34:24.932Z"
+    },
     {
       "id": "pay_ppe_1791651531352",
       "orderId": "ord_1791651531297",

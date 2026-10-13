@@ -36,7 +36,7 @@ export const Sidebar: React.FC = () => {
   ];
 
   const cookLinks = [
-    { to: '/cook-dashboard', label: 'Cook Hub', icon: LayoutDashboard },
+    { to: '/cook-dashboard', label: 'My Kitchen', icon: Utensils },
     { to: '/cook-orders', label: 'Incoming Orders', icon: ShoppingBag },
     { to: '/cook-menu', label: 'Manage Menu', icon: Utensils },
     { to: '/cook/availability', label: 'Working Calendar', icon: Calendar },
@@ -73,7 +73,7 @@ export const Sidebar: React.FC = () => {
       {/* NAVIGATION SECTION */}
       <div className="space-y-1">
         <p className="px-3 py-1.5 text-[10px] font-bold text-[#075C45]/60 uppercase tracking-wider">
-          {role} Dashboard
+          {role === 'COOK' ? 'My Kitchen' : role === 'ADMIN' ? 'Admin Portal' : 'Customer Hub'}
         </p>
         {links.map((item) => {
           const Icon = item.icon;

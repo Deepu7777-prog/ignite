@@ -64,19 +64,31 @@ export const Navbar: React.FC = () => {
             </div>
           </Link>
 
-          {/* LOCATION SELECTOR */}
-          <div className="relative hidden md:block">
+          {/* LOCATION SELECTOR (RESPONSIVE DESKTOP + MOBILE) */}
+          <div className="relative">
+            {/* Desktop Location Button */}
             <button
               onClick={() => setIsLocationOpen(!isLocationOpen)}
-              className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F8F4E8] hover:bg-[#F1F8F1] border border-[#DDEEDF] text-[#123F35] text-xs font-bold transition-all duration-200 shadow-2xs"
+              className="hidden md:flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F8F4E8] hover:bg-[#F1F8F1] border border-[#DDEEDF] text-[#123F35] text-xs font-bold transition-all duration-200 shadow-2xs"
             >
               <MapPin className="w-4 h-4 text-[#079669] shrink-0" />
               <span className="max-w-[150px] truncate">{location}</span>
               <ChevronDown className="w-3.5 h-3.5 text-[#075C45]/70" />
             </button>
 
+            {/* Mobile Compact Location Button */}
+            <button
+              onClick={() => setIsLocationOpen(!isLocationOpen)}
+              className="md:hidden flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#F8F4E8] hover:bg-[#F1F8F1] border border-[#DDEEDF] text-[#123F35] text-[11px] font-bold transition-all shadow-2xs max-w-[110px] sm:max-w-[140px] shrink-0"
+              title="Change Delivery Locality"
+            >
+              <MapPin className="w-3 h-3 text-[#079669] shrink-0" />
+              <span className="truncate">{location.split(',')[0]}</span>
+              <ChevronDown className="w-3 h-3 text-[#075C45]/70 shrink-0" />
+            </button>
+
             {isLocationOpen && (
-              <div className="absolute top-full left-0 mt-2 w-64 bg-[#FFFDF7] rounded-3xl shadow-garden-lg border border-[#DDEEDF] p-2.5 z-50 animate-in fade-in slide-in-from-top-2">
+              <div className="absolute top-full left-0 sm:left-auto sm:right-0 mt-2 w-64 max-w-[calc(100vw-2rem)] bg-[#FFFDF7] rounded-3xl shadow-garden-lg border border-[#DDEEDF] p-2.5 z-50 animate-in fade-in slide-in-from-top-2">
                 <div className="p-2 border-b border-[#DDEEDF]/60 space-y-1">
                   <button
                     onClick={() => {
@@ -199,7 +211,7 @@ export const Navbar: React.FC = () => {
                     routeLocation.pathname === '/cook-dashboard' ? 'text-[#075C45] bg-[#F1F8F1] border border-[#DDEEDF]' : 'hover:bg-[#F8F4E8] hover:text-[#075C45]'
                   }`}
                 >
-                  Cook Hub
+                  My Kitchen
                 </Link>
                 <Link
                   to="/cook-orders"
@@ -497,7 +509,7 @@ export const Navbar: React.FC = () => {
                       onClick={() => setIsMobileMenuOpen(false)}
                       className="p-2.5 rounded-xl bg-[#F8F4E8] border border-[#DDEEDF]/70 text-[#123F35] hover:bg-[#F1F8F1] text-center"
                     >
-                      Cook Hub
+                      My Kitchen
                     </Link>
                     <Link
                       to="/cook-orders"

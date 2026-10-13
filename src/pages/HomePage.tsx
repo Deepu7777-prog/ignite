@@ -25,48 +25,6 @@ import {
   ChefHat
 } from 'lucide-react';
 
-const FEATURED_PREVIEW_COOKS = [
-  {
-    id: 'cook_1',
-    kitchenName: "Priya's Home Kitchen",
-    ownerName: 'Lakshmi Priya',
-    dishName: 'Authentic Andhra Special Thali & Pulihora',
-    location: 'Madhapur, Hyderabad',
-    distance: '1.4 km',
-    price: 140,
-    rating: 4.9,
-    reviews: 128,
-    tags: ['Andhra', 'Pure Desi Ghee', '100% Home Cooked'],
-    photo: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=700&q=80',
-  },
-  {
-    id: 'cook_2',
-    kitchenName: "Amma's Spice Rasoi",
-    ownerName: 'Sujatha Reddy',
-    dishName: 'Telangana Handi Chicken & Bagara Rice',
-    location: 'Kondapur, Hyderabad',
-    distance: '2.1 km',
-    price: 220,
-    rating: 4.8,
-    reviews: 96,
-    tags: ['Telangana', 'Freshly Ground Masala', 'Zero Preservatives'],
-    photo: 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=700&q=80',
-  },
-  {
-    id: 'cook_3',
-    kitchenName: "Annapurna Pure Veg Home",
-    ownerName: 'Meenakshi Iyer',
-    dishName: 'Stone-Ground Ghee Roast Dosa & Filter Tiffins',
-    location: 'Banjara Hills, Hyderabad',
-    distance: '2.8 km',
-    price: 110,
-    rating: 4.9,
-    reviews: 154,
-    tags: ['Pure Veg', 'Morning & Evening Tiffins', 'Separate Utensils'],
-    photo: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=700&q=80',
-  },
-];
-
 export const HomePage: React.FC = () => {
   const [kitchenCount, setKitchenCount] = useState<number>(10);
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -164,22 +122,19 @@ export const HomePage: React.FC = () => {
             {/* LEFT HERO TEXT */}
             <div className="lg:col-span-7 text-center lg:text-left space-y-5 sm:space-y-6">
               {/* KITCHEN COUNT & APNA RUCHI BOTANICAL BADGE */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#FFFDF7]/95 backdrop-blur border border-[#DDEEDF] shadow-garden text-xs font-bold text-[#123F35] max-w-full truncate">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFFDF7]/95 backdrop-blur border border-[#DDEEDF] shadow-garden text-xs font-bold text-[#123F35] max-w-full">
                 <span className="relative flex h-2 w-2 shrink-0">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#079669] opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#079669]" />
                 </span>
                 <span className="text-[#075C45] font-extrabold flex items-center gap-1 shrink-0">
                   <Leaf className="w-3.5 h-3.5 text-[#079669]" />
-                  APNA RUCHI • 100% Homemade
+                  APNA RUCHI
                 </span>
-                <span className="text-[#DDEEDF] shrink-0">•</span>
-                <span className="truncate">{kitchenCount}+ Verified Kitchens</span>
-                <span className="text-[#DDEEDF] shrink-0">•</span>
-                <span className="text-[#079669] font-extrabold flex items-center gap-1 shrink-0">
-                  <MapPin className="w-3 h-3 text-[#079669]" />
-                  {location.split(',')[0]}
-                </span>
+                <span className="text-[#075C45]/40 shrink-0">•</span>
+                <span className="text-xs font-semibold text-[#123F35]/80">100% Homemade Food</span>
+                <span className="hidden sm:inline text-[#075C45]/40 shrink-0">•</span>
+                <span className="hidden sm:inline font-bold text-[#079669]">{location.split(',')[0]}</span>
               </div>
 
               {/* DECORATIVE HANDWRITTEN QUOTE — HERO */}
@@ -192,7 +147,7 @@ export const HomePage: React.FC = () => {
 
               {/* MAIN TITLE & SUPPORT */}
               <div className="relative inline-block">
-                <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#123F35] tracking-tight leading-[1.12] sm:leading-[1.08]">
+                <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#123F35] tracking-tight leading-[1.15] sm:leading-[1.08]">
                   Find Real Home Food <br />
                   <span className="bg-gradient-to-r from-[#075C45] via-[#079669] to-[#075C45] bg-clip-text text-transparent">
                     with APNA RUCHI
@@ -326,7 +281,7 @@ export const HomePage: React.FC = () => {
               </div>
 
               {/* KEY TRUST BULLETS */}
-              <div className="flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-2 text-xs font-bold text-[#075C45] pt-2">
+              <div className="flex flex-wrap justify-center lg:justify-start gap-x-5 gap-y-2 text-xs font-bold text-[#075C45] pt-2">
                 <span className="flex items-center gap-1.5">
                   <Clock className="w-4 h-4 text-[#079669] shrink-0" />
                   Cooked fresh after order
@@ -342,176 +297,81 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* RIGHT HERO PHONE / MOCK CARD DISPLAY */}
+            {/* RIGHT HERO ARTISTIC HOMEMADE FOOD CENTERPIECE (NO DASHBOARD OR COOK CARDS) */}
             <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-full max-w-sm">
-                <div className="bg-[#075C45] rounded-[2.5rem] p-3 shadow-garden-lg ring-1 ring-[#DDEEDF]">
-                  <div className="bg-[#FFFDF7] rounded-[2rem] overflow-hidden p-4 space-y-3 border border-[#DDEEDF]">
-                    {/* PHONE HEADER */}
-                    <div className="flex items-center justify-between border-b border-[#DDEEDF] pb-3">
-                      <div className="flex items-center gap-2">
-                        <div className="w-7 h-7 rounded-lg bg-[#079669] text-[#FFFDF7] flex items-center justify-center font-black text-xs">
-                          AR
-                        </div>
-                        <div>
-                          <p className="text-[10px] font-bold text-[#075C45]/70 uppercase">Live in {location.split(',')[0]}</p>
-                          <p className="text-xs font-extrabold text-[#123F35]">Cooking Near You Today</p>
-                        </div>
-                      </div>
-                      <span className="text-[10px] font-extrabold bg-[#F1F8F1] text-[#075C45] border border-[#DDEEDF] px-2.5 py-0.5 rounded-full">
-                        {kitchenCount} Kitchens
+              <div className="relative w-full max-w-md">
+                {/* Organic botanical backplate */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#075C45]/20 via-[#079669]/15 to-[#E8D99A]/30 rounded-[3rem] blur-2xl -rotate-2 transform scale-105 pointer-events-none" />
+
+                <div className="relative bg-[#FFFDF7] rounded-[2.5rem] p-4 sm:p-5 border-2 border-[#DDEEDF] shadow-garden-lg overflow-hidden space-y-4">
+                  {/* HERO MAIN FOOD SHOWCASE IMAGE */}
+                  <div className="relative h-64 sm:h-72 w-full rounded-[2rem] overflow-hidden bg-[#F1F8F1]">
+                    <img
+                      src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=800&q=80"
+                      alt="Traditional Telugu Homemade Thali"
+                      className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#075C45]/85 via-[#123F35]/25 to-transparent" />
+
+                    {/* TOP FLOATING BADGES */}
+                    <div className="absolute top-3.5 left-3.5 flex items-center gap-2">
+                      <span className="px-3 py-1 rounded-full bg-[#079669] text-[#FFFDF7] text-[10px] font-extrabold uppercase tracking-wider flex items-center gap-1.5 shadow-sm border border-[#CDEEDC]/40">
+                        <Leaf className="w-3 h-3 text-[#CDEEDC]" />
+                        100% Homemade
                       </span>
                     </div>
 
-                    {/* SAMPLE KITCHEN CARD 1 */}
-                    <div className="bg-[#F8F4E8]/70 rounded-2xl p-3 border border-[#DDEEDF] space-y-2">
-                      <div className="relative h-28 rounded-xl overflow-hidden">
-                        <img
-                          src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=500&q=80"
-                          alt="Andhra Thali"
-                          className="w-full h-full object-cover"
-                        />
-                        <span className="absolute top-2 left-2 text-[10px] font-extrabold bg-[#079669] text-[#FFFDF7] px-2.5 py-0.5 rounded-full shadow-xs">
-                          VERIFIED
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <h4 className="font-extrabold text-xs text-[#123F35]">Priya's Home Kitchen</h4>
-                          <p className="text-[10px] text-[#123F35]/70">Andhra Special Thali • Madhapur</p>
-                        </div>
-                        <span className="text-xs font-extrabold text-[#079669]">₹140</span>
-                      </div>
+                    <div className="absolute top-3.5 right-3.5">
+                      <span className="px-2.5 py-1 rounded-full bg-[#FFFDF7]/95 backdrop-blur text-[#075C45] text-xs font-black flex items-center gap-1 border border-[#DDEEDF]">
+                        <Star className="w-3.5 h-3.5 text-[#D4A838] fill-[#D4A838]" />
+                        4.9 Rating
+                      </span>
                     </div>
 
-                    {/* SAMPLE KITCHEN CARD 2 */}
-                    <div className="bg-[#F8F4E8]/70 rounded-2xl p-3 border border-[#DDEEDF] space-y-2">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <h4 className="font-extrabold text-xs text-[#123F35]">Amma's Kitchen</h4>
-                          <p className="text-[10px] text-[#123F35]/70">Chicken Dum Biryani • Kondapur</p>
-                        </div>
-                        <span className="text-xs font-extrabold text-[#079669]">₹220</span>
-                      </div>
-                      <div className="inline-block text-[10px] font-bold text-[#075C45] bg-[#F1F8F1] border border-[#DDEEDF] px-2 py-0.5 rounded-md">
-                        Ready by 1:15 PM • Freshly Prepared
-                      </div>
+                    {/* BOTTOM OVERLAY WITH AUTHENTIC FOOD PHILOSOPHY */}
+                    <div className="absolute bottom-4 left-4 right-4 text-[#FFFDF7] space-y-1">
+                      <p className="font-handwriting text-2xl text-[#CDEEDC] leading-none">
+                        “Cooked with love. Served with warmth.”
+                      </p>
+                      <h3 className="font-display font-extrabold text-base sm:text-lg leading-tight">
+                        Authentic Regional Flavors
+                      </h3>
+                      <p className="text-[11px] text-[#F8F4E8]/85 font-medium">
+                        Pure Desi Ghee • Stone-ground Spices • Fresh to Order
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* THREE VALUE PILLARS STRIP */}
+                  <div className="grid grid-cols-3 gap-2 pt-1 text-center">
+                    <div className="p-2.5 rounded-2xl bg-[#F8F4E8] border border-[#DDEEDF]/80 space-y-1">
+                      <span className="text-base block">🍲</span>
+                      <p className="text-[10px] font-extrabold text-[#075C45]">Zero Preservatives</p>
+                    </div>
+                    <div className="p-2.5 rounded-2xl bg-[#F1F8F1] border border-[#DDEEDF]/80 space-y-1">
+                      <span className="text-base block">🌿</span>
+                      <p className="text-[10px] font-extrabold text-[#075C45]">Fresh Ingredients</p>
+                    </div>
+                    <div className="p-2.5 rounded-2xl bg-[#F8F4E8] border border-[#DDEEDF]/80 space-y-1">
+                      <span className="text-base block">👩‍🍳</span>
+                      <p className="text-[10px] font-extrabold text-[#075C45]">Local Mothers</p>
                     </div>
                   </div>
                 </div>
 
-                {/* FLOATING VERIFIED BADGE */}
-                <div className="absolute -bottom-3 left-2 sm:-left-4 sm:-bottom-4 bg-[#FFFDF7] rounded-2xl shadow-garden-lg p-3 sm:p-3.5 border border-[#DDEEDF] flex items-center gap-2.5 sm:gap-3 max-w-[calc(100%-1rem)]">
-                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-[#F1F8F1] border border-[#CDEEDC] text-[#075C45] flex items-center justify-center shrink-0">
-                    <BadgeCheck className="w-4 h-4 sm:w-5 sm:h-5 text-[#079669]" />
+                {/* FLOATING VERIFIED SHIELD BADGE */}
+                <div className="absolute -bottom-3 left-2 sm:-bottom-4 sm:-left-5 bg-[#FFFDF7] rounded-2xl shadow-garden-lg p-2.5 sm:p-3.5 border border-[#DDEEDF] flex items-center gap-2 sm:gap-2.5 max-w-[90%]">
+                  <div className="w-9 h-9 rounded-xl bg-[#F1F8F1] border border-[#CDEEDC] text-[#075C45] flex items-center justify-center shrink-0">
+                    <BadgeCheck className="w-5 h-5 text-[#079669]" />
                   </div>
-                  <div className="min-w-0">
-                    <p className="text-[10px] uppercase font-bold text-[#075C45]/70">Verified Today</p>
-                    <p className="text-xs font-extrabold text-[#123F35] truncate">100% Home Kitchens</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* =====================================================================
-          2. FEATURED HOME COOKS SECTION — WARM IVORY CARDS & HANDWRITTEN QUOTE
-      ===================================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-        <div className="text-center max-w-2xl mx-auto space-y-2 mb-8 sm:mb-10">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#F1F8F1] border border-[#DDEEDF] text-[#075C45] text-[11px] font-extrabold uppercase tracking-wider">
-            <Leaf className="w-3.5 h-3.5 text-[#079669]" />
-            Neighbourhood Home Kitchens
-          </div>
-          <h2 className="font-display text-2xl sm:text-4xl font-extrabold text-[#123F35] tracking-tight">
-            Featured Home Cooks on APNA RUCHI
-          </h2>
-          {/* DECORATIVE HANDWRITTEN QUOTE */}
-          <p className="font-handwriting text-2xl sm:text-3xl text-[#075C45] pt-1">
-            “Cooked with love. Served with warmth.”
-          </p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {FEATURED_PREVIEW_COOKS.map((cook) => (
-            <div
-              key={cook.id}
-              onClick={() => {
-                if (!user) {
-                  openAuthModal('LOGIN');
-                } else {
-                  navigate(`/cook/${cook.id}`);
-                }
-              }}
-              className="group bg-[#FFFDF7] rounded-[22px] border border-[#DDEEDF] shadow-garden hover:shadow-garden-lg hover:border-[#079669]/40 transition-all duration-300 overflow-hidden flex flex-col justify-between hover:-translate-y-1 cursor-pointer relative"
-            >
-              <div>
-                <div className="relative h-52 w-full overflow-hidden bg-[#F1F8F1]">
-                  <img
-                    src={cook.photo}
-                    alt={cook.kitchenName}
-                    className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#075C45]/75 via-transparent to-transparent" />
-
-                  {/* GREEN VERIFIED BADGE */}
-                  <div className="absolute top-3.5 left-3.5 bg-[#079669] text-[#FFFDF7] px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider flex items-center gap-1.5 shadow-sm border border-[#CDEEDC]/40">
-                    <BadgeCheck className="w-3.5 h-3.5 text-[#CDEEDC]" />
-                    VERIFIED
-                  </div>
-
-                  {/* RATING PILL */}
-                  <div className="absolute top-3.5 right-3.5 bg-[#FFFDF7]/95 backdrop-blur px-2.5 py-1 rounded-xl text-xs font-extrabold text-[#075C45] flex items-center gap-1 border border-[#DDEEDF]">
-                    <Star className="w-3.5 h-3.5 text-[#D4A838] fill-[#D4A838]" />
-                    <span>{cook.rating}</span>
-                    <span className="text-[10px] text-[#123F35]/60">({cook.reviews})</span>
-                  </div>
-
-                  {/* LOCATION & PRICE OVERLAY */}
-                  <div className="absolute bottom-3 left-3.5 right-3.5 flex items-center justify-between text-[#FFFDF7] text-xs font-bold">
-                    <span className="flex items-center gap-1 bg-[#123F35]/80 backdrop-blur px-2.5 py-1 rounded-xl border border-[#CDEEDC]/20">
-                      <MapPin className="w-3.5 h-3.5 text-[#CDEEDC]" />
-                      {cook.location} • {cook.distance}
-                    </span>
-                    <span className="bg-[#075C45]/95 backdrop-blur px-3 py-1 rounded-xl font-extrabold text-[#FFFDF7] border border-[#CDEEDC]/30">
-                      From ₹{cook.price}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="p-5 space-y-3">
                   <div>
-                    <h3 className="font-display font-extrabold text-lg text-[#123F35] group-hover:text-[#079669] transition-colors">
-                      {cook.kitchenName}
-                    </h3>
-                    <p className="text-xs text-[#075C45]/80 font-semibold">
-                      By {cook.ownerName} • Signature: {cook.dishName}
-                    </p>
+                    <p className="text-[9px] uppercase font-bold text-[#075C45]/70">Audited Kitchens</p>
+                    <p className="text-xs font-extrabold text-[#123F35]">Live Video Verified</p>
                   </div>
-
-                  <div className="flex flex-wrap gap-1.5">
-                    {cook.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#F1F8F1] border border-[#DDEEDF] text-[#075C45]"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="px-5 pb-5 pt-0">
-                <div className="w-full py-2.5 px-4 rounded-2xl bg-[#F8F4E8] group-hover:bg-[#079669] text-[#075C45] group-hover:text-[#FFFDF7] border border-[#DDEEDF] group-hover:border-[#079669] font-extrabold text-xs flex items-center justify-center gap-2 transition-all">
-                  <Utensils className="w-3.5 h-3.5" />
-                  {user ? 'View Kitchen & Menu' : 'Sign In to View Menu'}
                 </div>
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </section>
 

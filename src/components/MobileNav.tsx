@@ -31,7 +31,7 @@ export const MobileNav: React.FC = () => {
   ];
 
   const cookTabs = [
-    { to: '/cook-dashboard', label: 'Hub', icon: Home },
+    { to: '/cook-dashboard', label: 'Kitchen', icon: Home },
     { to: '/cook-orders', label: 'Orders', icon: ShoppingBag },
     { to: '/cook-menu', label: 'Menu', icon: Utensils },
     { to: '/cook/availability', label: 'Calendar', icon: Calendar },

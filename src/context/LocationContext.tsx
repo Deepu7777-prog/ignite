@@ -107,8 +107,9 @@ export const LocationProvider: React.FC<{ children: React.ReactNode }> = ({ chil
               console.warn("Reverse geocoding failed online:", err);
             }
 
-            // Real coordinate fallback without hardcoding any location
-            const fallbackLoc = `GPS (${latitude.toFixed(3)}, ${longitude.toFixed(3)})`;
+            // Friendly closest neighbourhood fallback in Hyderabad
+            const closest = findClosestLocality(latitude, longitude);
+            const fallbackLoc = closest?.name || "Madhapur, Hyderabad";
             setLocationState(fallbackLoc);
             localStorage.setItem('hcf_user_location', fallbackLoc);
             setIsDetecting(false);

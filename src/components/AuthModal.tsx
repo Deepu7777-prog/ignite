@@ -107,21 +107,22 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
     setMode('GOOGLE_ACCOUNT_SELECT');
   };
 
-  const handleGoogleAccountLogin = async (selectedEmail?: string, selectedName?: string) => {
+  const handleGoogleAccountLogin = async (selectedEmail?: string, selectedName?: string, selectedAvatar?: string) => {
     setIsLoading(true);
     setErrorMsg(null);
-    const finalEmail = (selectedEmail || customGoogleEmail || email || 'deepu.customer@gmail.com').trim();
+    const finalEmail = (selectedEmail || customGoogleEmail || email || 'deepu7777@gmail.com').trim();
     const finalName = (selectedName || customGoogleName || name || (finalEmail.split('@')[0]) || 'Deepu').trim();
+    const finalAvatar = selectedAvatar || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80";
 
     try {
-      // 1. Try server register/login
+      // 1. Synchronize or create user on server
       let apiRes = await api.login({ email: finalEmail, role }).catch(() => null);
       if (!apiRes || !apiRes.success) {
         apiRes = await api.register({
           email: finalEmail,
           name: finalName,
           role: role,
-          phone: phone || ''
+          phone: phone || '8464826785'
         }).catch(() => null);
       }
 
@@ -129,28 +130,34 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
         id: apiRes?.user?.id || `usr_google_${Date.now()}`,
         email: finalEmail,
         name: finalName,
-        phone: phone || '',
+        phone: phone || '8464826785',
         role: role,
-        avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80"
+        avatar: finalAvatar
       };
 
+      // 2. Persist in AuthContext & storage
       loginWithUser(userObj);
+      localStorage.setItem('hcf_last_google_email', finalEmail);
+      localStorage.setItem('hcf_last_google_name', finalName);
+
       setSuccessMsg(`Signed in with Google as ${finalName}! Redirecting...`);
       setTimeout(() => {
         onClose();
         redirectUserByRole(role);
       }, 400);
     } catch (err: any) {
-      console.error("Google sign in failure:", err);
+      console.warn("Fallback local Google auth:", err);
       const userObj: User = {
         id: `usr_google_${Date.now()}`,
         email: finalEmail,
         name: finalName,
         phone: phone || '',
         role: role,
-        avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80"
+        avatar: finalAvatar
       };
       loginWithUser(userObj);
+      localStorage.setItem('hcf_last_google_email', finalEmail);
+      localStorage.setItem('hcf_last_google_name', finalName);
       setSuccessMsg(`Signed in with Google as ${finalName}! Redirecting...`);
       setTimeout(() => {
         onClose();
@@ -706,7 +713,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
                   d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
                 />
               </svg>
-              <span>Sign up with Google</span>
+              <span>Continue with Google</span>
             </button>
 
             <div className="relative flex items-center justify-center my-1">
@@ -951,108 +958,168 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
           </form>
         )}
 
-        {/* 6. GOOGLE ACCOUNT CHOOSER SCREEN */}
-        {mode === 'GOOGLE_ACCOUNT_SELECT' && (
-          <div className="space-y-4 text-xs py-1">
-            <div className="text-center space-y-1">
-              <div className="w-10 h-10 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-center justify-center mx-auto">
-                <svg className="w-5 h-5" viewBox="0 0 24 24">
-                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
-                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
-                </svg>
+        {/* 6. GOOGLE ACCOUNT CHOOSER SCREEN (PRO VERSION) */}
+        {mode === 'GOOGLE_ACCOUNT_SELECT' && (() => {
+          const storedEmail = localStorage.getItem('hcf_last_google_email');
+          const storedName = localStorage.getItem('hcf_last_google_name');
+
+          const knownAccounts = [
+            {
+              name: storedName || 'Deepu',
+              email: storedEmail || 'deepu7777@gmail.com',
+              avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80',
+              badge: 'Signed In • Active',
+              isDefault: true,
+            },
+            {
+              name: 'Deepu (Work)',
+              email: 'deepu.official@gmail.com',
+              avatar: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=200&q=80',
+              badge: 'Work / Partner',
+              isDefault: false,
+            },
+          ];
+
+          return (
+            <div className="space-y-4 text-xs py-1">
+              <div className="text-center space-y-1.5">
+                <div className="w-11 h-11 rounded-2xl bg-white border border-slate-200 shadow-xs flex items-center justify-center mx-auto">
+                  <svg className="w-5 h-5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-extrabold text-sm text-[#123924]">Choose a Google Account</h4>
+                  <p className="text-[11px] text-slate-500">to continue to <strong className="text-emerald-800">APNA RUCHI</strong></p>
+                </div>
+
+                {/* ROLE CHOOSER PILL */}
+                <div className="flex items-center justify-center gap-1.5 pt-1">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase">Role:</span>
+                  {(['CUSTOMER', 'COOK', 'ADMIN'] as UserRole[]).map((r) => (
+                    <button
+                      key={r}
+                      type="button"
+                      onClick={() => setRole(r)}
+                      className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase transition-all ${
+                        role === r
+                          ? 'bg-emerald-700 text-white shadow-xs'
+                          : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                      }`}
+                    >
+                      {r === 'COOK' ? 'Cook / Kitchen' : r}
+                    </button>
+                  ))}
+                </div>
               </div>
-              <p className="font-extrabold text-sm text-[#123924]">Choose a Google Account</p>
-              <p className="text-[11px] text-slate-500">to continue to APNA RUCHI as <span className="font-bold text-emerald-700">{role}</span></p>
-            </div>
 
-            <div className="space-y-2">
-              {/* PRIMARY GOOGLE ACCOUNT BUTTON */}
-              <button
-                type="button"
-                onClick={() => handleGoogleAccountLogin(email || 'deepu.customer@gmail.com', name || 'Deepu')}
-                disabled={isLoading}
-                className="w-full flex items-center gap-3 p-3 rounded-2xl border border-[#ebdcc7] hover:border-emerald-400 bg-white hover:bg-emerald-50/40 transition-all text-left shadow-2xs group cursor-pointer"
-              >
-                <div className="w-10 h-10 rounded-full bg-emerald-700 text-white font-black flex items-center justify-center text-sm shadow-xs shrink-0">
-                  {((name || 'Deepu')[0]).toUpperCase()}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-1.5">
-                    <p className="font-extrabold text-slate-900 text-xs truncate">{name || 'Deepu'}</p>
-                    <span className="text-[9px] font-black px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 uppercase">
-                      {role}
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-slate-500 truncate font-medium">
-                    {email || 'deepu.customer@gmail.com'}
-                  </p>
-                </div>
-                <div className="w-5 h-5 rounded-full border border-slate-200 group-hover:border-emerald-600 group-hover:bg-emerald-600 text-white flex items-center justify-center transition-colors">
-                  <CheckCircle2 className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-              </button>
+              {/* LIST OF ACCOUNTS */}
+              <div className="space-y-2">
+                {knownAccounts.map((acc, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() => handleGoogleAccountLogin(acc.email, acc.name, acc.avatar)}
+                    disabled={isLoading}
+                    className="w-full flex items-center gap-3 p-3 rounded-2xl border border-[#ebdcc7] hover:border-emerald-500 bg-white hover:bg-emerald-50/50 transition-all text-left shadow-2xs group cursor-pointer"
+                  >
+                    <img
+                      src={acc.avatar}
+                      alt={acc.name}
+                      className="w-10 h-10 rounded-full object-cover ring-2 ring-emerald-600/30 shrink-0"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <p className="font-extrabold text-slate-900 text-xs truncate">{acc.name}</p>
+                        <span className="text-[9px] font-black px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 uppercase shrink-0">
+                          {acc.badge}
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-slate-500 truncate font-medium">
+                        {acc.email}
+                      </p>
+                    </div>
+                    <div className="w-6 h-6 rounded-full border border-slate-200 group-hover:border-emerald-600 group-hover:bg-emerald-600 text-white flex items-center justify-center transition-colors shrink-0">
+                      <CheckCircle2 className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                  </button>
+                ))}
 
-              {/* SECONDARY / USE ANOTHER ACCOUNT OPTION */}
-              {!showCustomGoogleInput ? (
-                <button
-                  type="button"
-                  onClick={() => setShowCustomGoogleInput(true)}
-                  className="w-full flex items-center gap-3 p-3 rounded-2xl border border-dashed border-[#ebdcc7] hover:border-emerald-300 hover:bg-[#fbf8f1] transition-all text-left text-slate-600 font-bold text-xs cursor-pointer"
-                >
-                  <div className="w-10 h-10 rounded-full bg-[#f5eee2] text-slate-600 flex items-center justify-center shrink-0">
-                    <UserIcon className="w-4 h-4" />
-                  </div>
-                  <span>Use another Google account</span>
-                </button>
-              ) : (
-                <div className="p-3 bg-[#fbf8f1] border border-[#ebdcc7] rounded-2xl space-y-2">
-                  <div>
-                    <label className="block text-[11px] font-bold text-slate-700 mb-1">Your Google Name</label>
-                    <input
-                      type="text"
-                      value={customGoogleName}
-                      onChange={(e) => setCustomGoogleName(e.target.value)}
-                      placeholder="e.g. Deepu"
-                      className="w-full px-3 py-2 bg-white border border-[#ebdcc7] rounded-xl text-xs font-medium text-slate-900 outline-none"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-[11px] font-bold text-slate-700 mb-1">Your Google Email</label>
-                    <input
-                      type="email"
-                      value={customGoogleEmail}
-                      onChange={(e) => setCustomGoogleEmail(e.target.value)}
-                      placeholder="e.g. deepu@gmail.com"
-                      className="w-full px-3 py-2 bg-white border border-[#ebdcc7] rounded-xl text-xs font-medium text-slate-900 outline-none"
-                    />
-                  </div>
+                {/* SECONDARY: USE ANOTHER ACCOUNT */}
+                {!showCustomGoogleInput ? (
                   <button
                     type="button"
-                    onClick={() => handleGoogleAccountLogin(customGoogleEmail, customGoogleName)}
-                    disabled={isLoading || !customGoogleEmail.trim()}
-                    className="w-full py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold text-xs shadow-xs transition-all disabled:opacity-50 cursor-pointer"
+                    onClick={() => setShowCustomGoogleInput(true)}
+                    className="w-full flex items-center gap-3 p-3 rounded-2xl border border-dashed border-[#ebdcc7] hover:border-emerald-400 hover:bg-[#fbf8f1] transition-all text-left text-slate-600 font-bold text-xs cursor-pointer"
                   >
-                    {isLoading ? 'Authenticating...' : 'Sign In with This Account'}
+                    <div className="w-10 h-10 rounded-full bg-[#f5eee2] text-slate-600 flex items-center justify-center shrink-0">
+                      <UserIcon className="w-4 h-4" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-xs font-bold text-slate-800">Use another Google account</p>
+                      <p className="text-[10px] text-slate-400">Sign in with a different email address</p>
+                    </div>
                   </button>
-                </div>
-              )}
+                ) : (
+                  <div className="p-3 bg-[#fbf8f1] border border-[#ebdcc7] rounded-2xl space-y-2.5 animate-in fade-in">
+                    <div>
+                      <label className="block text-[11px] font-bold text-slate-700 mb-1">Your Google Name</label>
+                      <input
+                        type="text"
+                        value={customGoogleName}
+                        onChange={(e) => setCustomGoogleName(e.target.value)}
+                        placeholder="Enter full name"
+                        className="w-full px-3 py-2 bg-white border border-[#ebdcc7] rounded-xl text-xs font-medium text-slate-900 outline-none focus:ring-2 focus:ring-emerald-500/20"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] font-bold text-slate-700 mb-1">Your Google Email *</label>
+                      <input
+                        type="email"
+                        value={customGoogleEmail}
+                        onChange={(e) => setCustomGoogleEmail(e.target.value)}
+                        placeholder="e.g. name@gmail.com"
+                        className="w-full px-3 py-2 bg-white border border-[#ebdcc7] rounded-xl text-xs font-medium text-slate-900 outline-none focus:ring-2 focus:ring-emerald-500/20"
+                      />
+                    </div>
+                    <div className="flex gap-2">
+                      <button
+                        type="button"
+                        onClick={() => handleGoogleAccountLogin(customGoogleEmail, customGoogleName)}
+                        disabled={isLoading || !customGoogleEmail.trim()}
+                        className="flex-1 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold text-xs shadow-xs transition-all disabled:opacity-50 cursor-pointer"
+                      >
+                        {isLoading ? 'Signing In...' : 'Continue with This Account'}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setShowCustomGoogleInput(false)}
+                        className="px-3 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <p className="text-[10px] text-slate-400 text-center leading-normal px-2">
+                To continue, Google will share your name, email address, and profile picture with APNA RUCHI safely.
+              </p>
+
+              <button
+                type="button"
+                onClick={() => setMode('LOGIN')}
+                className="w-full py-2 text-center text-xs font-bold text-slate-500 hover:text-slate-800 transition-colors cursor-pointer"
+              >
+                Cancel and back to sign in
+              </button>
             </div>
-
-            <p className="text-[10px] text-slate-400 text-center leading-normal px-2">
-              To continue, Google will verify your identity with APNA RUCHI and redirect you safely.
-            </p>
-
-            <button
-              type="button"
-              onClick={() => setMode('LOGIN')}
-              className="w-full py-2 text-center text-xs font-bold text-slate-500 hover:text-slate-800 transition-colors cursor-pointer"
-            >
-              Cancel and back to sign in
-            </button>
-          </div>
-        )}
+          );
+        })()}
 
         {/* VERY BOTTOM DEMO SHORTCUT SECTION (STRICT REQUIREMENT #3 & #23) */}
         <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px]">

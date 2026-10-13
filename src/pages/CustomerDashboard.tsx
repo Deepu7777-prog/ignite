@@ -63,27 +63,33 @@ export const CustomerDashboard: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8 w-full max-w-full overflow-x-hidden">
-      {/* WELCOME BANNER (GREEN + WHITE DASHBOARD STYLE) */}
-      <div className="bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-800 text-white rounded-3xl p-6 sm:p-8 shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div className="space-y-2">
-          <span className="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider text-amber-200 bg-emerald-950/40 px-3 py-1 rounded-full border border-emerald-500/30">
-            <Sparkles className="w-3.5 h-3.5 text-amber-300" /> APNA RUCHI • Customer Hub
+      {/* WELCOME BANNER — FRESH GARDEN HOMEMADE CUSTOMER HUB */}
+      <div className="relative overflow-hidden bg-gradient-to-r from-[#075C45] via-[#077A58] to-[#079669] text-[#FFFDF7] rounded-[28px] sm:rounded-3xl p-6 sm:p-8 shadow-garden-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 border border-[#CDEEDC]/30">
+        {/* Soft Botanical Glow */}
+        <div className="absolute -top-10 -right-10 w-60 h-60 bg-[#CDEEDC]/20 rounded-full blur-2xl pointer-events-none" />
+
+        <div className="space-y-2 relative z-10">
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-wider text-[#E8D99A] bg-[#FFFDF7]/15 backdrop-blur px-3 py-1 rounded-full border border-[#E8D99A]/40">
+            <Sparkles className="w-3.5 h-3.5 text-[#E8D99A]" /> APNA RUCHI • Customer Hub
           </span>
-          <h1 className="font-display text-2xl sm:text-3xl font-extrabold">
+          <h1 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight">
             Welcome back, {user?.name || 'Customer'}!
           </h1>
-          <p className="text-xs sm:text-sm text-emerald-100 font-medium flex items-center gap-1.5">
-            <MapPin className="w-4 h-4 text-emerald-300 shrink-0" />
-            Current Location: <strong className="text-white">{location}</strong>
+          <p className="text-xs sm:text-sm text-[#F8F4E8]/90 font-medium flex items-center gap-1.5">
+            <MapPin className="w-4 h-4 text-[#E8D99A] shrink-0" />
+            Current Locality: <strong className="text-[#FFFDF7]">{location}</strong>
+          </p>
+          <p className="font-handwriting text-xl text-[#CDEEDC]">
+            “Fresh meals made by mothers in your neighborhood.”
           </p>
         </div>
 
         <Link
           to="/explore"
-          className="px-5 py-3 rounded-xl bg-white hover:bg-emerald-50 text-emerald-800 font-extrabold text-xs shadow-md transition-all flex items-center gap-2 shrink-0 cursor-pointer"
+          className="px-6 py-3.5 rounded-2xl bg-[#FFFDF7] hover:bg-[#F8F4E8] text-[#075C45] font-extrabold text-xs shadow-garden transition-all flex items-center gap-2 shrink-0 cursor-pointer relative z-10"
         >
-          <Utensils className="w-4 h-4 text-emerald-700" />
-          Order Home Food
+          <Utensils className="w-4 h-4 text-[#079669]" />
+          Order Fresh Home Food
         </Link>
       </div>
 
@@ -138,13 +144,13 @@ export const CustomerDashboard: React.FC = () => {
         {/* LEFT 8 COLS: RECENT ORDERS & FAVORITES */}
         <div className="lg:col-span-8 space-y-8">
           {/* RECENT ORDERS */}
-          <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-4">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <h3 className="font-display font-extrabold text-lg text-slate-900 flex items-center gap-2">
-                <ShoppingBag className="w-5 h-5 text-emerald-600" />
+          <div className="bg-[#FFFDF7] rounded-[24px] p-6 border border-[#DDEEDF] shadow-garden space-y-4">
+            <div className="flex items-center justify-between border-b border-[#DDEEDF]/70 pb-3">
+              <h3 className="font-display font-extrabold text-lg text-[#123F35] flex items-center gap-2">
+                <ShoppingBag className="w-5 h-5 text-[#079669]" />
                 Recent Orders
               </h3>
-              <span className="text-xs font-bold text-slate-400">
+              <span className="text-xs font-bold text-[#075C45] bg-[#F1F8F1] px-3 py-1 rounded-full border border-[#DDEEDF]">
                 {orders.length} Total Orders
               </span>
             </div>
@@ -186,19 +192,19 @@ export const CustomerDashboard: React.FC = () => {
           </div>
 
           {/* SAVED FAVORITE COOKS */}
-          <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-4">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <h3 className="font-display font-extrabold text-lg text-slate-900 flex items-center gap-2">
+          <div className="bg-[#FFFDF7] rounded-[24px] p-6 border border-[#DDEEDF] shadow-garden space-y-4">
+            <div className="flex items-center justify-between border-b border-[#DDEEDF]/70 pb-3">
+              <h3 className="font-display font-extrabold text-lg text-[#123F35] flex items-center gap-2">
                 <Heart className="w-5 h-5 text-rose-500" />
                 Saved Favorite Kitchens
               </h3>
-              <span className="text-xs font-bold text-slate-400">
+              <span className="text-xs font-bold text-[#075C45] bg-[#F1F8F1] px-3 py-1 rounded-full border border-[#DDEEDF]">
                 {favorites.length} Favorites
               </span>
             </div>
 
             {favorites.length === 0 ? (
-              <div className="py-6 text-center text-xs text-slate-500">
+              <div className="py-6 text-center text-xs text-[#123F35]/65">
                 No favorite home kitchens saved yet. Click the heart icon on any cook card to save it!
               </div>
             ) : (
@@ -207,7 +213,7 @@ export const CustomerDashboard: React.FC = () => {
                   <Link
                     key={cook.id}
                     to={`/cook/${cook.id}`}
-                    className="p-3 rounded-2xl border border-slate-200 bg-slate-50 hover:bg-slate-100 transition-colors flex items-center gap-3"
+                    className="p-3 rounded-2xl border border-[#DDEEDF] bg-[#F8F4E8]/60 hover:bg-[#F8F4E8] transition-colors flex items-center gap-3"
                   >
                     <img
                       src={cook.photo}

@@ -335,46 +335,127 @@ export const CheckoutPage: React.FC = () => {
 
   if (isOrderPlaced) {
     return (
-      <div className="max-w-md mx-auto px-4 py-16 text-center space-y-4">
-        <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-md">
-          <CheckCircle2 className="w-10 h-10" />
-        </div>
-        <h2 className="font-display font-extrabold text-2xl text-slate-900">
-          Payment Verified & Order Placed!
-        </h2>
-        <p className="text-xs text-slate-600 leading-relaxed">
-          Your payment of <strong>₹{total}</strong> has been verified by the server. Your order was transmitted to <strong className="text-slate-900">{cookName}</strong>.
-        </p>
+      <div className="max-w-lg mx-auto px-4 py-12 sm:py-16 text-center space-y-6 animate-in fade-in zoom-in-95">
+        {/* CELEBRATION CARD */}
+        <div className="bg-[#FFFDF7] rounded-[32px] p-6 sm:p-8 border-2 border-[#DDEEDF] shadow-garden-lg relative overflow-hidden space-y-5">
+          {/* Soft Botanical Glow */}
+          <div className="absolute -top-12 -right-12 w-48 h-48 bg-[#CDEEDC]/40 rounded-full blur-2xl pointer-events-none" />
 
-        <div className="pt-4 flex flex-col gap-2">
-          <button
-            onClick={() => navigate(`/order-tracking/${placedOrderId}`)}
-            className="w-full py-3 rounded-2xl bg-emerald-600 text-white font-extrabold text-sm shadow-md hover:bg-emerald-700 transition-all flex items-center justify-center gap-2"
-          >
-            Track Order Status
-            <ArrowRight className="w-4 h-4" />
-          </button>
+          {/* CELEBRATION FOOD & LEAF ICONS STRIP */}
+          <div className="flex items-center justify-center gap-3 text-2xl pb-1">
+            <span className="animate-bounce delay-75">🍲</span>
+            <span className="animate-bounce delay-150">🌿</span>
+            <span className="animate-bounce delay-200">🍛</span>
+            <span className="animate-bounce delay-300">🪔</span>
+            <span className="animate-bounce delay-500">🥘</span>
+          </div>
 
-          <button
-            onClick={() => navigate('/customer-dashboard')}
-            className="w-full py-2.5 rounded-2xl bg-slate-100 text-slate-700 font-bold text-xs hover:bg-slate-200 transition-colors"
-          >
-            Go to Customer Dashboard
-          </button>
+          <div className="w-16 h-16 rounded-full bg-[#F1F8F1] border border-[#CDEEDC] text-[#079669] flex items-center justify-center mx-auto shadow-garden">
+            <CheckCircle2 className="w-9 h-9" />
+          </div>
+
+          <div className="space-y-1.5">
+            <span className="px-3 py-1 rounded-full bg-[#F1F8F1] text-[#075C45] text-[10px] font-black uppercase tracking-wider border border-[#DDEEDF]">
+              🌿 100% Homemade Food • Order Confirmed
+            </span>
+            <h2 className="font-display font-extrabold text-2xl sm:text-3xl text-[#123F35]">
+              Payment Verified & Handi Placed!
+            </h2>
+            <p className="font-handwriting text-2xl text-[#075C45]">
+              “Ghar Ka Swaad is now being prepared for you.”
+            </p>
+          </div>
+
+          {/* ORDER RECEIPT SUMMARY */}
+          <div className="p-4 rounded-2xl bg-[#F8F4E8] border border-[#DDEEDF] text-left space-y-2 text-xs">
+            <div className="flex justify-between items-center border-b border-[#DDEEDF]/70 pb-2">
+              <span className="text-[#123F35]/70 font-medium">Home Kitchen:</span>
+              <strong className="text-[#123F35] font-extrabold flex items-center gap-1">
+                <span>👩‍🍳</span>
+                <span>{cookName}</span>
+              </strong>
+            </div>
+            <div className="flex justify-between items-center border-b border-[#DDEEDF]/70 pb-2">
+              <span className="text-[#123F35]/70 font-medium">Amount Paid:</span>
+              <span className="font-black text-[#075C45] text-sm">₹{total}</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-[#123F35]/70 font-medium">Delivery Address:</span>
+              <span className="font-bold text-[#123F35] truncate max-w-[200px]">{selectedAddress}</span>
+            </div>
+          </div>
+
+          {/* FRESH PREPARATION BADGE */}
+          <div className="flex items-center justify-center gap-2 text-[11px] font-bold text-[#075C45] bg-[#F1F8F1] px-3.5 py-2 rounded-xl border border-[#DDEEDF]">
+            <Clock className="w-3.5 h-3.5 text-[#079669]" />
+            <span>Estimated Cooking & Delivery Time: 25 - 35 mins</span>
+          </div>
+
+          <div className="pt-2 flex flex-col gap-2.5">
+            <button
+              onClick={() => navigate(`/order-tracking/${placedOrderId}`)}
+              className="w-full py-3.5 rounded-2xl bg-[#079669] hover:bg-[#075C45] text-[#FFFDF7] font-extrabold text-sm shadow-garden hover:shadow-garden-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>Track Live Cooking & Delivery</span>
+              <span className="text-base">🍲</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+
+            <button
+              onClick={() => navigate('/customer-dashboard')}
+              className="w-full py-2.5 rounded-2xl bg-[#F8F4E8] text-[#075C45] hover:bg-[#DDEEDF] font-bold text-xs transition-colors border border-[#DDEEDF] cursor-pointer"
+            >
+              Go to Customer Hub
+            </button>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-8 w-full max-w-full overflow-x-hidden">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-8 w-full max-w-full overflow-x-hidden relative">
+      {/* PROCESSING TRANSACTION OVERLAY WITH ANIMATED FOOD SYMBOLS AND LEAVES */}
+      {isProcessing && (
+        <div className="fixed inset-0 z-50 bg-[#123F35]/75 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in">
+          <div className="bg-[#FFFDF7] rounded-[32px] p-8 max-w-sm w-full border-2 border-[#DDEEDF] shadow-garden-lg text-center space-y-4">
+            <div className="relative w-20 h-20 mx-auto flex items-center justify-center">
+              <div className="absolute inset-0 rounded-full border-4 border-[#079669]/20 border-t-[#079669] animate-spin" />
+              <span className="text-3xl animate-bounce">🍲</span>
+            </div>
+
+            <div className="flex items-center justify-center gap-2 text-xl pt-1">
+              <span className="animate-pulse">🌿</span>
+              <span className="animate-pulse delay-100">🍛</span>
+              <span className="animate-pulse delay-200">🪔</span>
+              <span className="animate-pulse delay-300">🥘</span>
+            </div>
+
+            <div className="space-y-1">
+              <h3 className="font-display font-extrabold text-lg text-[#123F35]">
+                Authorizing Transaction...
+              </h3>
+              <p className="text-xs text-[#075C45] font-semibold">
+                Transmitting order to {cookName}
+              </p>
+              <p className="text-[11px] text-[#123F35]/65">
+                Cooked fresh to order • 100% Homemade Food
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* HEADER */}
       <div>
-        <h1 className="font-display text-3xl font-extrabold text-slate-900">
-          Checkout & Payment Gateway
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
-          Complete payment for your order from <strong className="text-slate-900">{cookName}</strong>.
+        <div className="flex items-center gap-2">
+          <h1 className="font-display text-3xl font-extrabold text-[#123F35]">
+            Checkout & Payment Gateway
+          </h1>
+          <span className="text-2xl">🍲</span>
+        </div>
+        <p className="text-xs sm:text-sm text-[#075C45] font-semibold mt-1">
+          Complete secure payment for fresh homemade meals from <strong className="text-[#123F35]">{cookName}</strong>.
         </p>
       </div>
 
@@ -382,10 +463,10 @@ export const CheckoutPage: React.FC = () => {
         {/* LEFT COLUMN: ADDRESS & PAYMENT METHODS */}
         <div className="lg:col-span-7 space-y-6">
           {/* DELIVERY ADDRESS */}
-          <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-4">
+          <div className="bg-[#FFFDF7] rounded-3xl p-6 border border-[#DDEEDF] shadow-garden space-y-4">
             <div className="flex items-center gap-2">
-              <MapPin className="w-5 h-5 text-emerald-600 shrink-0" />
-              <h3 className="font-display font-extrabold text-base text-slate-900">
+              <MapPin className="w-5 h-5 text-[#079669] shrink-0" />
+              <h3 className="font-display font-extrabold text-base text-[#123F35]">
                 Delivery Address
               </h3>
             </div>
