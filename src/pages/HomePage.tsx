@@ -121,7 +121,7 @@ export const HomePage: React.FC = () => {
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
             {/* LEFT HERO TEXT */}
             <div className="lg:col-span-7 text-center lg:text-left space-y-5 sm:space-y-6">
-              {/* KITCHEN COUNT & APNA RUCHI BOTANICAL BADGE */}
+              {/* KITCHEN COUNT & HOME DELIGHTS BOTANICAL BADGE */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFFDF7]/95 backdrop-blur border border-[#DDEEDF] shadow-garden text-xs font-bold text-[#123F35] max-w-full">
                 <span className="relative flex h-2 w-2 shrink-0">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#079669] opacity-75" />
@@ -129,7 +129,7 @@ export const HomePage: React.FC = () => {
                 </span>
                 <span className="text-[#075C45] font-extrabold flex items-center gap-1 shrink-0">
                   <Leaf className="w-3.5 h-3.5 text-[#079669]" />
-                  APNA RUCHI
+                  HOME DELIGHTS
                 </span>
                 <span className="text-[#075C45]/40 shrink-0">•</span>
                 <span className="text-xs font-semibold text-[#123F35]/80">100% Homemade Food</span>
@@ -140,7 +140,7 @@ export const HomePage: React.FC = () => {
               {/* DECORATIVE HANDWRITTEN QUOTE — HERO */}
               <div className="flex items-center justify-center lg:justify-start gap-2">
                 <span className="font-handwriting text-2xl sm:text-3xl text-[#075C45] tracking-wide">
-                  “Good food feels like home.”
+                  “Homemade food. Made with heart.”
                 </span>
                 <Leaf className="w-4 h-4 text-[#079669] animate-float-gentle shrink-0" />
               </div>
@@ -150,7 +150,7 @@ export const HomePage: React.FC = () => {
                 <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#123F35] tracking-tight leading-[1.15] sm:leading-[1.08]">
                   Find Real Home Food <br />
                   <span className="bg-gradient-to-r from-[#075C45] via-[#079669] to-[#075C45] bg-clip-text text-transparent">
-                    with APNA RUCHI
+                    with HOME DELIGHTS
                   </span>
                 </h1>
               </div>
@@ -402,7 +402,7 @@ export const HomePage: React.FC = () => {
               Authentic Regional Specialties
             </div>
             <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#123F35] tracking-tight">
-              Popular Homemade Cuisines on APNA RUCHI
+              Popular Homemade Cuisines on HOME DELIGHTS
             </h2>
             {/* DECORATIVE HANDWRITTEN QUOTE */}
             <p className="font-handwriting text-2xl sm:text-3xl text-[#075C45]">
@@ -505,7 +505,7 @@ export const HomePage: React.FC = () => {
             </p>
             <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[#123F35] tracking-tight">
               One verified home kitchen network. <br />
-              <span className="text-[#075C45]">Every homemade craving on APNA RUCHI.</span>
+              <span className="text-[#075C45]">Every homemade craving on HOME DELIGHTS.</span>
             </h2>
             {/* DECORATIVE HANDWRITTEN QUOTE */}
             <p className="font-handwriting text-2xl sm:text-3xl text-[#075C45] pt-1">
@@ -659,7 +659,7 @@ export const HomePage: React.FC = () => {
             <div className="lg:col-span-5 flex justify-center">
               <div className="bg-[#F8F4E8] rounded-3xl p-6 border-2 border-[#DDEEDF] shadow-garden w-full max-w-md space-y-4">
                 <div className="flex items-center justify-between border-b border-[#DDEEDF] pb-3">
-                  <span className="text-xs font-black uppercase text-[#075C45]/70 tracking-wider">APNA RUCHI Certificate</span>
+                  <span className="text-xs font-black uppercase text-[#075C45]/70 tracking-wider">HOME DELIGHTS Certificate</span>
                   <span className="px-2.5 py-0.5 rounded-full bg-[#F1F8F1] text-[#075C45] text-xs font-extrabold flex items-center gap-1 border border-[#CDEEDC]">
                     <BadgeCheck className="w-3.5 h-3.5 text-[#079669]" />
                     Active & Verified
@@ -736,7 +736,7 @@ export const HomePage: React.FC = () => {
                   to="/cook-verification"
                   className="px-7 py-3.5 rounded-2xl bg-[#075C45] hover:bg-[#079669] text-[#FFFDF7] font-extrabold text-sm shadow-garden hover:shadow-garden-lg hover:-translate-y-0.5 transition-all inline-flex items-center gap-2"
                 >
-                  Become a Home Cook on APNA RUCHI
+                  Become a Home Cook on HOME DELIGHTS
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>

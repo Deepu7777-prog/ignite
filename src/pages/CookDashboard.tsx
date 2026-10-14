@@ -179,7 +179,7 @@ export const CookDashboard: React.FC = () => {
                 {cookProfile?.kitchenName || (isDemo ? "Priya's Home Kitchen" : (user?.name ? `${user.name}'s Kitchen` : "My Home Kitchen"))}
               </h1>
               <span className="px-3 py-0.5 rounded-full bg-[#FFFDF7]/20 backdrop-blur text-[#E8D99A] text-[10px] font-black uppercase tracking-wider border border-[#E8D99A]/40">
-                🌿 APNA RUCHI VERIFIED
+                🌿 HOME DELIGHTS VERIFIED
               </span>
             </div>
             <p className="text-xs text-[#F8F4E8]/90 font-medium flex items-center gap-1.5">

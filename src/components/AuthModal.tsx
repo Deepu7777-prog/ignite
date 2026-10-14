@@ -505,9 +505,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
             <div>
               <h3 className="font-display font-extrabold text-base text-[#123924]">
                 {mode === 'LOGIN'
-                  ? 'Sign In to APNA RUCHI'
+                  ? 'Sign In to HOME DELIGHTS'
                   : mode === 'REGISTER'
-                  ? 'Join APNA RUCHI'
+                  ? 'Join HOME DELIGHTS'
                   : mode === 'OTP_VERIFY'
                   ? 'Verify 6-Digit OTP Code'
                   : mode === 'FORGOT'
@@ -517,7 +517,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
                   : 'Set New Password'}
               </h3>
               <p className="text-[11px] text-[#2d6a4f] font-semibold">
-                {mode === 'GOOGLE_ACCOUNT_SELECT' ? 'Choose an account to continue' : 'Ghar Ka Swaad • Real Home Food'}
+                {mode === 'GOOGLE_ACCOUNT_SELECT' ? 'Choose an account to continue' : 'Homemade food. Made with heart.'}
               </p>
             </div>
           </div>
@@ -993,7 +993,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
                 </div>
                 <div>
                   <h4 className="font-extrabold text-sm text-[#123924]">Choose a Google Account</h4>
-                  <p className="text-[11px] text-slate-500">to continue to <strong className="text-emerald-800">APNA RUCHI</strong></p>
+                  <p className="text-[11px] text-slate-500">to continue to <strong className="text-emerald-800">HOME DELIGHTS</strong></p>
                 </div>
 
                 {/* ROLE CHOOSER PILL */}
@@ -1107,7 +1107,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
               </div>
 
               <p className="text-[10px] text-slate-400 text-center leading-normal px-2">
-                To continue, Google will share your name, email address, and profile picture with APNA RUCHI safely.
+                To continue, Google will share your name, email address, and profile picture with HOME DELIGHTS safely.
               </p>
 
               <button

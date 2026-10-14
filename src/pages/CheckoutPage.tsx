@@ -201,8 +201,8 @@ export const CheckoutPage: React.FC = () => {
           key: payOrderRes.keyId,
           amount: payOrderRes.amount,
           currency: payOrderRes.currency,
-          name: "APNA RUCHI",
-          description: `Ghar Ka Swaad - Order #${createdOrder.orderNumber}`,
+          name: "HOME DELIGHTS",
+          description: `Homemade food. Made with heart. - Order #${createdOrder.orderNumber}`,
           order_id: payOrderRes.gatewayOrderId,
           handler: async function (response: any) {
             if (!response.razorpay_signature || !response.razorpay_payment_id) {
@@ -362,7 +362,7 @@ export const CheckoutPage: React.FC = () => {
               Payment Verified & Handi Placed!
             </h2>
             <p className="font-handwriting text-2xl text-[#075C45]">
-              “Ghar Ka Swaad is now being prepared for you.”
+              “Homemade food. Made with heart.”
             </p>
           </div>
 

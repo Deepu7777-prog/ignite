@@ -22,6 +22,7 @@ import {
   ChevronLeft
 } from 'lucide-react';
 import { UserRole } from '../types';
+import { BrandLogo } from './BrandLogo';
 
 export const Footer: React.FC = () => {
   const { switchDemoRole, openAuthModal, user } = useAuth();
@@ -143,18 +144,8 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10">
           {/* COLUMN 1: BRAND & VISION (2 COLS WIDE ON LG) */}
           <div className="lg:col-span-2 space-y-4">
-            <Link to="/" className="flex items-center gap-2.5 group w-fit">
-              <div className="w-10 h-10 rounded-2xl bg-[#FFFDF7] flex items-center justify-center text-[#075C45] font-black shadow-sm group-hover:scale-105 transition-transform border border-[#CDEEDC]">
-                <Utensils className="w-5 h-5 text-[#079669]" />
-              </div>
-              <div>
-                <span className="font-display text-lg font-black tracking-tight text-[#FFFDF7] group-hover:text-[#CDEEDC] transition-colors">
-                  APNA RUCHI
-                </span>
-                <span className="block text-[11px] text-[#CDEEDC] font-semibold -mt-0.5">
-                  Ghar Ka Swaad • Real Home Food
-                </span>
-              </div>
+            <Link to="/" className="w-fit" aria-label="HOME DELIGHTS">
+              <BrandLogo variant="light" />
             </Link>
 
             <p className="text-xs text-[#F8F4E8]/85 leading-relaxed max-w-sm">
@@ -163,7 +154,7 @@ export const Footer: React.FC = () => {
 
             {/* FINAL BRAND LINE IN HANDWRITTEN / DECORATIVE STYLE */}
             <p className="font-handwriting text-2xl text-[#CDEEDC] pt-1">
-              “From our homes to your heart. 🌿”
+              “Homemade food. Made with heart. 🌿”
             </p>
 
             <div className="flex items-center gap-2 text-xs font-semibold text-[#CDEEDC] bg-[#064A37] p-2.5 rounded-xl border border-[#CDEEDC]/25 w-fit">
@@ -272,7 +263,7 @@ export const Footer: React.FC = () => {
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-[#CDEEDC] shrink-0" />
-                <span>support@apnaruchi.in</span>
+                <span>support@homedelights.in</span>
               </li>
               <li className="pt-2">
                 {!user ? (
@@ -280,7 +271,7 @@ export const Footer: React.FC = () => {
                     onClick={() => openAuthModal('REGISTER')}
                     className="w-full px-3.5 py-2.5 rounded-xl bg-[#079669] hover:bg-[#CDEEDC] text-[#FFFDF7] hover:text-[#075C45] font-extrabold text-xs shadow-sm transition-colors cursor-pointer"
                   >
-                    Join APNA RUCHI
+                    Join HOME DELIGHTS
                   </button>
                 ) : (
                   <span className="inline-block text-[11px] font-bold text-[#CDEEDC] bg-[#064A37] px-2.5 py-1 rounded-lg border border-[#CDEEDC]/25">
@@ -297,8 +288,8 @@ export const Footer: React.FC = () => {
       <div className="border-t border-[#CDEEDC]/20 bg-[#054836] py-5 px-4 sm:px-6 relative z-10">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left text-xs text-[#F8F4E8]/80 font-medium">
           <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
-            <span>© 2026 APNA RUCHI.</span>
-            <span className="text-[#CDEEDC] font-semibold">From our homes to your heart. 🌿</span>
+            <span>© 2026 HOME DELIGHTS.</span>
+            <span className="text-[#CDEEDC] font-semibold">Homemade food. Made with heart. 🌿</span>
           </div>
 
           {/* ONE-LINE DEMO ACCESS (SEPARATE & ACCESSIBLE) */}

@@ -47,6 +47,15 @@ export default {
           400: '#78ae87',
           500: '#529164',
         },
+        delight: {
+          dark: '#123F35',
+          forest: '#075C45',
+          grass: '#079669',
+          light: '#F1F8F1',
+          cream: '#F8F4E8',
+          ivory: '#FFFDF7',
+          gold: '#E8D99A',
+        },
         apna: {
           dark: '#123F35',
           forest: '#075C45',

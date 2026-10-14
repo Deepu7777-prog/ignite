@@ -72,7 +72,7 @@ export const ExplorePage: React.FC = () => {
         
         <div className="max-w-xl mx-auto space-y-2">
           <span className="px-3.5 py-1 rounded-full bg-[#F1F8F1] border border-[#DDEEDF] text-[#075C45] text-[11px] font-extrabold uppercase tracking-wider">
-            APNA RUCHI • Verified Kitchens
+            HOME DELIGHTS • Verified Kitchens
           </span>
           <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-[#123F35] tracking-tight">
             Sign In to Explore Home Cooks & Menus
@@ -81,7 +81,7 @@ export const ExplorePage: React.FC = () => {
             “Cooked with love. Served with warmth.”
           </p>
           <p className="text-xs sm:text-sm text-[#123F35]/75 leading-relaxed font-medium">
-            To view neighborhood home kitchens, authentic homemade dishes, customer reviews, and order fresh meals, please sign in to APNA RUCHI.
+            To view neighborhood home kitchens, authentic homemade dishes, customer reviews, and order fresh meals, please sign in to HOME DELIGHTS.
           </p>
         </div>
 
@@ -134,7 +134,7 @@ export const ExplorePage: React.FC = () => {
           “Cooked with love. Served with warmth.”
         </p>
         <h1 className="font-display text-3xl font-extrabold text-[#123F35]">
-          APNA RUCHI Home Cooks Near You
+          HOME DELIGHTS Home Cooks Near You
         </h1>
         <p className="text-xs sm:text-sm text-[#123F35]/75 font-medium">
           Browse verified neighbourhood home kitchens cooking fresh homemade food upon your order in Hyderabad.

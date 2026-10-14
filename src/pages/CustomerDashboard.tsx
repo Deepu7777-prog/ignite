@@ -70,7 +70,7 @@ export const CustomerDashboard: React.FC = () => {
 
         <div className="space-y-2 relative z-10">
           <span className="inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-wider text-[#E8D99A] bg-[#FFFDF7]/15 backdrop-blur px-3 py-1 rounded-full border border-[#E8D99A]/40">
-            <Sparkles className="w-3.5 h-3.5 text-[#E8D99A]" /> APNA RUCHI • Customer Hub
+            <Sparkles className="w-3.5 h-3.5 text-[#E8D99A]" /> HOME DELIGHTS • Customer Hub
           </span>
           <h1 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight">
             Welcome back, {user?.name || 'Customer'}!

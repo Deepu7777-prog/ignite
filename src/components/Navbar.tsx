@@ -22,6 +22,7 @@ import {
   LogIn
 } from 'lucide-react';
 import { UserRole } from '../types';
+import { BrandLogo } from './BrandLogo';
 
 export const Navbar: React.FC = () => {
   const { role, switchDemoRole, user, logout, isDemo, openAuthModal } = useAuth();
@@ -50,18 +51,8 @@ export const Navbar: React.FC = () => {
         {/* MAIN NAVBAR */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
           {/* BRAND LOGO */}
-          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 shrink-0 group min-w-0">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-br from-[#075C45] via-[#077A58] to-[#079669] flex items-center justify-center text-[#FFFDF7] shadow-garden group-hover:scale-105 transition-transform duration-300 shrink-0 border border-[#CDEEDC]/40">
-              <Utensils className="w-4 h-4 sm:w-5 sm:h-5 text-[#E8D99A]" />
-            </div>
-            <div className="leading-tight min-w-0">
-              <span className="block font-display text-base sm:text-lg lg:text-xl font-extrabold text-[#075C45] tracking-tight group-hover:text-[#079669] transition-colors truncate">
-                APNA RUCHI
-              </span>
-              <span className="hidden sm:block text-[10.5px] text-[#123F35]/75 font-bold -mt-0.5 tracking-wide">
-                Ghar Ka Swaad • Fresh Home Food
-              </span>
-            </div>
+          <Link to="/" className="shrink-0 min-w-0" aria-label="HOME DELIGHTS">
+            <BrandLogo />
           </Link>
 
           {/* LOCATION SELECTOR (RESPONSIVE DESKTOP + MOBILE) */}

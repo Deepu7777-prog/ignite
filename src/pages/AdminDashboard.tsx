@@ -85,7 +85,7 @@ export const AdminDashboard: React.FC = () => {
             <Sparkles className="w-3.5 h-3.5" /> Private Admin Control Portal
           </span>
           <h1 className="font-display text-2xl sm:text-3xl font-extrabold">
-            APNA RUCHI Super Admin Portal
+            HOME DELIGHTS Super Admin Portal
           </h1>
           <p className="text-xs sm:text-sm text-slate-300 font-medium">
             Private management portal for application owner & authorized team members.
