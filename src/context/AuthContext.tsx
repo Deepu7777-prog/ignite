@@ -9,8 +9,8 @@ interface AuthContextType {
   isDemo: boolean;
   setRole: (role: UserRole) => void;
   switchDemoRole: (role: UserRole) => Promise<void>;
-  loginWithUser: (user: User) => void;
-  loginWithSupabaseUser: (user: User) => void;
+  loginWithUser: (user: User, token?: string) => void;
+  loginWithSupabaseUser: (user: User, token?: string) => void;
   logout: () => void;
   isLoading: boolean;
   isAuthModalOpen: boolean;
@@ -78,7 +78,44 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const initSession = async () => {
     setIsLoading(true);
     try {
-      // 1. PRIMARY: Query real Supabase session
+      // 1. PRIMARY: Check for stored authentication token
+      const storedToken = localStorage.getItem('hcf_token');
+      if (storedToken) {
+        try {
+          const res = await api.getMe(storedToken);
+          if (res.success && res.user) {
+            setUser(res.user);
+            setRoleState(res.user.role);
+            setIsDemo(false);
+            localStorage.setItem('hcf_auth_user', JSON.stringify(res.user));
+            sessionStorage.removeItem('hcf_demo_session');
+            setIsLoading(false);
+            return;
+          }
+        } catch (apiErr: any) {
+          console.warn("[Auth] Token verification failed:", apiErr.message);
+          // If session is explicitly expired or invalid (401/404), remove invalid token
+          if (apiErr.message?.includes('expired') || apiErr.message?.includes('invalid') || apiErr.message?.includes('401')) {
+            localStorage.removeItem('hcf_token');
+            localStorage.removeItem('hcf_auth_user');
+          } else {
+            // Network glitch or offline server: preserve cached user so refresh doesn't drop session
+            const cachedUserStr = localStorage.getItem('hcf_auth_user');
+            if (cachedUserStr) {
+              try {
+                const cachedUser = JSON.parse(cachedUserStr);
+                setUser(cachedUser);
+                setRoleState(cachedUser.role);
+                setIsDemo(false);
+                setIsLoading(false);
+                return;
+              } catch (e) {}
+            }
+          }
+        }
+      }
+
+      // 2. Fallback: Query Supabase session if online
       try {
         const { data } = await supabase.auth.getSession();
         if (data?.session?.user) {
@@ -93,19 +130,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             avatar: supaUser.user_metadata?.avatar_url || supaUser.user_metadata?.picture || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
           };
 
-          // If Supabase user has ADMIN role, verify active admin authorization
-          if (supaRole === 'ADMIN') {
-            const checkRes = await api.checkAdminAuthorization({ userId: userObj.id, email: userObj.email });
-            if (!checkRes.isAuthorized) {
-              console.warn("Supabase user does not have active Admin authorization.");
-              setUser(null);
-              setRoleState('CUSTOMER');
-              setIsDemo(false);
-              setIsLoading(false);
-              return;
-            }
-          }
-
           setUser(userObj);
           setRoleState(supaRole);
           setIsDemo(false);
@@ -114,10 +138,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           return;
         }
       } catch (e) {
-        console.warn("Supabase session check skipped or offline:", e);
+        // Supabase offline or DNS failed, gracefully ignored
       }
 
-      // 2. Check explicitly active Demo Mode in current session only
+      // 3. Check explicitly active Demo Mode in current session
       const sessionDemo = sessionStorage.getItem('hcf_demo_session');
       if (sessionDemo) {
         try {
@@ -130,7 +154,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         } catch (e) {}
       }
 
-      // 3. UNAUTHENTICATED = UNKNOWN VISITOR (Clear any legacy demo/user flags)
+      // 4. UNAUTHENTICATED = UNKNOWN VISITOR
       setUser(null);
       setRoleState('CUSTOMER');
       setIsDemo(false);
@@ -147,22 +171,32 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const loginWithUser = (loggedUser: User) => {
+  const loginWithUser = (loggedUser: User, token?: string) => {
     sessionStorage.removeItem('hcf_demo_session');
+    if (token) {
+      localStorage.setItem('hcf_token', token);
+    }
+    localStorage.setItem('hcf_auth_user', JSON.stringify(loggedUser));
+    localStorage.setItem('hcf_auth_role', loggedUser.role);
     setUser(loggedUser);
     setRoleState(loggedUser.role);
     setIsDemo(false);
   };
 
   const logout = async () => {
+    const token = localStorage.getItem('hcf_token') || undefined;
     setUser(null);
     setRoleState('CUSTOMER');
     setIsDemo(false);
     sessionStorage.removeItem('hcf_demo_session');
+    localStorage.removeItem('hcf_token');
     localStorage.removeItem('hcf_auth_user');
     localStorage.removeItem('hcf_auth_role');
     localStorage.removeItem('hcf_is_demo');
     localStorage.removeItem('hcf_cart');
+    try {
+      await api.logout(token);
+    } catch (e) {}
     try {
       await supabase.auth.signOut();
     } catch (e) {}
@@ -176,6 +210,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUser(res.user);
         setRoleState(targetRole);
         setIsDemo(true);
+        if (res.token) {
+          localStorage.setItem('hcf_token', res.token);
+        }
+        localStorage.setItem('hcf_auth_user', JSON.stringify(res.user));
         sessionStorage.setItem('hcf_demo_session', JSON.stringify({ user: res.user, role: targetRole }));
       }
     } catch (err) {

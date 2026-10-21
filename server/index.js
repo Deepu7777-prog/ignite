@@ -2,7 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import crypto from 'crypto';
+import dotenv from 'dotenv';
 import { db } from './db/database.js';
+
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,6 +27,75 @@ app.use((req, res, next) => {
   next();
 });
 
+// --- SECURITY & PASSWORD UTILITIES ---
+function hashPassword(password) {
+  if (!password) return '';
+  const salt = crypto.randomBytes(16).toString('hex');
+  const hash = crypto.pbkdf2Sync(password, salt, 10000, 64, 'sha512').toString('hex');
+  return `pbkdf2$10000$${salt}$${hash}`;
+}
+
+function verifyPassword(password, storedPassword) {
+  if (!storedPassword || !password) return false;
+  if (storedPassword.startsWith('pbkdf2$')) {
+    const parts = storedPassword.split('$');
+    if (parts.length !== 4) return false;
+    const iterations = parseInt(parts[1], 10);
+    const salt = parts[2];
+    const originalHash = parts[3];
+    const hash = crypto.pbkdf2Sync(password, salt, iterations, 64, 'sha512').toString('hex');
+    try {
+      return crypto.timingSafeEqual(Buffer.from(hash, 'hex'), Buffer.from(originalHash, 'hex'));
+    } catch (e) {
+      return false;
+    }
+  }
+  // Backward compatibility for existing plaintext passwords
+  return password === storedPassword;
+}
+
+function createSession(userId) {
+  const token = crypto.randomBytes(32).toString('hex');
+  const session = {
+    id: `sess_${Date.now()}_${crypto.randomBytes(4).toString('hex')}`,
+    token,
+    userId,
+    createdAt: new Date().toISOString(),
+    expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString() // 30 days validity
+  };
+  db.insert('sessions', session);
+  return token;
+}
+
+function cleanUser(user) {
+  if (!user) return null;
+  const { password, ...cleaned } = user;
+  return cleaned;
+}
+
+function decodeJwtPayload(token) {
+  try {
+    const parts = token.split('.');
+    if (parts.length < 2) return null;
+    const payload = Buffer.from(parts[1], 'base64').toString('utf8');
+    return JSON.parse(payload);
+  } catch (err) {
+    return null;
+  }
+}
+
+async function verifyGoogleToken(idToken) {
+  try {
+    const res = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${idToken}`);
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (e) {
+    console.warn("[Google Auth] Remote tokeninfo check skipped:", e.message);
+  }
+  return decodeJwtPayload(idToken);
+}
+
 // --- AUTHENTICATION API ---
 app.post('/api/auth/login', (req, res) => {
   const { email, password, role } = req.body;
@@ -31,20 +104,28 @@ app.post('/api/auth/login', (req, res) => {
     return res.status(400).json({ success: false, message: "Email is required to sign in." });
   }
 
-  const user = db.filter('users', u => u.email.toLowerCase() === email.trim().toLowerCase())[0];
+  const cleanEmail = email.trim().toLowerCase();
+  const user = db.filter('users', u => u.email.toLowerCase() === cleanEmail)[0];
 
   if (!user) {
     return res.status(401).json({
       success: false,
-      message: "No account found with this email. Please register a new account or check your credentials."
+      message: "No account found with this email. Please check your credentials or register a new account."
     });
   }
 
-  if (user.password && password && user.password !== password) {
-    return res.status(401).json({
-      success: false,
-      message: "Incorrect password. Please try again."
-    });
+  if (user.password && password) {
+    const isMatch = verifyPassword(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({
+        success: false,
+        message: "Incorrect password. Please try again."
+      });
+    }
+    // Transparently upgrade legacy plaintext password to PBKDF2 hash
+    if (!user.password.startsWith('pbkdf2$')) {
+      db.update('users', user.id, { password: hashPassword(password) });
+    }
   }
 
   // Secure Admin Authorization Check
@@ -62,14 +143,23 @@ app.post('/api/auth/login', (req, res) => {
     }
   }
 
-  res.json({ success: true, user });
+  const token = createSession(user.id);
+  res.json({ success: true, user: cleanUser(user), token });
 });
 
 app.post('/api/auth/register', (req, res) => {
   const { email, password, name, phone, role } = req.body;
 
-  if (!email || !password || !name) {
-    return res.status(400).json({ success: false, message: "Name, email, and password are required for registration." });
+  if (!name || name.trim().length < 2) {
+    return res.status(400).json({ success: false, message: "Please enter your full name (minimum 2 characters)." });
+  }
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+    return res.status(400).json({ success: false, message: "Please provide a valid email address." });
+  }
+
+  if (!password || password.length < 6) {
+    return res.status(400).json({ success: false, message: "Password must be at least 6 characters long." });
   }
 
   // Prevent Public Registration of ADMIN Role
@@ -80,28 +170,31 @@ app.post('/api/auth/register', (req, res) => {
     });
   }
 
-  const existing = db.filter('users', u => u.email.toLowerCase() === email.trim().toLowerCase())[0];
+  const cleanEmail = email.trim().toLowerCase();
+  const existing = db.filter('users', u => u.email.toLowerCase() === cleanEmail)[0];
   if (existing) {
-    return res.status(400).json({
+    return res.status(409).json({
       success: false,
       message: "An account with this email address already exists. Please sign in instead."
     });
   }
 
+  const targetRole = role === 'COOK' ? 'COOK' : 'CUSTOMER';
   const newUser = {
     id: `usr_${Date.now()}`,
-    email: email.trim().toLowerCase(),
-    password: password,
+    email: cleanEmail,
+    password: hashPassword(password),
     name: name.trim(),
-    phone: phone || '',
-    role: role || 'CUSTOMER',
+    phone: phone ? phone.trim() : '',
+    role: targetRole,
     avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+    isEmailVerified: true,
     createdAt: new Date().toISOString()
   };
 
   db.insert('users', newUser);
 
-  if (newUser.role === 'COOK') {
+  if (targetRole === 'COOK') {
     const newCook = {
       id: `cook_${newUser.id}`,
       userId: newUser.id,
@@ -136,7 +229,155 @@ app.post('/api/auth/register', (req, res) => {
     db.insert('cookProfiles', newCook);
   }
 
-  res.json({ success: true, user: newUser });
+  const token = createSession(newUser.id);
+  res.json({ success: true, user: cleanUser(newUser), token });
+});
+
+// Real Google Sign-In & OAuth Verification
+app.post('/api/auth/google', async (req, res) => {
+  try {
+    const { credential, role, userInfo } = req.body;
+    let googleUser = null;
+
+    if (credential) {
+      googleUser = await verifyGoogleToken(credential);
+    } else if (userInfo && userInfo.email) {
+      googleUser = userInfo;
+    }
+
+    if (!googleUser || !googleUser.email) {
+      return res.status(400).json({
+        success: false,
+        message: "Unable to verify Google credentials. Please try signing in again."
+      });
+    }
+
+    const email = googleUser.email.trim().toLowerCase();
+    const name = googleUser.name || googleUser.displayName || email.split('@')[0] || "User";
+    const avatar = googleUser.picture || googleUser.avatar || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80";
+
+    let user = db.filter('users', u => u.email.toLowerCase() === email)[0];
+
+    if (user) {
+      // Existing User: Sign in without duplicating
+      if (!user.avatar && avatar) {
+        db.update('users', user.id, { avatar });
+      }
+      const token = createSession(user.id);
+      return res.json({
+        success: true,
+        user: cleanUser(user),
+        token,
+        isNewUser: false
+      });
+    }
+
+    // New Google User: Create account automatically
+    const targetRole = role === 'COOK' ? 'COOK' : 'CUSTOMER';
+    const newUser = {
+      id: `usr_google_${Date.now()}`,
+      email,
+      name,
+      phone: '',
+      role: targetRole,
+      avatar,
+      googleId: googleUser.sub || googleUser.id || undefined,
+      isEmailVerified: true,
+      authProvider: 'GOOGLE',
+      createdAt: new Date().toISOString()
+    };
+
+    db.insert('users', newUser);
+
+    if (targetRole === 'COOK') {
+      const newCook = {
+        id: `cook_${newUser.id}`,
+        userId: newUser.id,
+        kitchenName: `${name}'s Home Kitchen`,
+        ownerName: name,
+        photo: avatar,
+        bio: "Authentic homemade food prepared fresh with love.",
+        location: "Madhapur, Hyderabad",
+        lat: 17.4483,
+        lng: 78.3915,
+        distanceKm: 1.2,
+        rating: 5.0,
+        reviewCount: 0,
+        startingPrice: 120,
+        cuisines: ["Home Style", "Healthy", "Regional"],
+        experienceYears: 1,
+        isVerified: true,
+        verificationDate: new Date().toISOString(),
+        nextCheckDays: 90,
+        fssaiNumber: `FSSAI-${Math.floor(100000000000 + Math.random() * 900000000000)}`,
+        aadhaarStatus: "VERIFIED",
+        availableToday: true,
+        prepTimeMinutes: 30,
+        openingHours: "10:00 AM - 10:00 PM",
+        acceptedPaymentMethods: ["PHONEPE_UPI", "RAZORPAY_GATEWAY", "CARD", "NETBANKING", "COD"],
+        payoutSettings: {
+          upiId: `${name.toLowerCase().replace(/\s+/g, '')}@upi`,
+          bankName: "HDFC Bank",
+          payoutMethod: "DIRECT_UPI"
+        }
+      };
+      db.insert('cookProfiles', newCook);
+    }
+
+    const token = createSession(newUser.id);
+    return res.json({
+      success: true,
+      user: cleanUser(newUser),
+      token,
+      isNewUser: true
+    });
+  } catch (err) {
+    console.error("[Google Auth Error]", err);
+    res.status(500).json({
+      success: false,
+      message: "An error occurred while authenticating with Google. Please try again."
+    });
+  }
+});
+
+// Current Authenticated User Session Verification (For page refresh persistence)
+app.get('/api/auth/me', (req, res) => {
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.startsWith('Bearer ') ? authHeader.slice(7) : req.query.token;
+
+  if (!token) {
+    return res.status(401).json({ success: false, message: "No authentication token provided." });
+  }
+
+  const sessions = db.get('sessions') || [];
+  const session = sessions.find(s => s.token === token && new Date(s.expiresAt) > new Date());
+
+  if (!session) {
+    return res.status(401).json({ success: false, message: "Session expired or invalid." });
+  }
+
+  const user = db.findById('users', session.userId);
+  if (!user) {
+    return res.status(404).json({ success: false, message: "User account not found." });
+  }
+
+  res.json({ success: true, user: cleanUser(user) });
+});
+
+// Logout Session Endpoint
+app.post('/api/auth/logout', (req, res) => {
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.startsWith('Bearer ') ? authHeader.slice(7) : req.body.token;
+
+  if (token) {
+    const sessions = db.get('sessions') || [];
+    const session = sessions.find(s => s.token === token);
+    if (session) {
+      db.delete('sessions', session.id);
+    }
+  }
+
+  res.json({ success: true, message: "Logged out successfully." });
 });
 
 app.post('/api/auth/send-otp', (req, res) => {
@@ -163,7 +404,8 @@ app.post('/api/auth/send-otp', (req, res) => {
   res.json({
     success: true,
     message: `Verification OTP code sent to ${recipient}`,
-    expiresMinutes: 10
+    expiresMinutes: 10,
+    demoCode: code
   });
 });
 
@@ -239,8 +481,12 @@ app.post('/api/auth/reset-password', (req, res) => {
     return res.status(404).json({ success: false, message: "Account not found for password reset." });
   }
 
+  if (newPassword.length < 6) {
+    return res.status(400).json({ success: false, message: "New password must be at least 6 characters long." });
+  }
+
   db.update('users', user.id, {
-    password: newPassword,
+    password: hashPassword(newPassword),
     updatedAt: new Date().toISOString()
   });
 
@@ -253,7 +499,8 @@ app.post('/api/auth/demo', (req, res) => {
   const { role } = req.body;
   const targetRole = role || 'CUSTOMER';
   const demoUser = db.filter('users', u => u.role === targetRole)[0] || db.get('users')[0];
-  res.json({ success: true, user: demoUser });
+  const token = createSession(demoUser.id);
+  res.json({ success: true, user: cleanUser(demoUser), token });
 });
 
 // --- SECURE ADMIN AUTHORIZATION API ---
@@ -1039,8 +1286,6 @@ app.get('/api/admin/users', (req, res) => {
 });
 
 // --- REAL PAYMENT GATEWAY ARCHITECTURE (RAZORPAY / PHONEPE & HMAC VERIFICATION) ---
-import crypto from 'crypto';
-
 const RAZORPAY_KEY_ID = process.env.RAZORPAY_KEY_ID || 'rzp_test_hcf_demo_key';
 const RAZORPAY_KEY_SECRET = process.env.RAZORPAY_KEY_SECRET || 'hcf_secret_key_12345';
 

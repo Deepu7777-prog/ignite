@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { supabase } from '../services/supabase';
 import { api } from '../services/api';
 import { useAuth } from '../context/AuthContext';
-import { X, Lock, Mail, User as UserIcon, Phone, CheckCircle2, AlertCircle, ChefHat, Shield, ArrowLeft, RefreshCw } from 'lucide-react';
+import { X, Lock, Mail, User as UserIcon, Phone, CheckCircle2, AlertCircle, ChefHat, Shield, ArrowLeft, RefreshCw, Eye, EyeOff } from 'lucide-react';
 import { UserRole, User } from '../types';
 
 interface AuthModalProps {
@@ -23,6 +23,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
   const [role, setRole] = useState<UserRole>('CUSTOMER');
   const [otpCode, setOtpCode] = useState('');
   const [newPassword, setNewPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
   const [customGoogleEmail, setCustomGoogleEmail] = useState('');
   const [customGoogleName, setCustomGoogleName] = useState('');
   const [showCustomGoogleInput, setShowCustomGoogleInput] = useState(false);
@@ -110,59 +113,40 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
   const handleGoogleAccountLogin = async (selectedEmail?: string, selectedName?: string, selectedAvatar?: string) => {
     setIsLoading(true);
     setErrorMsg(null);
-    const finalEmail = (selectedEmail || customGoogleEmail || email || 'deepu7777@gmail.com').trim();
-    const finalName = (selectedName || customGoogleName || name || (finalEmail.split('@')[0]) || 'Deepu').trim();
+    const finalEmail = (selectedEmail || customGoogleEmail || email || 'foodie.demo@gmail.com').trim();
+    const finalName = (selectedName || customGoogleName || name || (finalEmail.split('@')[0]) || 'User').trim();
     const finalAvatar = selectedAvatar || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80";
 
     try {
-      // 1. Synchronize or create user on server
-      let apiRes = await api.login({ email: finalEmail, role }).catch(() => null);
-      if (!apiRes || !apiRes.success) {
-        apiRes = await api.register({
+      const res = await api.googleAuth({
+        role,
+        userInfo: {
           email: finalEmail,
           name: finalName,
-          role: role,
-          phone: phone || '8464826785'
-        }).catch(() => null);
+          picture: finalAvatar
+        }
+      });
+
+      if (res.success && res.user) {
+        loginWithUser(res.user, res.token);
+        localStorage.setItem('hcf_last_google_email', finalEmail);
+        localStorage.setItem('hcf_last_google_name', finalName);
+
+        setSuccessMsg(
+          res.isNewUser
+            ? `Welcome to HOME DELIGHTS, ${res.user.name}!`
+            : `Welcome back, ${res.user.name}!`
+        );
+        setTimeout(() => {
+          onClose();
+          redirectUserByRole(res.user.role);
+        }, 500);
+      } else {
+        throw new Error("Unable to complete Google sign-in. Please try again.");
       }
-
-      const userObj: User = {
-        id: apiRes?.user?.id || `usr_google_${Date.now()}`,
-        email: finalEmail,
-        name: finalName,
-        phone: phone || '8464826785',
-        role: role,
-        avatar: finalAvatar
-      };
-
-      // 2. Persist in AuthContext & storage
-      loginWithUser(userObj);
-      localStorage.setItem('hcf_last_google_email', finalEmail);
-      localStorage.setItem('hcf_last_google_name', finalName);
-
-      setSuccessMsg(`Signed in with Google as ${finalName}! Redirecting...`);
-      setTimeout(() => {
-        onClose();
-        redirectUserByRole(role);
-      }, 400);
     } catch (err: any) {
-      console.warn("Fallback local Google auth:", err);
-      const userObj: User = {
-        id: `usr_google_${Date.now()}`,
-        email: finalEmail,
-        name: finalName,
-        phone: phone || '',
-        role: role,
-        avatar: finalAvatar
-      };
-      loginWithUser(userObj);
-      localStorage.setItem('hcf_last_google_email', finalEmail);
-      localStorage.setItem('hcf_last_google_name', finalName);
-      setSuccessMsg(`Signed in with Google as ${finalName}! Redirecting...`);
-      setTimeout(() => {
-        onClose();
-        redirectUserByRole(role);
-      }, 400);
+      console.error("[Google Sign-In Error]", err);
+      setErrorMsg(err.message || "Failed to sign in with Google.");
     } finally {
       setIsLoading(false);
     }
@@ -175,39 +159,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
     setIsLoading(true);
 
     try {
-      // 1. Try Supabase Auth if online/configured
-      try {
-        const { data, error } = await supabase.auth.signInWithPassword({
-          email: email.trim(),
-          password,
-        });
-
-        if (!error && data?.user) {
-          const detectedRole = (data.user.user_metadata?.role as UserRole) || role;
-          const userObj = {
-            id: data.user.id,
-            email: data.user.email || email.trim(),
-            name: data.user.user_metadata?.name || email.trim().split('@')[0],
-            phone: data.user.user_metadata?.phone || '',
-            role: detectedRole,
-            avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
-          };
-          loginWithUser(userObj);
-          setSuccessMsg("Signed in successfully with Supabase!");
-          setTimeout(() => {
-            onClose();
-            redirectUserByRole(detectedRole);
-          }, 400);
-          return;
-        }
-      } catch (supaErr) {
-        console.warn("Supabase auth skipped or offline, attempting local server login:", supaErr);
-      }
-
-      // 2. Query server database for real user
       const apiRes = await api.login({ email: email.trim(), password, role });
       if (apiRes.success && apiRes.user) {
-        loginWithUser(apiRes.user);
+        loginWithUser(apiRes.user, apiRes.token);
         setSuccessMsg("Signed in successfully!");
         setTimeout(() => {
           onClose();
@@ -228,8 +182,16 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
     setErrorMsg(null);
     setSuccessMsg(null);
 
-    if (!name.trim()) {
-      setErrorMsg("Please enter your full name.");
+    const cleanName = name.trim();
+    const cleanEmail = email.trim();
+
+    if (!cleanName || cleanName.length < 2) {
+      setErrorMsg("Please enter your full name (at least 2 characters).");
+      return;
+    }
+
+    if (!cleanEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)) {
+      setErrorMsg("Please provide a valid email address.");
       return;
     }
 
@@ -246,49 +208,27 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
     setIsLoading(true);
 
     try {
-      // 1. Register with Supabase Auth for real email verification OTP
-      const { data: supaData, error: supaError } = await supabase.auth.signUp({
-        email: email.trim(),
+      const apiRes = await api.register({
+        email: cleanEmail,
         password,
-        options: {
-          data: {
-            name: name.trim(),
-            phone: phone.trim(),
-            role: role
-          }
-        }
+        name: cleanName,
+        phone: phone.trim(),
+        role
       });
 
-      if (supaError) {
-        throw new Error(supaError.message || "Supabase Auth registration failed.");
+      if (apiRes.success && apiRes.user) {
+        loginWithUser(apiRes.user, apiRes.token);
+        setSuccessMsg(`Welcome to HOME DELIGHTS, ${apiRes.user.name}! Account registered successfully.`);
+        setTimeout(() => {
+          onClose();
+          redirectUserByRole(apiRes.user.role);
+        }, 600);
+      } else {
+        throw new Error("Registration failed. Please try again.");
       }
-
-      // 2. Register profile record in database
-      const apiRes = await api.register({
-        email: email.trim(),
-        password,
-        name: name.trim(),
-        phone,
-        role
-      }).catch(() => null);
-
-      const registeredUser: User = {
-        id: supaData.user?.id || `usr_${Date.now()}`,
-        email: email.trim(),
-        name: name.trim(),
-        phone: phone || '',
-        role: role,
-        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
-      };
-
-      setPendingUser(registeredUser);
-      setSuccessMsg(`Registration initiated! Verification code sent to ${email.trim()}. Please check your email inbox.`);
-      setResendTimer(30);
-      setCanResend(false);
-      setMode('OTP_VERIFY');
     } catch (err: any) {
       console.error("Registration error:", err);
-      setErrorMsg(err.message || "Registration failed. An account with this email may already exist or domain is rejected.");
+      setErrorMsg(err.message || "Registration failed. An account with this email may already exist.");
     } finally {
       setIsLoading(false);
     }
@@ -302,29 +242,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
 
     try {
       const recipientEmail = pendingUser?.email || email.trim();
-      
-      // 1. Verify 6-digit OTP with Supabase Auth
-      const { data: supaVerify, error: verifyError } = await supabase.auth.verifyOtp({
-        email: recipientEmail,
-        token: otpCode.trim(),
-        type: 'signup'
-      });
+      const res = await api.verifyOtp({ recipient: recipientEmail, code: otpCode.trim(), userId: pendingUser?.id });
 
-      let verified = !verifyError;
-
-      if (!verified) {
-        const { error: verifyErrorAlt } = await supabase.auth.verifyOtp({
-          email: recipientEmail,
-          token: otpCode.trim(),
-          type: 'email'
-        });
-        if (!verifyErrorAlt) verified = true;
-      }
-
-      // Also attempt backend API verify if offline/server record exists
-      await api.verifyOtp({ recipient: recipientEmail, code: otpCode.trim(), userId: pendingUser?.id }).catch(() => null);
-
-      if (verified || pendingUser) {
+      if (res.success) {
         if (pendingUser) {
           loginWithUser(pendingUser);
         }
@@ -334,7 +254,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
           if (pendingUser) redirectUserByRole(pendingUser.role);
         }, 500);
       } else {
-        throw new Error(verifyError?.message || "Invalid or expired verification code.");
+        throw new Error("Invalid or expired verification code.");
       }
     } catch (err: any) {
       console.error("OTP verification error:", err);
@@ -350,18 +270,21 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
     setIsLoading(true);
     try {
       const recipientEmail = pendingUser?.email || email.trim();
-      const { error } = await supabase.auth.resend({
-        type: 'signup',
-        email: recipientEmail
+      const res = await api.sendOtp({
+        type: 'EMAIL',
+        recipient: recipientEmail
       });
 
-      if (error) {
-        throw new Error(error.message || "Failed to resend code.");
+      if (res.success) {
+        setSuccessMsg(`New 6-digit OTP code sent to ${recipientEmail}`);
+        if (res.demoCode) {
+          setOtpCode(res.demoCode);
+        }
+        setResendTimer(30);
+        setCanResend(false);
+      } else {
+        throw new Error("Failed to resend code.");
       }
-
-      setSuccessMsg(`New 6-digit OTP code sent to ${recipientEmail}`);
-      setResendTimer(30);
-      setCanResend(false);
     } catch (err: any) {
       setErrorMsg(err.message || "Unable to send verification code. Please try again.");
     } finally {
@@ -376,43 +299,28 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
 
     const targetRecipient = email.trim();
     if (!targetRecipient) {
-      setErrorMsg("Please enter your registered email address or phone number.");
+      setErrorMsg("Please enter your registered email address.");
       return;
     }
 
     setIsLoading(true);
 
     try {
-      const isPhone = !targetRecipient.includes('@');
+      const res = await api.sendOtp({
+        recipient: targetRecipient,
+        type: 'EMAIL'
+      });
 
-      if (isPhone) {
-        // Mobile SMS OTP request
-        const { error: phoneErr } = await supabase.auth.signInWithOtp({
-          phone: targetRecipient
-        });
-
-        if (phoneErr) {
-          if (phoneErr.message?.toLowerCase().includes("phone provider") || (phoneErr as any).code === "phone_provider_disabled") {
-            setErrorMsg("SMS OTP cannot work yet because Phone SMS provider (Twilio/MessageBird/Fast2SMS) is not configured in Supabase Dashboard.");
-          } else {
-            setErrorMsg(phoneErr.message || "Unable to send SMS verification code.");
-          }
-          return;
+      if (res.success) {
+        setSuccessMsg(`Password recovery code sent to ${targetRecipient}.`);
+        if (res.demoCode) {
+          setOtpCode(res.demoCode);
         }
-
-        setSuccessMsg(`SMS recovery code sent to ${targetRecipient}`);
+        setResendTimer(30);
+        setCanResend(false);
         setMode('RESET_PASSWORD');
       } else {
-        // Email recovery request via Supabase Auth
-        const { error: emailErr } = await supabase.auth.resetPasswordForEmail(targetRecipient);
-
-        if (emailErr) {
-          setErrorMsg(emailErr.message || "Unable to send password recovery email. Ensure email is registered.");
-          return;
-        }
-
-        setSuccessMsg(`Password recovery code sent to ${targetRecipient}. Please check your email inbox.`);
-        setMode('RESET_PASSWORD');
+        throw new Error("Unable to send recovery code. Ensure email is registered.");
       }
     } catch (err: any) {
       console.error("Password recovery request error:", err);
@@ -427,8 +335,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
     setErrorMsg(null);
     setSuccessMsg(null);
 
-    if (!otpCode.trim()) {
-      setErrorMsg("Please enter the 6-digit verification code sent to your email.");
+    if (!otpCode.trim() || otpCode.trim().length < 6) {
+      setErrorMsg("Please enter the 6-digit verification code.");
       return;
     }
 
@@ -440,42 +348,23 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
     setIsLoading(true);
 
     try {
-      const recipientEmail = email.trim();
-      
-      // 1. Verify recovery code with Supabase Auth
-      const { error: verifyErr } = await supabase.auth.verifyOtp({
-        email: recipientEmail,
-        token: otpCode.trim(),
-        type: 'recovery'
-      });
-
-      if (verifyErr) {
-        throw new Error(verifyErr.message || "Invalid or expired recovery code.");
-      }
-
-      // 2. Update password in Supabase Auth
-      const { error: updateErr } = await supabase.auth.updateUser({
-        password: newPassword
-      });
-
-      if (updateErr) {
-        throw new Error(updateErr.message || "Failed to update password in Supabase.");
-      }
-
-      // Sync backend password
-      await api.resetPassword({
-        recipient: recipientEmail,
+      const res = await api.resetPassword({
+        recipient: email.trim(),
         code: otpCode.trim(),
         newPassword
-      }).catch(() => null);
+      });
 
-      setSuccessMsg("Password updated successfully! Please sign in with your new password.");
-      setTimeout(() => {
-        setMode('LOGIN');
-        setPassword('');
-        setNewPassword('');
-        setOtpCode('');
-      }, 1000);
+      if (res.success) {
+        setSuccessMsg("Password updated successfully! Please sign in with your new password.");
+        setTimeout(() => {
+          setMode('LOGIN');
+          setPassword('');
+          setNewPassword('');
+          setOtpCode('');
+        }, 1000);
+      } else {
+        throw new Error("Invalid or expired verification code.");
+      }
     } catch (err: any) {
       console.error("Reset password submission error:", err);
       setErrorMsg(err.message || "Failed to reset password. Please check your verification code.");
@@ -648,13 +537,21 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
                 <div className="relative">
                   <Lock className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
                   <input
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-medium text-slate-900 focus:ring-2 focus:ring-emerald-500/20 outline-none"
+                    className="w-full pl-9 pr-9 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-medium text-slate-900 focus:ring-2 focus:ring-emerald-500/20 outline-none"
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-0.5 cursor-pointer"
+                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  >
+                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
                 </div>
               </div>
 
@@ -771,26 +668,46 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
               <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block font-bold text-slate-700 mb-1">Password *</label>
-                  <input
-                    type="password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="At least 6 chars"
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium text-slate-900"
-                  />
+                  <div className="relative">
+                    <input
+                      type={showPassword ? 'text' : 'password'}
+                      required
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="At least 6 chars"
+                      className="w-full pl-3 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium text-slate-900"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-0.5 cursor-pointer"
+                      aria-label="Toggle password"
+                    >
+                      {showPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+                    </button>
+                  </div>
                 </div>
 
                 <div>
                   <label className="block font-bold text-slate-700 mb-1">Confirm Password *</label>
-                  <input
-                    type="password"
-                    required
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    placeholder="Re-enter password"
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium text-slate-900"
-                  />
+                  <div className="relative">
+                    <input
+                      type={showConfirmPassword ? 'text' : 'password'}
+                      required
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      placeholder="Re-enter password"
+                      className="w-full pl-3 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-xl font-medium text-slate-900"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-0.5 cursor-pointer"
+                      aria-label="Toggle confirm password"
+                    >
+                      {showConfirmPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -938,14 +855,24 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMo
 
             <div>
               <label className="block font-bold text-slate-700 mb-1">New Password *</label>
-              <input
-                type="password"
-                required
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-                placeholder="Minimum 6 characters"
-                className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-medium text-slate-900"
-              />
+              <div className="relative">
+                <input
+                  type={showNewPassword ? 'text' : 'password'}
+                  required
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  placeholder="Minimum 6 characters"
+                  className="w-full pl-3 pr-8 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-medium text-slate-900"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowNewPassword(!showNewPassword)}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-0.5 cursor-pointer"
+                  aria-label="Toggle new password"
+                >
+                  {showNewPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
             </div>
 
             <button

@@ -35,25 +35,44 @@ async function fetchJson<T>(url: string, options?: RequestInit): Promise<T> {
 export const api = {
   // Auth
   login: (credentials: { email: string; password?: string; role?: string }) => 
-    fetchJson<{ success: boolean; user: User }>('/auth/login', {
+    fetchJson<{ success: boolean; user: User; token: string }>('/auth/login', {
       method: 'POST',
       body: JSON.stringify(credentials),
     }),
 
   register: (userData: { email: string; password?: string; name: string; phone?: string; role?: string }) =>
-    fetchJson<{ success: boolean; user: User }>('/auth/register', {
+    fetchJson<{ success: boolean; user: User; token: string }>('/auth/register', {
       method: 'POST',
       body: JSON.stringify(userData),
     }),
 
+  googleAuth: (data: { credential?: string; role?: string; userInfo?: { email: string; name?: string; picture?: string } }) =>
+    fetchJson<{ success: boolean; user: User; token: string; isNewUser?: boolean }>('/auth/google', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+
+  getMe: (token: string) =>
+    fetchJson<{ success: boolean; user: User }>('/auth/me', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
+
+  logout: (token?: string) =>
+    fetchJson<{ success: boolean; message: string }>('/auth/logout', {
+      method: 'POST',
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+    }),
+
   loginDemo: (role: string) =>
-    fetchJson<{ success: boolean; user: User }>('/auth/demo', {
+    fetchJson<{ success: boolean; user: User; token: string }>('/auth/demo', {
       method: 'POST',
       body: JSON.stringify({ role }),
     }),
 
   sendOtp: (data: { recipient: string; type?: string }) =>
-    fetchJson<{ success: boolean; message: string; expiresMinutes?: number }>('/auth/send-otp', {
+    fetchJson<{ success: boolean; message: string; expiresMinutes?: number; demoCode?: string }>('/auth/send-otp', {
       method: 'POST',
       body: JSON.stringify(data),
     }),
